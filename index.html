@@ -1,0 +1,1372 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>মুর্শিদাবাদ জেলা প্রাথমিক বিদ্যালয় সংসদ — মাসিক বিবরণী অ্যাপ (DPSC Monthly Return)</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Bengali:wght@400;500;600;700&family=Noto+Serif+Bengali:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --font-bn: 'Noto Sans Bengali', 'Vrinda', 'Nirmala UI', 'Kalpurush', sans-serif;
+      --font-bn-serif: 'Noto Serif Bengali', 'Noto Sans Bengali', 'Vrinda', 'Nirmala UI', serif;
+    }
+    body {
+      font-family: var(--font-bn), 'Inter', sans-serif;
+      background-color: #f1f5f9;
+      color: #0f172a;
+    }
+    .font-bn-serif {
+      font-family: var(--font-bn-serif);
+    }
+    /* Official form table styling */
+    .official-table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    .official-table th,
+    .official-table td {
+      border: 1px solid #1e293b;
+      padding: 2px 4px;
+      font-size: 12px;
+      line-height: 1.25;
+      vertical-align: middle;
+    }
+    .official-input {
+      width: 100%;
+      background: transparent;
+      border: none;
+      outline: none;
+      padding: 2px 3px;
+      font-family: inherit;
+      font-size: 12px;
+      color: #0f172a;
+      border-radius: 2px;
+      transition: background-color 0.15s ease, box-shadow 0.15s ease;
+    }
+    .official-input:focus {
+      background-color: #fef9c3;
+      box-shadow: inset 0 0 0 1px #eab308;
+    }
+    .official-input:hover:not(:focus) {
+      background-color: #f8fafc;
+    }
+    .dotted-input {
+      border: none;
+      border-bottom: 1.5px dotted #334155;
+      background: transparent;
+      outline: none;
+      padding: 0 4px;
+      font-family: inherit;
+      font-size: 13px;
+      color: #0f172a;
+      transition: border-color 0.15s ease, background-color 0.15s ease;
+    }
+    .dotted-input:focus {
+      background-color: #fef9c3;
+      border-bottom: 1.5px solid #0284c7;
+    }
+    .auto-cell {
+      background-color: #f1f5f9;
+      font-weight: 700;
+      color: #0f172a;
+      text-align: right;
+      padding: 2px 5px;
+      user-select: all;
+    }
+    .net-cell {
+      background-color: #e2e8f0;
+      font-weight: 700;
+      color: #0f172a;
+      text-align: right;
+      padding: 2px 5px;
+      border-bottom: 3px double #0f172a !important;
+    }
+    /* Remove number input spinners for clean official look */
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    input[type="number"] {
+      -moz-appearance: textfield;
+    }
+
+    /* Print / A4 Landscape styles */
+    @media print {
+      @page {
+        size: A4 landscape;
+        margin: 5mm 6mm;
+      }
+      body {
+        background: #ffffff !important;
+        color: #000000 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+      .no-print {
+        display: none !important;
+      }
+      .print-sheet {
+        display: block !important;
+        box-shadow: none !important;
+        border: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        width: 100% !important;
+        max-width: none !important;
+      }
+      .page-break-after {
+        page-break-after: always;
+        break-after: page;
+      }
+      .official-table th,
+      .official-table td {
+        border: 1px solid #000000 !important;
+        font-size: 10px !important;
+        padding: 1.5px 3px !important;
+      }
+      .official-input {
+        font-size: 10px !important;
+        padding: 0 2px !important;
+      }
+      .dotted-input {
+        font-size: 11px !important;
+        border-bottom: 1px dotted #000000 !important;
+      }
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+  <!-- Top App Navigation & Action Toolbar (Hidden when printing) -->
+  <header class="no-print bg-slate-900 text-white shadow-md sticky top-0 z-30">
+    <div class="max-w-[1440px] mx-auto px-3 sm:px-5 py-2.5 flex flex-wrap items-center justify-between gap-2">
+      <!-- App Title & Status -->
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-lg bg-amber-500/20 border border-amber-400/40 flex items-center justify-center text-amber-300 font-bold text-lg shrink-0">
+          ম
+        </div>
+        <div>
+          <h1 class="text-sm sm:text-base font-bold leading-tight text-white">
+            মুর্শিদাবাদ জেলা প্রাথমিক বিদ্যালয় সংসদ — মাসিক বিবরণী
+          </h1>
+          <div class="flex items-center gap-2 text-xs text-slate-300">
+            <span>অনলাইন ডিজিটাল ফর্ম ও অটো-ক্যালকুলেটর</span>
+            <span class="text-slate-500">•</span>
+            <span id="saveStatusBadge" class="inline-flex items-center gap-1 text-emerald-400 font-medium">
+              <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+              স্বয়ংক্রিয়ভাবে সংরক্ষিত
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex flex-wrap items-center gap-1.5 sm:gap-2">
+        <button id="btnSampleData" type="button" class="px-2.5 py-1.5 rounded-md bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs font-medium transition">
+          নমুনা তথ্য (Sample)
+        </button>
+        <button id="btnExportJson" type="button" class="px-2.5 py-1.5 rounded-md bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs font-medium transition">
+          ব্যাকআপ সেভ (.json)
+        </button>
+        <label for="fileImportJson" class="cursor-pointer px-2.5 py-1.5 rounded-md bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs font-medium transition">
+          ফাইল লোড (.json)
+          <input id="fileImportJson" type="file" accept=".json" class="hidden" />
+        </label>
+        <button id="btnExportCsv" type="button" class="px-2.5 py-1.5 rounded-md bg-emerald-700 hover:bg-emerald-600 text-white text-xs font-medium transition">
+          এক্সেল / CSV ডাউনলোড
+        </button>
+        <button id="btnPrintForm" type="button" class="px-3 py-1.5 rounded-md bg-amber-500 hover:bg-amber-400 text-slate-950 text-xs font-bold shadow-sm transition">
+          প্রিন্ট / PDF সেভ (A4)
+        </button>
+        <button id="btnOpenResetModal" type="button" class="px-2.5 py-1.5 rounded-md bg-rose-900/70 hover:bg-rose-800 text-rose-200 border border-rose-700/60 text-xs font-medium transition">
+          রিসেট
+        </button>
+      </div>
+    </div>
+
+    <!-- Page Switcher & Summary KPI Strip -->
+    <div class="bg-slate-800/90 border-t border-slate-700/80">
+      <div class="max-w-[1440px] mx-auto px-3 sm:px-5 py-2 flex flex-wrap items-center justify-between gap-2">
+        <!-- View Tabs -->
+        <div class="flex items-center gap-1 bg-slate-900/90 p-1 rounded-lg border border-slate-700">
+          <button id="tabBtnPartA" type="button" data-tab="partA" class="tab-btn px-3 py-1.5 rounded-md text-xs font-semibold bg-amber-500 text-slate-950 transition">
+            ১ম পৃষ্ঠা : ‘ক’ অংশ (শিক্ষক তথ্যাদি ও বেতন)
+          </button>
+          <button id="tabBtnPartBC" type="button" data-tab="partBC" class="tab-btn px-3 py-1.5 rounded-md text-xs font-semibold text-slate-300 hover:text-white transition">
+            ২য় পৃষ্ঠা : ‘খ’ ও ‘গ’ অংশ (হিসাব ও ছাত্র-ছাত্রী)
+          </button>
+          <button id="tabBtnBoth" type="button" data-tab="both" class="tab-btn px-3 py-1.5 rounded-md text-xs font-semibold text-slate-300 hover:text-white transition">
+            সম্পূর্ণ উভয় পৃষ্ঠা (প্রিন্ট প্রিভিউ)
+          </button>
+        </div>
+
+        <!-- Live Summary Pills -->
+        <div class="flex flex-wrap items-center gap-2 text-xs">
+          <div class="px-2.5 py-1 rounded bg-slate-900/80 border border-slate-700 text-slate-300">
+            মোট শিক্ষক: <span id="kpiTeacherCount" class="font-bold text-amber-400">০</span> জন
+          </div>
+          <div class="px-2.5 py-1 rounded bg-slate-900/80 border border-slate-700 text-slate-300">
+            মোট নিট বেতন: <span id="kpiTotalNetSalary" class="font-bold text-emerald-400">₹ ০.০০</span>
+          </div>
+          <div class="px-2.5 py-1 rounded bg-slate-900/80 border border-slate-700 text-slate-300">
+            মোট ছাত্র-ছাত্রী: <span id="kpiTotalStudents" class="font-bold text-sky-400">০</span> জন
+          </div>
+          <label class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-slate-900/80 border border-slate-700 text-slate-200 cursor-pointer select-none" title="চালু থাকলে সাধারণ + তপশিলী জাতি + তপশিলী উপজাতি + অনগ্রসর শ্রেণী যোগ করে স্বয়ংক্রিয়ভাবে মোট সংখ্যা বের করবে">
+            <input id="chkAutoStudentTotal" type="checkbox" class="rounded text-amber-500 focus:ring-0" />
+            <span>ক্যাটাগরি থেকে ‘মোট সংখ্যা’ অটো-যোগ</span>
+          </label>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Toast Banner -->
+  <div id="toastBanner" class="no-print fixed bottom-4 right-4 z-50 hidden px-4 py-2.5 rounded-lg bg-slate-900 text-white text-xs font-medium shadow-xl border border-slate-700 flex items-center gap-2">
+    <span id="toastMessage">সংরক্ষিত হয়েছে</span>
+  </div>
+
+  <!-- Main Workspace Container -->
+  <main class="flex-1 max-w-[1440px] w-full mx-auto p-2 sm:p-5 space-y-6">
+
+    <!-- App Description & Guide Banner (Hidden when printing) -->
+    <div class="no-print bg-white rounded-xl shadow-sm border border-slate-200 p-4 sm:p-5">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-3">
+        <div class="space-y-1">
+          <div class="flex items-center gap-2">
+            <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-amber-100 text-amber-800 border border-amber-300">
+              অফিসিয়াল ফরম্যাট
+            </span>
+            <h2 class="text-base font-bold text-slate-900">
+              অ্যাপের পরিচিতি ও ব্যবহার নির্দেশিকা (App Description & Guide)
+            </h2>
+          </div>
+          <p class="text-xs text-slate-600 leading-relaxed max-w-4xl">
+            এই ওয়েব অ্যাপ্লিকেশনটি <strong>মুর্শিদাবাদ জেলা প্রাথমিক বিদ্যালয় সংসদ (Murshidabad DPSC)</strong>-এর আওতাধীন প্রাথমিক বিদ্যালয়সমূহের মাসিক বিবরণী ফরম্যাট অনুসারে তৈরি। এখানে শিক্ষাগত তথ্যাদি, শিক্ষক/শিক্ষিকাদের বেতন ও ছুটির হিসাব (<strong>‘ক’ অংশ</strong>), বিদ্যালয়ের নৈমিত্তিক খরচের হিসাব (<strong>‘খ’ অংশ</strong>) এবং শ্রেণিভিত্তিক ছাত্র-ছাত্রীদের জাতিগত বিভাজন ও উপস্থিতির খতিয়ান (<strong>‘গ’ অংশ</strong>) নির্ভুলভাবে অনলাইনে প্রস্তুত, ব্রাউজারে স্বয়ংক্রিয় সংরক্ষণ এবং সরকারি <strong>A4 Landscape</strong> মাপে প্রিন্ট বা PDF তৈরি করা যায়।
+          </p>
+        </div>
+        <div class="flex items-center gap-2 shrink-0 text-xs">
+          <button id="btnToggleGuide" type="button" class="px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold border border-slate-300 transition">
+            নির্দেশিকা লুকান / দেখান
+          </button>
+        </div>
+      </div>
+
+      <div id="guideDetails" class="mt-3 pt-3 border-t border-slate-100 grid grid-cols-1 md:grid-cols-3 gap-3 text-xs text-slate-700">
+        <div class="p-2.5 rounded-lg bg-slate-50 border border-slate-200/80">
+          <span class="font-bold text-slate-900 block mb-1">⚡ স্বয়ংক্রিয় হিসাব-নিকাশ:</span>
+          শিক্ষকদের মূল বেতন ও ভাতার যোগফলে <em>মোট বেতন</em>, বিভিন্ন কর্তনে <em>মোট বাদ</em>, এবং স্বয়ংক্রিয় <em>নিট বেতন</em> হিসাব হয়। ছাত্র-ছাত্রী অংশে বালক-বালিকা যোগ হয়ে শ্রেণি ও ক্যাটাগরিভিত্তিক মোট বেরিয়ে আসে।
+        </div>
+        <div class="p-2.5 rounded-lg bg-slate-50 border border-slate-200/80">
+          <span class="font-bold text-slate-900 block mb-1">🔒 গোপনীয়তা ও অফলাইন ব্যাকআপ:</span>
+          সকল তথ্য আপনার নিজস্ব ডিভাইসের ব্রাউজারে সংরক্ষিত থাকে। <em>ব্যাকআপ সেভ (.json)</em> বাটনে ক্লিক করে ফাইলটি কম্পিউটারে রেখে দিলে প্রতি মাসে পুনরায় লোড করে ব্যবহার করতে পারবেন।
+        </div>
+        <div class="p-2.5 rounded-lg bg-slate-50 border border-slate-200/80">
+          <span class="font-bold text-slate-900 block mb-1">🖨️ সরকারি ফরম্যাটে প্রিন্ট / PDF:</span>
+          উপরের <em>প্রিন্ট / PDF সেভ (A4)</em> বাটনে ক্লিক করলে উভয় পৃষ্ঠা সরকারি মূল ফরম্যাট অনুযায়ী পাশাপাশি দুটি A4 Landscape পৃষ্ঠায় নিখুঁতভাবে প্রিন্ট বা PDF হিসেবে সংরক্ষিত হবে।
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- PAGE 1: ‘ক’ অংশ : শিক্ষক/শিক্ষিকা সংক্রান্ত তথ্যাদি                       -->
+    <!-- ========================================================================= -->
+    <section id="sectionPartA" class="print-sheet page-break-after bg-white rounded-xl shadow-md border border-slate-300 p-3 sm:p-5 overflow-x-auto">
+      <div class="min-w-[1060px]">
+        <!-- Top Header Row: Main Title + Date Range -->
+        <div class="flex items-end justify-between gap-4 border-b border-slate-200 pb-2 mb-2">
+          <div class="text-center flex-1">
+            <h2 class="font-bn-serif text-xl sm:text-2xl font-bold tracking-tight text-slate-900">
+              মুর্শিদাবাদ জেলা প্রাথমিক বিদ্যালয় সংসদ
+            </h2>
+          </div>
+          <div class="text-xs sm:text-sm whitespace-nowrap flex items-center gap-1">
+            <span>বিদ্যালয়ের মাসিক বিবরণী</span>
+            <input id="meta_dateFrom_a" data-sync="dateFrom" type="text" placeholder="তারিখ (যেমন ০১/১০/২০২৬)" class="dotted-input w-36 text-center" />
+            <span>তারিখ হতে</span>
+            <input id="meta_dateTo_a" data-sync="dateTo" type="text" placeholder="তারিখ (যেমন ৩১/১০/২০২৬)" class="dotted-input w-36 text-center" />
+            <span>তারিখ পর্যন্ত</span>
+          </div>
+        </div>
+
+        <!-- School Metadata Lines 1, 2, 3 -->
+        <div class="space-y-1.5 text-xs sm:text-sm mb-2.5">
+          <!-- Line 1 -->
+          <div class="flex flex-wrap items-center gap-x-2 gap-y-1">
+            <span>মাসের মোট কর্মদিবস :</span>
+            <input id="meta_workingDays" type="text" placeholder="কর্মদিবস" class="dotted-input w-24 text-center" />
+            <span>বিদ্যালয় নাম</span>
+            <input id="meta_schoolName" type="text" placeholder="বিদ্যালয়ের নাম লিখুন" class="dotted-input flex-1 min-w-[180px]" />
+            <span>নং</span>
+            <input id="meta_schoolNo" type="text" placeholder="নং" class="dotted-input w-20 text-center" />
+            <span>গ্রাম</span>
+            <input id="meta_village" type="text" placeholder="গ্রামের নাম" class="dotted-input w-40" />
+            <span>ডাকঘর</span>
+            <input id="meta_postOffice" type="text" placeholder="ডাকঘর" class="dotted-input w-40" />
+          </div>
+
+          <!-- Line 2 -->
+          <div class="flex flex-wrap items-center gap-x-2 gap-y-1">
+            <span>গ্রাম পঞ্চায়েত</span>
+            <input id="meta_gramPanchayat" type="text" placeholder="গ্রাম পঞ্চায়েতের নাম" class="dotted-input flex-1 min-w-[160px]" />
+            <span>স্কুল কোড নং</span>
+            <input id="meta_schoolCode" type="text" placeholder="স্কুল কোড" class="dotted-input w-36 text-center" />
+            <span>চক্রের নাম</span>
+            <input id="meta_circleName" type="text" placeholder="চক্রের (Circle) নাম" class="dotted-input w-48" />
+            <span>পৌরসভা ও ওয়ার্ড নং</span>
+            <input id="meta_municipalityWard" type="text" placeholder="পৌরসভা / ওয়ার্ড নং" class="dotted-input w-44" />
+          </div>
+
+          <!-- Line 3 -->
+          <div class="flex flex-wrap items-center justify-between gap-x-3 gap-y-1">
+            <div class="flex items-center gap-1 flex-1 min-w-[240px]">
+              <span>বিদ্যালয়ের জমির পরিমাণ</span>
+              <input id="meta_landArea" type="text" placeholder="জমির পরিমাণ (শতক/বিঘা)" class="dotted-input flex-1" />
+              <span>/</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span>বিদ্যালয়ের গৃহের অবস্থান :</span>
+              <select id="meta_buildingType" class="dotted-input font-semibold px-2 py-0.5 cursor-pointer">
+                <option value="পাকা">পাকা</option>
+                <option value="কাঁচা">কাঁচা</option>
+                <option value="অর্দ্ধপাকা">অর্দ্ধপাকা</option>
+                <option value="পাকা / কাঁচা / অর্দ্ধপাকা">পাকা / কাঁচা / অর্দ্ধপাকা</option>
+              </select>
+            </div>
+            <div class="flex items-center gap-1 flex-1 min-w-[200px]">
+              <span>ব্যবহার যোগ্য কক্ষ সংখ্যা</span>
+              <input id="meta_usableRooms" type="text" placeholder="কক্ষ সংখ্যা" class="dotted-input flex-1 text-center" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 'ক' Heading & Para-teacher Count -->
+        <div class="flex items-center justify-between gap-4 mb-1.5">
+          <div class="w-48 hidden sm:block"></div>
+          <h3 class="font-bn-serif text-base sm:text-lg font-bold text-center text-slate-900">
+            ‘ক’ অংশ : শিক্ষক/শিক্ষিকা সংক্রান্ত তথ্যাদি
+          </h3>
+          <div class="text-xs sm:text-sm font-semibold flex items-center gap-1">
+            <span>পার্শ্ব-শিক্ষিকা / শিক্ষকের মোট সংখ্যা-</span>
+            <input id="meta_paraTeacherCount" type="text" placeholder="সংখ্যা" class="dotted-input w-24 text-center font-bold" />
+          </div>
+        </div>
+
+        <!-- Main 30-Row x 8-Teacher Table -->
+        <table class="official-table" id="tablePartA">
+          <colgroup>
+            <col style="width: 21%;" />
+            <!-- 16 sub-columns (8 teachers x 2 sub-columns) -->
+            <col style="width: 4.9375%;" /><col style="width: 4.9375%;" />
+            <col style="width: 4.9375%;" /><col style="width: 4.9375%;" />
+            <col style="width: 4.9375%;" /><col style="width: 4.9375%;" />
+            <col style="width: 4.9375%;" /><col style="width: 4.9375%;" />
+            <col style="width: 4.9375%;" /><col style="width: 4.9375%;" />
+            <col style="width: 4.9375%;" /><col style="width: 4.9375%;" />
+            <col style="width: 4.9375%;" /><col style="width: 4.9375%;" />
+            <col style="width: 4.9375%;" /><col style="width: 4.9375%;" />
+          </colgroup>
+          <tbody id="tbodyPartA">
+            <!-- Dynamically populated by JavaScript -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- PAGE 2: ‘খ’ অংশ ও ‘গ’ অংশ                                                 -->
+    <!-- ========================================================================= -->
+    <section id="sectionPartBC" class="print-sheet bg-white rounded-xl shadow-md border border-slate-300 p-3 sm:p-5 overflow-x-auto hidden">
+      <div class="min-w-[1060px]">
+        <!-- Main Title -->
+        <div class="text-center mb-1">
+          <h2 class="font-bn-serif text-xl sm:text-2xl font-bold tracking-tight text-slate-900">
+            মুর্শিদাবাদ জেলা প্রাথমিক বিদ্যালয় সংসদ
+          </h2>
+        </div>
+
+        <!-- Date Range Subtitle -->
+        <div class="text-center text-xs sm:text-sm mb-2 flex items-center justify-center gap-1.5">
+          <span>বিদ্যালয়ের মাসিক বিবরণী</span>
+          <input id="meta_dateFrom_b" data-sync="dateFrom" type="text" placeholder="তারিখ (যেমন ০১/১০/২০২৬)" class="dotted-input w-44 text-center" />
+          <span>তারিখ হতে</span>
+          <input id="meta_dateTo_b" data-sync="dateTo" type="text" placeholder="তারিখ (যেমন ৩১/১০/২০২৬)" class="dotted-input w-44 text-center" />
+          <span>তারিখ পর্যন্ত</span>
+        </div>
+
+        <!-- Section 'খ' Heading -->
+        <h3 class="font-bn-serif text-base sm:text-lg font-bold text-center text-slate-900 mb-1.5">
+          ‘খ’ অংশ : নৈমিত্তিক ব্যায়ের হিসাব
+        </h3>
+
+        <!-- Section 'খ' Table (Contingency Account) -->
+        <div class="max-w-4xl mx-auto mb-2">
+          <table class="official-table">
+            <thead>
+              <tr class="bg-slate-200/80 text-center font-bold">
+                <th colspan="2" style="width: 24%;">শুরুতে মজুত</th>
+                <th style="width: 17%;">গতমাসে প্রাপ্তি</th>
+                <th style="width: 17%;">মোট প্রাপ্তি</th>
+                <th style="width: 18%;" title="ব্যয় / খরচ">
+                  <input id="kha_col4_header" type="text" placeholder="(ব্যয় / খরচ)" class="official-input text-center font-bold" />
+                </th>
+                <th colspan="2" style="width: 24%;" title="মাসান্তে মজুত">
+                  <input id="kha_col5_header" type="text" placeholder="(মাসান্তে মজুত)" class="official-input text-center font-bold" />
+                </th>
+              </tr>
+              <tr class="text-center text-xs bg-slate-50">
+                <td colspan="2">টাঃ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; পঃ</td>
+                <td>টাঃ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; পঃ</td>
+                <td>টাঃ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; পঃ</td>
+                <td>টাঃ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; পঃ</td>
+                <td colspan="2">টাঃ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; পঃ</td>
+              </tr>
+              <tr class="text-center font-semibold bg-slate-100/70">
+                <td style="width: 12%;">ব্যাঙ্ক</td>
+                <td style="width: 12%;">হাতে</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td style="width: 12%;">ব্যাঙ্ক</td>
+                <td style="width: 12%;">হাতে</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="h-9">
+                <td>
+                  <input id="kha_open_bank" type="number" step="0.01" placeholder="0.00" class="official-input text-right font-medium" />
+                </td>
+                <td>
+                  <input id="kha_open_cash" type="number" step="0.01" placeholder="0.00" class="official-input text-right font-medium" />
+                </td>
+                <td>
+                  <input id="kha_rec_prev" type="number" step="0.01" placeholder="0.00" class="official-input text-right font-medium" />
+                </td>
+                <td id="kha_total_rec" class="auto-cell" title="শুরুতে মজুত (ব্যাঙ্ক + হাতে) + গতমাসে প্রাপ্তি"></td>
+                <td>
+                  <input id="kha_exp" type="number" step="0.01" placeholder="0.00" class="official-input text-right font-medium" />
+                </td>
+                <td>
+                  <input id="kha_close_bank" type="number" step="0.01" placeholder="0.00" class="official-input text-right font-medium" />
+                </td>
+                <td>
+                  <input id="kha_close_cash" type="number" step="0.01" placeholder="0.00" class="official-input text-right font-medium" />
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <!-- Numbered Lines & Declaration below Section 'খ' -->
+          <div class="mt-1.5 space-y-1 text-xs">
+            <div class="grid grid-cols-12 items-center gap-2">
+              <div class="col-span-4 flex items-center gap-1">
+                <span>১)</span>
+                <input id="kha_note1" type="text" placeholder="মন্তব্য ১ (ঐচ্ছিক)" class="dotted-input flex-1" />
+              </div>
+              <div class="col-span-5 text-center font-medium">
+                উপযুক্ত বিবরণ আমার জ্ঞান ও বিশ্বাসমতে সত্য
+              </div>
+              <div class="col-span-3 text-right font-medium pr-2">
+                পরিক্ষিত
+              </div>
+            </div>
+            <div class="grid grid-cols-12 items-center gap-2">
+              <div class="col-span-4 flex items-center gap-1">
+                <span>২)</span>
+                <input id="kha_note2" type="text" placeholder="মন্তব্য ২ (ঐচ্ছিক)" class="dotted-input flex-1" />
+              </div>
+              <div class="col-span-8"></div>
+            </div>
+
+            <!-- 3 Signature Blocks for Section 'খ' -->
+            <div class="grid grid-cols-3 gap-4 pt-5 text-center text-xs leading-snug">
+              <div>
+                <p>সম্পাদক ও অপর একজন সদস্য/সম্পাদকের</p>
+                <p>অবর্তমানে দুইজন সদস্যের স্বাক্ষর</p>
+                <p class="text-slate-600">(বিদ্যালয় শিক্ষক/শিক্ষিকা ছাড়া)</p>
+              </div>
+              <div class="flex flex-col justify-end">
+                <p>প্রধান শিক্ষক / ভার প্রাপ্ত শিক্ষক/শিক্ষিকা</p>
+              </div>
+              <div class="flex flex-col justify-end">
+                <p>অবর বিদ্যালয় পরিদর্শক</p>
+                <p class="text-slate-600">(শীলমোহর)</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- School Inspection Line -->
+        <div class="flex flex-wrap items-center justify-center gap-2 text-xs sm:text-sm my-2 py-1 border-y border-slate-200">
+          <span>বিদ্যালয়ের পরিদর্শন সংক্রান্ত : বর্তমান মাসে বিদ্যালয়টি পরিদর্শিত হয়েছে কিনা</span>
+          <input id="insp_visited" type="text" placeholder="হ্যাঁ / না" class="dotted-input w-28 text-center" />
+          <span>হয়ে থাকলে কার দ্বারা</span>
+          <input id="insp_byWhom" type="text" placeholder="পরিদর্শকের নাম/পদবী" class="dotted-input w-56 text-center" />
+          <span>বর্তমান বর্ষে পরিদর্শনের সংখ্যা</span>
+          <input id="insp_countYear" type="text" placeholder="সংখ্যা" class="dotted-input w-24 text-center" />
+        </div>
+
+        <!-- Section 'গ' Heading -->
+        <h3 class="font-bn-serif text-base sm:text-lg font-bold text-center text-slate-900 mb-1.5">
+          ‘গ’ অংশ : ছাত্র-ছাত্রী সংক্রান্ত বিবরণ
+        </h3>
+
+        <!-- Section 'গ' 21-Column Student Table -->
+        <table class="official-table" id="tablePartG">
+          <thead>
+            <tr class="bg-slate-200/80 text-center font-bold">
+              <th rowspan="2" style="width: 9.5%;">শ্রেণী</th>
+              <th colspan="3" style="width: 12.5%;">মোট সংখ্যা</th>
+              <th colspan="3" style="width: 12.5%;">সাধারণ</th>
+              <th colspan="3" style="width: 12.5%;">তপশিলী জাতি</th>
+              <th colspan="3" style="width: 12.5%;">তপশিলী উপজাতি</th>
+              <th colspan="3" style="width: 12.5%;">অনগ্রসর শ্রেণী</th>
+              <th colspan="3" style="width: 12.5%;">সংখ্যালঘু</th>
+              <th rowspan="2" style="width: 6.5%;">মাসের গড়<br/>উপস্থিতি</th>
+              <th rowspan="2" style="width: 9%;">মাসিক কার্যদিবসের অর্ধেক<br/>বা তদুর্ধ দিন অনুপস্থিত</th>
+            </tr>
+            <tr class="bg-slate-100 text-center font-semibold">
+              <th>ছাত্র</th><th>ছাত্রী</th><th>মোট</th>
+              <th>ছাত্র</th><th>ছাত্রী</th><th>মোট</th>
+              <th>ছাত্র</th><th>ছাত্রী</th><th>মোট</th>
+              <th>ছাত্র</th><th>ছাত্রী</th><th>মোট</th>
+              <th>ছাত্র</th><th>ছাত্রী</th><th>মোট</th>
+              <th>ছাত্র</th><th>ছাত্রী</th><th>মোট</th>
+            </tr>
+          </thead>
+          <tbody id="tbodyPartG">
+            <!-- Dynamically populated by JavaScript -->
+          </tbody>
+        </table>
+
+        <!-- Footnote & Bottom Signatures -->
+        <div class="grid grid-cols-12 items-start mt-1.5 text-xs">
+          <div class="col-span-3 font-medium">
+            * যারা দ্বিতীয় শ্রেণীতে যাবে
+          </div>
+          <div class="col-span-5 text-center pt-5 leading-snug">
+            <p>স্বাক্ষর</p>
+            <p>প্রধান শিক্ষক / ভার প্রাপ্ত শিক্ষক/শিক্ষিকা</p>
+            <p class="text-slate-600">(শীলমোহর)</p>
+          </div>
+          <div class="col-span-4 text-center pt-5 leading-snug">
+            <p>স্বাক্ষর</p>
+            <p>অবর বিদ্যালয় পরিদর্শক</p>
+            <p class="text-slate-600">(শীলমোহর)</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Confirmation Modal for Resetting Form -->
+  <div id="resetModal" class="no-print fixed inset-0 z-50 bg-slate-950/60 backdrop-blur-xs hidden items-center justify-center p-4">
+    <div class="bg-white rounded-xl max-w-md w-full p-5 shadow-2xl border border-slate-200">
+      <h3 class="text-base font-bold text-slate-900 mb-1">সব তথ্য মুছে ফেলতে চান?</h3>
+      <p class="text-xs text-slate-600 mb-4">
+        এটি ফর্মের সমস্ত বর্তমান ইনপুট পরিষ্কার করে দেবে। আপনি চাইলে আগে <strong>ব্যাকআপ সেভ (.json)</strong> বাটনে ক্লিক করে ফাইল সংরক্ষণ করে রাখতে পারেন।
+      </p>
+      <div class="flex items-center justify-end gap-2">
+        <button id="btnCancelReset" type="button" class="px-3.5 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold transition">
+          বাতিল করুন
+        </button>
+        <button id="btnConfirmReset" type="button" class="px-3.5 py-1.5 rounded-lg bg-rose-600 hover:bg-rose-700 text-white text-xs font-semibold transition">
+          হ্যাঁ, সব মুছে ফেলুন
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      const STORAGE_KEY = 'murshidabad_dpsc_monthly_return_v1';
+
+      // Row configuration for Part A (30 rows)
+      const PART_A_ROWS = [
+        { id: 't_name', label: 'শিক্ষক / শিক্ষিকার নাম', type: 'text', bold: true, headerBg: true },
+        { id: 'desig', label: '১) পদের নাম', type: 'text' },
+        { id: 'qual', label: '২) শিক্ষাগত যোগ্যতা', type: 'text' },
+        { id: 'dob', label: '৩) জন্ম তারিখ', type: 'text' },
+        { id: 'doj', label: '৪) চাকুরীতে যোগদানের তারিখ', type: 'text' },
+        { id: 'dor', label: '৫) চাকুরী হইতে অবসরের তারিখ', type: 'text' },
+        { id: 'pay_scale', label: '৬) বেতন ক্রম', type: 'text' },
+        { id: 'inc_date', label: '৭) বাৎসরিক বেতন বৃদ্ধির তারিখ', type: 'text' },
+        { id: 'leave_hdr', label: '৮) ছুটির বিবরণ', type: 'split_header', bold: true, headerBg: true },
+        { id: 'lv_casual', label: 'ক) নৈমিত্তিক', type: 'split_num', indent: 1 },
+        { id: 'lv_medical', label: 'খ) সবেতন', type: 'split_num', indent: 1 },
+        { id: 'lv_half', label: 'গ) অর্ধবেতন', type: 'split_num', indent: 1 },
+        { id: 'lv_without', label: 'ঘ) বিনাবেতন', type: 'split_num', indent: 1 },
+        { id: 'payable_days', label: '৯) এই মাসে কদিন বেতন পাওয়ার যোগ্য', type: 'num' },
+        { id: 'sal_hdr', label: '১০) বেতন সংক্রান্ত বিবরণ', type: 'section_label', bold: true, headerBg: true },
+        { id: 'pay_basic', label: 'ক) মূল বেতন (PB+GP)', type: 'curr', indent: 1 },
+        { id: 'pay_da', label: 'খ) মহার্ঘভাতা', type: 'curr', indent: 1 },
+        { id: 'pay_sp', label: 'গ) স্পেশাল পে/ভাতা', type: 'curr', indent: 1 },
+        { id: 'pay_hra', label: 'ঘ) বাড়ী ভাড়া ভাতা', type: 'curr', indent: 1 },
+        { id: 'pay_ma', label: 'ঙ) চিকিৎসা ভাতা', type: 'curr', indent: 1 },
+        { id: 'pay_other', label: 'চ) নৈমিত্তিক', type: 'curr', indent: 1 },
+        { id: 'gross_pay', label: 'মোট বেতন', type: 'auto_gross', bold: true, indent: 2 },
+        { id: 'ded_hdr', label: '১১) প্রাপ্য বেতন থেকে বাদ', type: 'section_label', bold: true, headerBg: true },
+        { id: 'ded_pf', label: 'ক) ভবিষ্যনিধি', type: 'curr', indent: 1 },
+        { id: 'ded_ptax', label: 'খ) বৃত্তিকর', type: 'curr', indent: 1 },
+        { id: 'ded_pfloan', label: 'গ) ভবিষ্যনিধি ঋণ শোধ', type: 'curr', indent: 1 },
+        { id: 'ded_other', label: 'ঘ) অন্যান্য বাদ', type: 'curr', indent: 1 },
+        { id: 'total_ded', label: 'মোট বাদ', type: 'auto_ded', bold: true, indent: 2 },
+        { id: 'net_pay', label: 'নিট বেতন', type: 'auto_net', bold: true, indent: 2 },
+        { id: 'mobile', label: 'মোবাইল নং', type: 'text', indent: 1 }
+      ];
+
+      const EARNING_IDS = ['pay_basic', 'pay_da', 'pay_sp', 'pay_hra', 'pay_ma', 'pay_other'];
+      const DEDUCTION_IDS = ['ded_pf', 'ded_ptax', 'ded_pfloan', 'ded_other'];
+
+      // Classes and Categories for Part G
+      const CLASSES = [
+        { id: 'pp', label: 'প্রাক্-প্রাথমিক' },
+        { id: 'c1', label: 'প্রথম*' },
+        { id: 'c2', label: 'দ্বিতীয়' },
+        { id: 'c3', label: 'তৃতীয়' },
+        { id: 'c4', label: 'চতুর্থ' },
+        { id: 'c5', label: 'পঞ্চম' }
+      ];
+
+      const CATEGORIES = [
+        { id: 'tot', label: 'মোট সংখ্যা' },
+        { id: 'gen', label: 'সাধারণ' },
+        { id: 'sc', label: 'তপশিলী জাতি' },
+        { id: 'st', label: 'তপশিলী উপজাতি' },
+        { id: 'obc', label: 'অনগ্রসর শ্রেণী' },
+        { id: 'min', label: 'সংখ্যালঘু' }
+      ];
+
+      // Build Part A Table DOM
+      function buildPartATable() {
+        const tbody = document.getElementById('tbodyPartA');
+        tbody.innerHTML = '';
+
+        PART_A_ROWS.forEach((row) => {
+          const tr = document.createElement('tr');
+          if (row.headerBg) {
+            tr.className = 'bg-slate-200/75';
+          } else if (row.type === 'auto_gross' || row.type === 'auto_ded') {
+            tr.className = 'bg-slate-100';
+          } else if (row.type === 'auto_net') {
+            tr.className = 'bg-slate-200/90';
+          }
+
+          // Label Cell
+          const tdLabel = document.createElement('td');
+          tdLabel.textContent = row.label;
+          if (row.bold) tdLabel.classList.add('font-bold');
+          if (row.indent === 1) tdLabel.style.paddingLeft = '14px';
+          if (row.indent === 2) tdLabel.style.paddingLeft = '24px';
+          tr.appendChild(tdLabel);
+
+          // 8 Teacher Columns
+          for (let t = 1; t <= 8; t++) {
+            if (row.type === 'split_header') {
+              const tdM = document.createElement('td');
+              tdM.className = 'text-center font-bold text-[11px] bg-slate-200/80';
+              tdM.innerHTML = 'বর্তমান<br/>মাস';
+              const tdY = document.createElement('td');
+              tdY.className = 'text-center font-bold text-[11px] bg-slate-200/80';
+              tdY.innerHTML = 'বর্তমান<br/>বর্ষে';
+              tr.appendChild(tdM);
+              tr.appendChild(tdY);
+            } else if (row.type === 'split_num') {
+              ['m', 'y'].forEach((sub) => {
+                const td = document.createElement('td');
+                const inp = document.createElement('input');
+                inp.type = 'number';
+                inp.id = `ta_${row.id}_t${t}_${sub}`;
+                inp.className = 'official-input text-center';
+                inp.placeholder = '';
+                td.appendChild(inp);
+                tr.appendChild(td);
+              });
+            } else if (row.type === 'section_label') {
+              const td = document.createElement('td');
+              td.colSpan = 2;
+              td.className = 'bg-slate-200/60';
+              tr.appendChild(td);
+            } else if (row.type === 'auto_gross' || row.type === 'auto_ded' || row.type === 'auto_net') {
+              const td = document.createElement('td');
+              td.colSpan = 2;
+              td.id = `ta_${row.id}_t${t}`;
+              td.className = row.type === 'auto_net' ? 'net-cell' : 'auto-cell';
+              tr.appendChild(td);
+            } else {
+              const td = document.createElement('td');
+              td.colSpan = 2;
+              const inp = document.createElement('input');
+              inp.id = `ta_${row.id}_t${t}`;
+              if (row.type === 'curr') {
+                inp.type = 'number';
+                inp.step = '0.01';
+                inp.className = 'official-input text-right';
+              } else if (row.type === 'num') {
+                inp.type = 'number';
+                inp.className = 'official-input text-center';
+              } else {
+                inp.type = 'text';
+                inp.className = row.id === 't_name' ? 'official-input text-center font-bold' : 'official-input text-left';
+                if (row.id === 't_name') inp.placeholder = `শিক্ষক ${t}`;
+              }
+              td.appendChild(inp);
+              tr.appendChild(td);
+            }
+          }
+          tbody.appendChild(tr);
+        });
+
+        // Bottom Signature Row inside Part A Table for clean alignment
+        const trSig = document.createElement('tr');
+        const tdBlank = document.createElement('td');
+        tdBlank.style.border = 'none';
+        trSig.appendChild(tdBlank);
+
+        for (let t = 1; t <= 8; t++) {
+          const tdSig = document.createElement('td');
+          tdSig.colSpan = 2;
+          tdSig.style.border = 'none';
+          tdSig.style.paddingTop = '12px';
+          tdSig.className = 'text-center text-[11px] text-slate-800';
+          tdSig.innerHTML = 'শিক্ষক/শিক্ষিকার<br/>স্বাক্ষর-';
+          trSig.appendChild(tdSig);
+        }
+        tbody.appendChild(trSig);
+      }
+
+      // Build Part G Student Table DOM
+      function buildPartGTable() {
+        const tbody = document.getElementById('tbodyPartG');
+        tbody.innerHTML = '';
+
+        CLASSES.forEach((cls) => {
+          const tr = document.createElement('tr');
+          const tdCls = document.createElement('td');
+          tdCls.className = 'text-center font-semibold bg-slate-50';
+          tdCls.textContent = cls.label;
+          tr.appendChild(tdCls);
+
+          CATEGORIES.forEach((cat) => {
+            ['b', 'g'].forEach((gender) => {
+              const td = document.createElement('td');
+              const inp = document.createElement('input');
+              inp.type = 'number';
+              inp.min = '0';
+              inp.id = `tg_${cls.id}_${cat.id}_${gender}`;
+              inp.className = 'official-input text-right';
+              td.appendChild(inp);
+              tr.appendChild(td);
+            });
+            // Auto total cell (মোট = ছাত্র + ছাত্রী)
+            const tdTot = document.createElement('td');
+            tdTot.id = `tg_${cls.id}_${cat.id}_t`;
+            tdTot.className = 'auto-cell text-center';
+            tr.appendChild(tdTot);
+          });
+
+          // Col 20: মাসের গড় উপস্থিতি
+          const tdAvg = document.createElement('td');
+          const inpAvg = document.createElement('input');
+          inpAvg.type = 'number';
+          inpAvg.step = '0.01';
+          inpAvg.id = `tg_${cls.id}_avg_att`;
+          inpAvg.className = 'official-input text-right';
+          tdAvg.appendChild(inpAvg);
+          tr.appendChild(tdAvg);
+
+          // Col 21: মাসিক কার্যদিবসের অর্ধেক বা তদুর্ধ দিন অনুপস্থিত
+          const tdAbs = document.createElement('td');
+          const inpAbs = document.createElement('input');
+          inpAbs.type = 'number';
+          inpAbs.id = `tg_${cls.id}_half_abs`;
+          inpAbs.className = 'official-input text-right';
+          tdAbs.appendChild(inpAbs);
+          tr.appendChild(tdAbs);
+
+          tbody.appendChild(tr);
+        });
+
+        // Bottom মোট (Total) Row across all classes
+        const trTot = document.createElement('tr');
+        trTot.className = 'bg-slate-200/85 font-bold';
+        const tdTotLbl = document.createElement('td');
+        tdTotLbl.className = 'text-center font-bold';
+        tdTotLbl.textContent = 'মোট';
+        trTot.appendChild(tdTotLbl);
+
+        CATEGORIES.forEach((cat) => {
+          ['b', 'g', 't'].forEach((sub) => {
+            const td = document.createElement('td');
+            td.id = `tg_total_${cat.id}_${sub}`;
+            td.className = 'net-cell text-center';
+            trTot.appendChild(td);
+          });
+        });
+
+        ['avg_att', 'half_abs'].forEach((colKey) => {
+          const td = document.createElement('td');
+          td.id = `tg_total_${colKey}`;
+          td.className = 'net-cell text-right';
+          trTot.appendChild(td);
+        });
+
+        tbody.appendChild(trTot);
+      }
+
+      // Helper: parse number or null
+      function parseNum(val) {
+        if (val === undefined || val === null || String(val).trim() === '') return null;
+        const n = Number(val);
+        return Number.isFinite(n) ? n : null;
+      }
+
+      function formatCurr(n) {
+        return n.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      }
+
+      // Recalculate all formulas across Part A, Part B, and Part G
+      function recalculateAll() {
+        let activeTeachers = 0;
+        let grandNetSalary = 0;
+
+        // 1. Part A Teacher Calculations
+        for (let t = 1; t <= 8; t++) {
+          const nameVal = (document.getElementById(`ta_t_name_t${t}`)?.value || '').trim();
+          let hasEarning = false;
+          let gross = 0;
+          EARNING_IDS.forEach((eid) => {
+            const v = parseNum(document.getElementById(`ta_${eid}_t${t}`)?.value);
+            if (v !== null) {
+              hasEarning = true;
+              gross += v;
+            }
+          });
+
+          let hasDed = false;
+          let totalDed = 0;
+          DEDUCTION_IDS.forEach((did) => {
+            const v = parseNum(document.getElementById(`ta_${did}_t${t}`)?.value);
+            if (v !== null) {
+              hasDed = true;
+              totalDed += v;
+            }
+          });
+
+          const grossCell = document.getElementById(`ta_gross_pay_t${t}`);
+          const dedCell = document.getElementById(`ta_total_ded_t${t}`);
+          const netCell = document.getElementById(`ta_net_pay_t${t}`);
+
+          if (grossCell) grossCell.textContent = hasEarning ? formatCurr(gross) : '';
+          if (dedCell) dedCell.textContent = hasDed ? formatCurr(totalDed) : '';
+
+          if (hasEarning || hasDed) {
+            const net = gross - totalDed;
+            if (netCell) netCell.textContent = formatCurr(net);
+            grandNetSalary += net;
+          } else {
+            if (netCell) netCell.textContent = '';
+          }
+
+          if (nameVal || hasEarning || hasDed) {
+            activeTeachers++;
+          }
+        }
+
+        // 2. Part B ('খ' অংশ) Calculation: মোট প্রাপ্তি = শুরুতে মজুত (ব্যাঙ্ক + হাতে) + গতমাসে প্রাপ্তি
+        const openBank = parseNum(document.getElementById('kha_open_bank')?.value);
+        const openCash = parseNum(document.getElementById('kha_open_cash')?.value);
+        const recPrev = parseNum(document.getElementById('kha_rec_prev')?.value);
+        const khaTotCell = document.getElementById('kha_total_rec');
+        if (openBank !== null || openCash !== null || recPrev !== null) {
+          const totalRec = (openBank || 0) + (openCash || 0) + (recPrev || 0);
+          khaTotCell.textContent = formatCurr(totalRec);
+        } else {
+          khaTotCell.textContent = '';
+        }
+
+        // 3. Part G ('গ' অংশ) Student Calculations
+        const autoSumCategoriesToTotal = document.getElementById('chkAutoStudentTotal')?.checked;
+
+        // Track column sums across all 6 classes
+        const colSums = {};
+        const colHasVal = {};
+        CATEGORIES.forEach((cat) => {
+          ['b', 'g', 't'].forEach((sub) => {
+            colSums[`${cat.id}_${sub}`] = 0;
+            colHasVal[`${cat.id}_${sub}`] = false;
+          });
+        });
+        ['avg_att', 'half_abs'].forEach((k) => {
+          colSums[k] = 0;
+          colHasVal[k] = false;
+        });
+
+        CLASSES.forEach((cls) => {
+          // If autoSumCategoriesToTotal is checked, compute tot_b and tot_g from gen + sc + st + obc
+          if (autoSumCategoriesToTotal) {
+            ['b', 'g'].forEach((gender) => {
+              let catSum = 0;
+              let anyCat = false;
+              ['gen', 'sc', 'st', 'obc'].forEach((cid) => {
+                const v = parseNum(document.getElementById(`tg_${cls.id}_${cid}_${gender}`)?.value);
+                if (v !== null) {
+                  anyCat = true;
+                  catSum += v;
+                }
+              });
+              const totInp = document.getElementById(`tg_${cls.id}_tot_${gender}`);
+              if (totInp) {
+                totInp.value = anyCat ? String(catSum) : '';
+              }
+            });
+          }
+
+          CATEGORIES.forEach((cat) => {
+            const bVal = parseNum(document.getElementById(`tg_${cls.id}_${cat.id}_b`)?.value);
+            const gVal = parseNum(document.getElementById(`tg_${cls.id}_${cat.id}_g`)?.value);
+            const tCell = document.getElementById(`tg_${cls.id}_${cat.id}_t`);
+
+            if (bVal !== null) {
+              colSums[`${cat.id}_b`] += bVal;
+              colHasVal[`${cat.id}_b`] = true;
+            }
+            if (gVal !== null) {
+              colSums[`${cat.id}_g`] += gVal;
+              colHasVal[`${cat.id}_g`] = true;
+            }
+
+            if (bVal !== null || gVal !== null) {
+              const rowTot = (bVal || 0) + (gVal || 0);
+              if (tCell) tCell.textContent = String(rowTot);
+              colSums[`${cat.id}_t`] += rowTot;
+              colHasVal[`${cat.id}_t`] = true;
+            } else {
+              if (tCell) tCell.textContent = '';
+            }
+          });
+
+          ['avg_att', 'half_abs'].forEach((colKey) => {
+            const v = parseNum(document.getElementById(`tg_${cls.id}_${colKey}`)?.value);
+            if (v !== null) {
+              colSums[colKey] += v;
+              colHasVal[colKey] = true;
+            }
+          });
+        });
+
+        // Populate bottom মোট row in Part G
+        CATEGORIES.forEach((cat) => {
+          ['b', 'g', 't'].forEach((sub) => {
+            const key = `${cat.id}_${sub}`;
+            const cell = document.getElementById(`tg_total_${key}`);
+            if (cell) {
+              cell.textContent = colHasVal[key] ? String(colSums[key]) : '';
+            }
+          });
+        });
+
+        ['avg_att', 'half_abs'].forEach((colKey) => {
+          const cell = document.getElementById(`tg_total_${colKey}`);
+          if (cell) {
+            if (!colHasVal[colKey]) {
+              cell.textContent = '';
+            } else {
+              cell.textContent = colKey === 'avg_att'
+                ? (Number.isInteger(colSums[colKey]) ? String(colSums[colKey]) : colSums[colKey].toFixed(2))
+                : String(colSums[colKey]);
+            }
+          }
+        });
+
+        // Update Top KPI Pills
+        document.getElementById('kpiTeacherCount').textContent = activeTeachers.toLocaleString('bn-IN');
+        document.getElementById('kpiTotalNetSalary').textContent = '₹ ' + formatCurr(grandNetSalary);
+        const totalStudents = colHasVal['tot_t'] ? colSums['tot_t'] : 0;
+        document.getElementById('kpiTotalStudents').textContent = totalStudents.toLocaleString('bn-IN');
+      }
+
+      // Collect all input states into a serializable object
+      function collectFormState() {
+        const inputs = {};
+        document.querySelectorAll('input[id], select[id]').forEach((el) => {
+          if (el.type === 'file') return;
+          if (el.type === 'checkbox') {
+            inputs[el.id] = el.checked;
+          } else {
+            inputs[el.id] = el.value;
+          }
+        });
+        return {
+          version: 1,
+          updatedAt: new Date().toISOString(),
+          inputs
+        };
+      }
+
+      // Apply state object to inputs
+      function applyFormState(state) {
+        if (!state || !state.inputs) return;
+        Object.entries(state.inputs).forEach(([id, val]) => {
+          const el = document.getElementById(id);
+          if (!el || el.type === 'file') return;
+          if (el.type === 'checkbox') {
+            el.checked = Boolean(val);
+          } else {
+            el.value = val ?? '';
+          }
+        });
+        recalculateAll();
+      }
+
+      // Save to localStorage safely
+      function saveToStorage() {
+        try {
+          const state = collectFormState();
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+          const badge = document.getElementById('saveStatusBadge');
+          if (badge) {
+            badge.innerHTML = '<span class="w-2 h-2 rounded-full bg-emerald-400"></span> স্বয়ংক্রিয়ভাবে সংরক্ষিত';
+          }
+        } catch (err) {
+          // Ignore sandbox storage restrictions
+        }
+      }
+
+      // Load from localStorage safely
+      function loadFromStorage() {
+        try {
+          const raw = localStorage.getItem(STORAGE_KEY);
+          if (raw) {
+            const parsed = JSON.parse(raw);
+            applyFormState(parsed);
+          }
+        } catch (err) {
+          // Ignore sandbox storage restrictions
+        }
+      }
+
+      function showToast(msg) {
+        const toast = document.getElementById('toastBanner');
+        const text = document.getElementById('toastMessage');
+        if (!toast || !text) return;
+        text.textContent = msg;
+        toast.classList.remove('hidden');
+        clearTimeout(window.__toastTimer);
+        window.__toastTimer = setTimeout(() => {
+          toast.classList.add('hidden');
+        }, 2800);
+      }
+
+      // Switch active view tab
+      function setActiveTab(tabName) {
+        const secA = document.getElementById('sectionPartA');
+        const secBC = document.getElementById('sectionPartBC');
+        if (tabName === 'partA') {
+          secA.classList.remove('hidden');
+          secBC.classList.add('hidden');
+        } else if (tabName === 'partBC') {
+          secA.classList.add('hidden');
+          secBC.classList.remove('hidden');
+        } else {
+          secA.classList.remove('hidden');
+          secBC.classList.remove('hidden');
+        }
+
+        document.querySelectorAll('.tab-btn').forEach((btn) => {
+          if (btn.dataset.tab === tabName) {
+            btn.className = 'tab-btn px-3 py-1.5 rounded-md text-xs font-semibold bg-amber-500 text-slate-950 transition';
+          } else {
+            btn.className = 'tab-btn px-3 py-1.5 rounded-md text-xs font-semibold text-slate-300 hover:text-white transition';
+          }
+        });
+      }
+
+      // Populate realistic sample data for demonstration
+      function loadSampleData() {
+        // Clear existing first
+        document.querySelectorAll('input[id]').forEach((el) => {
+          if (el.type !== 'file' && el.type !== 'checkbox') el.value = '';
+        });
+
+        const sampleMeta = {
+          meta_dateFrom_a: '০১/১০/২০২৬',
+          meta_dateTo_a: '৩১/১০/২০২৬',
+          meta_dateFrom_b: '০১/১০/২০২৬',
+          meta_dateTo_b: '৩১/১০/২০২৬',
+          meta_workingDays: '২২',
+          meta_schoolName: 'বহরমপুর আদর্শ প্রাথমিক বিদ্যালয়',
+          meta_schoolNo: '৪৫',
+          meta_village: 'খাগড়া',
+          meta_postOffice: 'বহরমপুর',
+          meta_gramPanchayat: 'বহরমপুর পৌর অঞ্চল',
+          meta_schoolCode: '১৯০৭০১০২৩০১',
+          meta_circleName: 'বহরমপুর সদর চক্র',
+          meta_municipalityWard: 'বহরমপুর / ওয়ার্ড নং ১২',
+          meta_landArea: '১৫ শতক',
+          meta_buildingType: 'পাকা',
+          meta_usableRooms: '৬ টি',
+          meta_paraTeacherCount: '১ জন',
+          // Teacher 1 (Head Teacher)
+          ta_t_name_t1: 'অরিন্দম চট্টোপাধ্যায়',
+          ta_desig_t1: 'প্রধান শিক্ষক',
+          ta_qual_t1: 'B.Sc, D.El.Ed',
+          ta_dob_t1: '১৫/০৫/১৯৭৮',
+          ta_doj_t1: '১০/০৭/২০০৩',
+          ta_dor_t1: '৩১/০৫/২০৩৮',
+          ta_pay_scale_t1: 'Level-9 (ROPA 19)',
+          ta_inc_date_t1: '০১/০৭/২০২৬',
+          ta_lv_casual_t1_m: '1',
+          ta_lv_casual_t1_y: '6',
+          ta_payable_days_t1: '31',
+          ta_pay_basic_t1: '42600',
+          ta_pay_da_t1: '5964',
+          ta_pay_sp_t1: '400',
+          ta_pay_hra_t1: '5112',
+          ta_pay_ma_t1: '500',
+          ta_ded_pf_t1: '5000',
+          ta_ded_ptax_t1: '200',
+          ta_mobile_t1: '9434012345',
+          // Teacher 2 (Assistant Teacher)
+          ta_t_name_t2: 'সুস্মিতা সেনগুপ্ত',
+          ta_desig_t2: 'সহকারী শিক্ষিকা',
+          ta_qual_t2: 'M.A, D.El.Ed',
+          ta_dob_t2: '২২/১১/১৯৮৫',
+          ta_doj_t2: '০৪/০২/২০১০',
+          ta_dor_t2: '৩০/১১/২০৪৫',
+          ta_pay_scale_t2: 'Level-6 (ROPA 19)',
+          ta_inc_date_t2: '০১/০৭/২০২৬',
+          ta_lv_casual_t2_m: '2',
+          ta_lv_casual_t2_y: '8',
+          ta_payable_days_t2: '31',
+          ta_pay_basic_t2: '35800',
+          ta_pay_da_t2: '5012',
+          ta_pay_hra_t2: '4296',
+          ta_pay_ma_t2: '500',
+          ta_ded_pf_t2: '4000',
+          ta_ded_ptax_t2: '200',
+          ta_mobile_t2: '9832054321',
+          // Part B (Contingency)
+          kha_open_bank: '1450.00',
+          kha_open_cash: '250.00',
+          kha_rec_prev: '1000.00',
+          kha_exp: '820.00',
+          kha_close_bank: '1600.00',
+          kha_close_cash: '280.00',
+          insp_visited: 'হ্যাঁ',
+          insp_byWhom: 'অবর বিদ্যালয় পরিদর্শক',
+          insp_countYear: '২ বার',
+          // Part G (Students)
+          tg_pp_gen_b: '6', tg_pp_gen_g: '7', tg_pp_sc_b: '4', tg_pp_sc_g: '5', tg_pp_st_b: '1', tg_pp_st_g: '1', tg_pp_obc_b: '5', tg_pp_obc_g: '4', tg_pp_min_b: '8', tg_pp_min_g: '7', tg_pp_avg_att: '29', tg_pp_half_abs: '1',
+          tg_c1_gen_b: '8', tg_c1_gen_g: '9', tg_c1_sc_b: '5', tg_c1_sc_g: '6', tg_c1_st_b: '1', tg_c1_st_g: '2', tg_c1_obc_b: '6', tg_c1_obc_g: '5', tg_c1_min_b: '10', tg_c1_min_g: '9', tg_c1_avg_att: '38', tg_c1_half_abs: '2',
+          tg_c2_gen_b: '7', tg_c2_gen_g: '8', tg_c2_sc_b: '6', tg_c2_sc_g: '5', tg_c2_st_b: '2', tg_c2_st_g: '1', tg_c2_obc_b: '4', tg_c2_obc_g: '6', tg_c2_min_b: '9', tg_c2_min_g: '8', tg_c2_avg_att: '35', tg_c2_half_abs: '1',
+          tg_c3_gen_b: '9', tg_c3_gen_g: '8', tg_c3_sc_b: '4', tg_c3_sc_g: '4', tg_c3_st_b: '1', tg_c3_st_g: '1', tg_c3_obc_b: '5', tg_c3_obc_g: '5', tg_c3_min_b: '11', tg_c3_min_g: '10', tg_c3_avg_att: '34', tg_c3_half_abs: '1',
+          tg_c4_gen_b: '8', tg_c4_gen_g: '7', tg_c4_sc_b: '5', tg_c4_sc_g: '6', tg_c4_st_b: '1', tg_c4_st_g: '2', tg_c4_obc_b: '6', tg_c4_obc_g: '4', tg_c4_min_b: '10', tg_c4_min_g: '9', tg_c4_avg_att: '36', tg_c4_half_abs: '2',
+          tg_c5_gen_b: '0', tg_c5_gen_g: '0', tg_c5_sc_b: '0', tg_c5_sc_g: '0', tg_c5_st_b: '0', tg_c5_st_g: '0', tg_c5_obc_b: '0', tg_c5_obc_g: '0', tg_c5_min_b: '0', tg_c5_min_g: '0', tg_c5_avg_att: '0', tg_c5_half_abs: '0'
+        };
+
+        document.getElementById('chkAutoStudentTotal').checked = true;
+        applyFormState({ inputs: sampleMeta });
+        saveToStorage();
+        showToast('নমুনা তথ্য লোড করা হয়েছে');
+      }
+
+      // Export CSV of both tables
+      function exportCsv() {
+        const rows = [];
+        rows.push(['মুর্শিদাবাদ জেলা প্রাথমিক বিদ্যালয় সংসদ - মাসিক বিবরণী']);
+        rows.push([
+          'বিদ্যালয় নাম', document.getElementById('meta_schoolName')?.value || '',
+          'স্কুল কোড নং', document.getElementById('meta_schoolCode')?.value || '',
+          'চক্রের নাম', document.getElementById('meta_circleName')?.value || ''
+        ]);
+        rows.push([]);
+        rows.push(['ক অংশ : শিক্ষক/শিক্ষিকা সংক্রান্ত তথ্যাদি']);
+
+        PART_A_ROWS.forEach((r) => {
+          const line = [r.label];
+          for (let t = 1; t <= 8; t++) {
+            if (r.type === 'split_header') {
+              line.push('বর্তমান মাস', 'বর্তমান বর্ষে');
+            } else if (r.type === 'split_num') {
+              line.push(
+                document.getElementById(`ta_${r.id}_t${t}_m`)?.value || '',
+                document.getElementById(`ta_${r.id}_t${t}_y`)?.value || ''
+              );
+            } else if (r.type === 'auto_gross' || r.type === 'auto_ded' || r.type === 'auto_net') {
+              line.push(document.getElementById(`ta_${r.id}_t${t}`)?.textContent || '', '');
+            } else if (r.type === 'section_label') {
+              line.push('', '');
+            } else {
+              line.push(document.getElementById(`ta_${r.id}_t${t}`)?.value || '', '');
+            }
+          }
+          rows.push(line);
+        });
+
+        rows.push([]);
+        rows.push(['গ অংশ : ছাত্র-ছাত্রী সংক্রান্ত বিবরণ']);
+        const gHeader1 = ['শ্রেণী'];
+        const gHeader2 = [''];
+        CATEGORIES.forEach((c) => {
+          gHeader1.push(c.label, '', '');
+          gHeader2.push('ছাত্র', 'ছাত্রী', 'মোট');
+        });
+        gHeader1.push('মাসের গড় উপস্থিতি', 'অর্ধেক বা তদুর্ধ দিন অনুপস্থিত');
+        gHeader2.push('', '');
+        rows.push(gHeader1);
+        rows.push(gHeader2);
+
+        CLASSES.forEach((cls) => {
+          const line = [cls.label];
+          CATEGORIES.forEach((cat) => {
+            line.push(
+              document.getElementById(`tg_${cls.id}_${cat.id}_b`)?.value || '',
+              document.getElementById(`tg_${cls.id}_${cat.id}_g`)?.value || '',
+              document.getElementById(`tg_${cls.id}_${cat.id}_t`)?.textContent || ''
+            );
+          });
+          line.push(
+            document.getElementById(`tg_${cls.id}_avg_att`)?.value || '',
+            document.getElementById(`tg_${cls.id}_half_abs`)?.value || ''
+          );
+          rows.push(line);
+        });
+
+        const csvContent = '\uFEFF' + rows.map((r) =>
+          r.map((cell) => `"${String(cell ?? '').replace(/"/g, '""')}"`).join(',')
+        ).join('\r\n');
+
+        const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'murshidabad_dpsc_monthly_return.csv';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+        showToast('CSV ফাইল ডাউনলোড সম্পন্ন হয়েছে');
+      }
+
+      // Initialize tables and event listeners
+      buildPartATable();
+      buildPartGTable();
+
+      // Sync dateFrom / dateTo fields between Page 1 and Page 2
+      document.addEventListener('input', (e) => {
+        const target = e.target;
+        if (!target) return;
+        if (target.dataset && target.dataset.sync) {
+          const syncKey = target.dataset.sync;
+          document.querySelectorAll(`[data-sync="${syncKey}"]`).forEach((peer) => {
+            if (peer !== target) peer.value = target.value;
+          });
+        }
+        recalculateAll();
+        saveToStorage();
+      });
+
+      document.getElementById('chkAutoStudentTotal').addEventListener('change', () => {
+        recalculateAll();
+        saveToStorage();
+      });
+
+      // Toggle Guide Banner
+      const btnToggleGuide = document.getElementById('btnToggleGuide');
+      const guideDetails = document.getElementById('guideDetails');
+      if (btnToggleGuide && guideDetails) {
+        btnToggleGuide.addEventListener('click', () => {
+          guideDetails.classList.toggle('hidden');
+        });
+      }
+
+      // Tab buttons
+      document.querySelectorAll('.tab-btn').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          setActiveTab(btn.dataset.tab);
+        });
+      });
+
+      // Sample Data button
+      document.getElementById('btnSampleData').addEventListener('click', loadSampleData);
+
+      // Export JSON backup
+      document.getElementById('btnExportJson').addEventListener('click', () => {
+        const state = collectFormState();
+        const blob = new Blob([JSON.stringify(state, null, 2)], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'murshidabad_dpsc_monthly_return_backup.json';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+        showToast('ব্যাকআপ (.json) ফাইল ডাউনলোড হয়েছে');
+      });
+
+      // Import JSON backup
+      document.getElementById('fileImportJson').addEventListener('change', (e) => {
+        const file = e.target.files && e.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = (ev) => {
+          try {
+            const parsed = JSON.parse(String(ev.target.result));
+            applyFormState(parsed);
+            saveToStorage();
+            showToast('ব্যাকআপ ফাইল সফলভাবে লোড হয়েছে');
+          } catch (err) {
+            showToast('ফাইলটি সঠিক JSON ফরম্যাটে নেই');
+          }
+        };
+        reader.readAsText(file);
+        e.target.value = '';
+      });
+
+      // Export CSV
+      document.getElementById('btnExportCsv').addEventListener('click', exportCsv);
+
+      // Print / Save as PDF (switches to both pages so full return prints in A4 Landscape)
+      document.getElementById('btnPrintForm').addEventListener('click', () => {
+        setActiveTab('both');
+        setTimeout(() => {
+          window.print();
+        }, 150);
+      });
+
+      // Reset Modal controls
+      const resetModal = document.getElementById('resetModal');
+      document.getElementById('btnOpenResetModal').addEventListener('click', () => {
+        resetModal.classList.remove('hidden');
+        resetModal.classList.add('flex');
+      });
+      document.getElementById('btnCancelReset').addEventListener('click', () => {
+        resetModal.classList.add('hidden');
+        resetModal.classList.remove('flex');
+      });
+      document.getElementById('btnConfirmReset').addEventListener('click', () => {
+        document.querySelectorAll('input[id]').forEach((el) => {
+          if (el.type === 'file') return;
+          if (el.type === 'checkbox') el.checked = false;
+          else el.value = '';
+        });
+        recalculateAll();
+        saveToStorage();
+        resetModal.classList.add('hidden');
+        resetModal.classList.remove('flex');
+        showToast('ফর্মটি সম্পূর্ণ পরিষ্কার করা হয়েছে');
+      });
+
+      // Load saved state on startup
+      loadFromStorage();
+      recalculateAll();
+    })();
+  </script>
+</body>
+</html>
