@@ -137,6 +137,50 @@
         border-bottom: 1px dotted #000000 !important;
       }
     }
+  
+    /* Sticky Row Header for smooth horizontal scroll on smaller laptops & tablets */
+    .sticky-col {
+      position: sticky;
+      left: 0;
+      z-index: 10;
+      background-color: #ffffff;
+      box-shadow: 2px 0 5px -2px rgba(0, 0, 0, 0.15);
+    }
+    .sticky-col-header {
+      position: sticky;
+      left: 0;
+      z-index: 20;
+      background-color: #e2e8f0;
+      box-shadow: 2px 0 5px -2px rgba(0, 0, 0, 0.15);
+    }
+    /* Scaled table wrapper for laptops */
+    .table-scale-wrapper {
+      transform-origin: top left;
+      transition: transform 0.2s ease;
+    }
+    .mobile-tab-pill.active {
+      background-color: #f59e0b;
+      color: #0f172a;
+      font-weight: 700;
+      border-color: #d97706;
+    }
+
+  
+    /* Date input calendar picker icon styling */
+    input[type="date"] {
+      cursor: pointer;
+    }
+    input[type="date"]::-webkit-calendar-picker-indicator {
+      cursor: pointer;
+      opacity: 0.75;
+      padding: 0;
+      margin: 0;
+      transition: opacity 0.15s ease;
+    }
+    input[type="date"]::-webkit-calendar-picker-indicator:hover {
+      opacity: 1;
+    }
+
   </style>
 </head>
 <body class="min-h-screen flex flex-col">
@@ -201,6 +245,27 @@
           </button>
           <button id="tabBtnBoth" type="button" data-tab="both" class="tab-btn px-3 py-1.5 rounded-md text-xs font-semibold text-slate-300 hover:text-white transition">
             সম্পূর্ণ উভয় পৃষ্ঠা (প্রিন্ট প্রিভিউ)
+          </button>
+          <button id="tabBtnMobileView" type="button" data-tab="mobileView" class="tab-btn px-3 py-1.5 rounded-md text-xs font-semibold text-emerald-400 hover:text-emerald-300 transition flex items-center gap-1.5">
+            <span class="inline-block w-2 h-2 rounded-full bg-emerald-400"></span>
+            মোবাইল কার্ড ভিউ (Mobile View)
+          </button>
+        </div>
+
+        <!-- Laptop Zoom / Fit Controls -->
+        <div class="hidden lg:flex items-center gap-1 bg-slate-900/90 px-2 py-1 rounded-lg border border-slate-700 text-xs text-slate-300">
+          <span class="text-slate-400 text-[11px] font-medium mr-1">ল্যাপটপ জুম:</span>
+          <button id="btnZoomFit" type="button" class="zoom-btn px-2 py-0.5 rounded text-[11px] font-semibold bg-slate-800 hover:bg-slate-700 text-amber-300 border border-slate-700 transition" title="স্ক্রিনের মাপ অনুযায়ী অটো-ফিট করুন">
+            অটো-ফিট
+          </button>
+          <button id="btnZoom100" type="button" class="zoom-btn px-2 py-0.5 rounded text-[11px] font-semibold bg-amber-500 text-slate-950 transition">
+            ১০০%
+          </button>
+          <button id="btnZoom90" type="button" class="zoom-btn px-2 py-0.5 rounded text-[11px] font-semibold bg-slate-800 hover:bg-slate-700 text-slate-200 transition">
+            ৯০%
+          </button>
+          <button id="btnZoom80" type="button" class="zoom-btn px-2 py-0.5 rounded text-[11px] font-semibold bg-slate-800 hover:bg-slate-700 text-slate-200 transition">
+            ৮০%
           </button>
         </div>
 
@@ -272,6 +337,232 @@
     </div>
 
     <!-- ========================================================================= -->
+    <!-- MOBILE CARD VIEW: Dedicated touch-friendly interface for Phones/Tablets   -->
+    <!-- ========================================================================= -->
+    <section id="sectionMobileCards" class="no-print bg-white rounded-xl shadow-md border border-slate-300 p-3 sm:p-5 hidden space-y-5">
+      <!-- Mobile Sub-Navigation (Teacher Cards vs Student Cards) -->
+      <div class="flex items-center justify-between border-b border-slate-200 pb-3 gap-2">
+        <div>
+          <h2 class="text-base font-bold text-slate-900">মোবাইল সহজ ইনপুট মোড</h2>
+          <p class="text-xs text-slate-500">প্রতিজন শিক্ষকের তথ্য এবং শ্রেণিভিত্তিক খতিয়ান সহজে পূরণ করুন</p>
+        </div>
+        <div class="flex items-center gap-1 bg-slate-100 p-1 rounded-lg border border-slate-200 text-xs">
+          <button id="btnMobileSubPartA" type="button" class="px-2.5 py-1 rounded-md font-bold bg-amber-500 text-slate-950 transition">
+            শিক্ষক বেতন
+          </button>
+          <button id="btnMobileSubPartG" type="button" class="px-2.5 py-1 rounded-md font-medium text-slate-600 hover:text-slate-900 transition">
+            ছাত্র-ছাত্রী
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Teacher Card Panel -->
+      <div id="mobileTeacherPanel" class="space-y-4">
+        <!-- Teacher Selector Horizontal Pills -->
+        <div class="overflow-x-auto pb-1">
+          <div class="flex items-center gap-1.5 min-w-max" id="mobileTeacherPills">
+            <!-- 8 Teacher Pills generated via JS -->
+          </div>
+        </div>
+
+        <!-- Active Teacher Info Card -->
+        <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-4">
+          <div class="flex items-center justify-between border-b border-slate-200 pb-2.5">
+            <div>
+              <span id="cardTeacherBadge" class="text-xs font-bold px-2 py-0.5 rounded bg-amber-100 text-amber-800 border border-amber-300">শিক্ষক ১</span>
+              <h3 id="cardTeacherTitle" class="text-sm font-bold text-slate-900 mt-1">শিক্ষকের নাম ও বেতন তথ্য</h3>
+            </div>
+            <div class="text-right">
+              <span class="text-[11px] text-slate-500 block">নিট বেতন</span>
+              <span id="cardNetPayBadge" class="text-sm font-bold text-emerald-600">₹ ০.০০</span>
+            </div>
+          </div>
+
+          <!-- Basic Details -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+            <div>
+              <label class="block font-semibold text-slate-700 mb-1">শিক্ষক / শিক্ষিকার নাম</label>
+              <input id="m_t_name" type="text" placeholder="নাম লিখুন" class="w-full px-3 py-2 rounded-lg border border-slate-300 bg-white text-slate-900 text-xs focus:ring-2 focus:ring-amber-500 outline-none" />
+            </div>
+            <div>
+              <label class="block font-semibold text-slate-700 mb-1">১) পদের নাম</label>
+              <input id="m_desig" type="text" placeholder="যেমন: প্রধান শিক্ষক / সহকারী শিক্ষক" class="w-full px-3 py-2 rounded-lg border border-slate-300 bg-white text-slate-900 text-xs focus:ring-2 focus:ring-amber-500 outline-none" />
+            </div>
+            <div>
+              <label class="block font-semibold text-slate-700 mb-1">২) শিক্ষাগত যোগ্যতা</label>
+              <input id="m_qual" type="text" placeholder="যেমন: B.Sc, D.El.Ed" class="w-full px-3 py-2 rounded-lg border border-slate-300 bg-white text-slate-900 text-xs focus:ring-2 focus:ring-amber-500 outline-none" />
+            </div>
+            <div>
+              <label class="block font-semibold text-slate-700 mb-1">৩) জন্ম তারিখ</label>
+              <input id="m_dob" type="date" class="w-full px-3 py-2 rounded-lg border border-slate-300 bg-white text-slate-900 text-xs cursor-pointer focus:ring-2 focus:ring-amber-500 outline-none" />
+            </div>
+            <div>
+              <label class="block font-semibold text-slate-700 mb-1">৪) চাকুরীতে যোগদানের তারিখ</label>
+              <input id="m_doj" type="date" class="w-full px-3 py-2 rounded-lg border border-slate-300 bg-white text-slate-900 text-xs cursor-pointer focus:ring-2 focus:ring-amber-500 outline-none" />
+            </div>
+            <div>
+              <label class="block font-semibold text-slate-700 mb-1">৫) অবসরের তারিখ</label>
+              <input id="m_dor" type="date" class="w-full px-3 py-2 rounded-lg border border-slate-300 bg-white text-slate-900 text-xs cursor-pointer focus:ring-2 focus:ring-amber-500 outline-none" />
+            </div>
+            <div>
+              <label class="block font-semibold text-slate-700 mb-1">৬) বেতন ক্রম</label>
+              <input id="m_pay_scale" type="text" placeholder="যেমন: Level-9" class="w-full px-3 py-2 rounded-lg border border-slate-300 bg-white text-slate-900 text-xs focus:ring-2 focus:ring-amber-500 outline-none" />
+            </div>
+            <div>
+              <label class="block font-semibold text-slate-700 mb-1">৭) বাৎসরিক বেতন বৃদ্ধির তারিখ</label>
+              <input id="m_inc_date" type="date" class="w-full px-3 py-2 rounded-lg border border-slate-300 bg-white text-slate-900 text-xs cursor-pointer focus:ring-2 focus:ring-amber-500 outline-none" />
+            </div>
+          </div>
+
+          <!-- Leave Section (বর্তমান মাস ও বর্ষ) -->
+          <div class="border-t border-slate-200 pt-3">
+            <h4 class="font-bold text-slate-800 text-xs mb-2">৮) ছুটির বিবরণ (বর্তমান মাস / বর্তমান বর্ষে)</h4>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
+              <div class="bg-white p-2 rounded-lg border border-slate-200">
+                <span class="font-medium text-slate-700 block mb-1">ক) নৈমিত্তিক</span>
+                <div class="flex gap-1">
+                  <input id="m_lv_casual_m" type="number" placeholder="মাস" class="w-1/2 p-1.5 border rounded text-center text-xs" />
+                  <input id="m_lv_casual_y" type="number" placeholder="বর্ষ" class="w-1/2 p-1.5 border rounded text-center text-xs" />
+                </div>
+              </div>
+              <div class="bg-white p-2 rounded-lg border border-slate-200">
+                <span class="font-medium text-slate-700 block mb-1">খ) সবেতন</span>
+                <div class="flex gap-1">
+                  <input id="m_lv_medical_m" type="number" placeholder="মাস" class="w-1/2 p-1.5 border rounded text-center text-xs" />
+                  <input id="m_lv_medical_y" type="number" placeholder="বর্ষ" class="w-1/2 p-1.5 border rounded text-center text-xs" />
+                </div>
+              </div>
+              <div class="bg-white p-2 rounded-lg border border-slate-200">
+                <span class="font-medium text-slate-700 block mb-1">গ) অর্ধবেতন</span>
+                <div class="flex gap-1">
+                  <input id="m_lv_half_m" type="number" placeholder="মাস" class="w-1/2 p-1.5 border rounded text-center text-xs" />
+                  <input id="m_lv_half_y" type="number" placeholder="বর্ষ" class="w-1/2 p-1.5 border rounded text-center text-xs" />
+                </div>
+              </div>
+              <div class="bg-white p-2 rounded-lg border border-slate-200">
+                <span class="font-medium text-slate-700 block mb-1">ঘ) বিনাবেতন</span>
+                <div class="flex gap-1">
+                  <input id="m_lv_without_m" type="number" placeholder="মাস" class="w-1/2 p-1.5 border rounded text-center text-xs" />
+                  <input id="m_lv_without_y" type="number" placeholder="বর্ষ" class="w-1/2 p-1.5 border rounded text-center text-xs" />
+                </div>
+              </div>
+            </div>
+            <div class="mt-2.5">
+              <label class="block font-semibold text-slate-700 text-xs mb-1">৯) এই মাসে কদিন বেতন পাওয়ার যোগ্য</label>
+              <input id="m_payable_days" type="number" placeholder="দিন সংখ্যা (যেমন ৩১)" class="w-36 px-3 py-1.5 rounded-lg border border-slate-300 bg-white text-slate-900 text-xs text-center outline-none" />
+            </div>
+          </div>
+
+          <!-- Salary and Deductions Section -->
+          <div class="border-t border-slate-200 pt-3 grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+            <!-- Earnings -->
+            <div class="bg-white p-3 rounded-lg border border-slate-200 space-y-2">
+              <div class="flex items-center justify-between border-b pb-1.5">
+                <span class="font-bold text-slate-900">১০) বেতন প্রাপ্তি (ভাতা)</span>
+                <span id="cardGrossBadge" class="font-bold text-amber-700">মোট: ₹ ০.০০</span>
+              </div>
+              <div class="grid grid-cols-2 gap-2">
+                <div>
+                  <label class="text-[11px] text-slate-600 block">মূল বেতন (PB+GP)</label>
+                  <input id="m_pay_basic" type="number" step="0.01" placeholder="0.00" class="w-full p-1.5 border rounded text-right text-xs" />
+                </div>
+                <div>
+                  <label class="text-[11px] text-slate-600 block">মহার্ঘভাতা (DA)</label>
+                  <input id="m_pay_da" type="number" step="0.01" placeholder="0.00" class="w-full p-1.5 border rounded text-right text-xs" />
+                </div>
+                <div>
+                  <label class="text-[11px] text-slate-600 block">স্পেশাল পে/ভাতা</label>
+                  <input id="m_pay_sp" type="number" step="0.01" placeholder="0.00" class="w-full p-1.5 border rounded text-right text-xs" />
+                </div>
+                <div>
+                  <label class="text-[11px] text-slate-600 block">বাড়ি ভাড়া ভাতা (HRA)</label>
+                  <input id="m_pay_hra" type="number" step="0.01" placeholder="0.00" class="w-full p-1.5 border rounded text-right text-xs" />
+                </div>
+                <div>
+                  <label class="text-[11px] text-slate-600 block">চিকিৎসা ভাতা (MA)</label>
+                  <input id="m_pay_ma" type="number" step="0.01" placeholder="0.00" class="w-full p-1.5 border rounded text-right text-xs" />
+                </div>
+                <div>
+                  <label class="text-[11px] text-slate-600 block">নৈমিত্তিক</label>
+                  <input id="m_pay_other" type="number" step="0.01" placeholder="0.00" class="w-full p-1.5 border rounded text-right text-xs" />
+                </div>
+              </div>
+            </div>
+
+            <!-- Deductions -->
+            <div class="bg-white p-3 rounded-lg border border-slate-200 space-y-2">
+              <div class="flex items-center justify-between border-b pb-1.5">
+                <span class="font-bold text-slate-900">১১) বেতন থেকে বাদ (কর্তন)</span>
+                <span id="cardDedBadge" class="font-bold text-rose-700">বাদ: ₹ ০.০০</span>
+              </div>
+              <div class="grid grid-cols-2 gap-2">
+                <div>
+                  <label class="text-[11px] text-slate-600 block">ভবিষ্যনিধি (PF)</label>
+                  <input id="m_ded_pf" type="number" step="0.01" placeholder="0.00" class="w-full p-1.5 border rounded text-right text-xs" />
+                </div>
+                <div>
+                  <label class="text-[11px] text-slate-600 block">বৃত্তিকর (P.Tax)</label>
+                  <input id="m_ded_ptax" type="number" step="0.01" placeholder="0.00" class="w-full p-1.5 border rounded text-right text-xs" />
+                </div>
+                <div>
+                  <label class="text-[11px] text-slate-600 block">PF ঋণ শোধ</label>
+                  <input id="m_ded_pfloan" type="number" step="0.01" placeholder="0.00" class="w-full p-1.5 border rounded text-right text-xs" />
+                </div>
+                <div>
+                  <label class="text-[11px] text-slate-600 block">অন্যান্য বাদ</label>
+                  <input id="m_ded_other" type="number" step="0.01" placeholder="0.00" class="w-full p-1.5 border rounded text-right text-xs" />
+                </div>
+                <div class="col-span-2">
+                  <label class="text-[11px] text-slate-600 block">মোবাইল নং</label>
+                  <input id="m_mobile" type="text" placeholder="১০ সংখ্যার মোবাইল নম্বর" class="w-full p-1.5 border rounded text-xs" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile Student Card Panel -->
+      <div id="mobileStudentPanel" class="space-y-4 hidden">
+        <!-- Class Selector Horizontal Pills -->
+        <div class="overflow-x-auto pb-1">
+          <div class="flex items-center gap-1.5 min-w-max" id="mobileClassPills">
+            <!-- Generated via JS -->
+          </div>
+        </div>
+
+        <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-4">
+          <div class="flex items-center justify-between border-b border-slate-200 pb-2">
+            <div>
+              <span id="cardClassBadge" class="text-xs font-bold px-2 py-0.5 rounded bg-sky-100 text-sky-800 border border-sky-300">প্রাক্-প্রাথমিক</span>
+              <h3 id="cardClassTitle" class="text-sm font-bold text-slate-900 mt-1">শ্রেণিভিত্তিক ছাত্র-ছাত্রীর সংখ্যা</h3>
+            </div>
+            <div class="text-right">
+              <span class="text-[11px] text-slate-500 block">মোট শিক্ষার্থী</span>
+              <span id="cardClassTotalBadge" class="text-sm font-bold text-sky-700">০ জন</span>
+            </div>
+          </div>
+
+          <!-- Category inputs for active class -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs" id="mobileClassCategoryGrid">
+            <!-- Dynamic Category Boy/Girl inputs -->
+          </div>
+
+          <div class="grid grid-cols-2 gap-3 pt-2 border-t border-slate-200 text-xs">
+            <div>
+              <label class="font-semibold text-slate-700 block mb-1">মাসের গড় উপস্থিতি</label>
+              <input id="m_cls_avg_att" type="number" step="0.01" placeholder="গড় উপস্থিতি" class="w-full p-2 border rounded-lg text-right text-xs bg-white" />
+            </div>
+            <div>
+              <label class="font-semibold text-slate-700 block mb-1">অর্ধেক বা তদুর্ধ দিন অনুপস্থিত</label>
+              <input id="m_cls_half_abs" type="number" placeholder="অনুপস্থিত ছাত্র-ছাত্রী" class="w-full p-2 border rounded-lg text-right text-xs bg-white" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
     <!-- PAGE 1: ‘ক’ অংশ : শিক্ষক/শিক্ষিকা সংক্রান্ত তথ্যাদি                       -->
     <!-- ========================================================================= -->
     <section id="sectionPartA" class="print-sheet page-break-after bg-white rounded-xl shadow-md border border-slate-300 p-3 sm:p-5 overflow-x-auto">
@@ -285,9 +576,9 @@
           </div>
           <div class="text-xs sm:text-sm whitespace-nowrap flex items-center gap-1">
             <span>বিদ্যালয়ের মাসিক বিবরণী</span>
-            <input id="meta_dateFrom_a" data-sync="dateFrom" type="text" placeholder="তারিখ (যেমন ০১/১০/২০২৬)" class="dotted-input w-36 text-center" />
+            <input id="meta_dateFrom_a" data-sync="dateFrom" type="date" class="dotted-input w-36 text-center cursor-pointer" />
             <span>তারিখ হতে</span>
-            <input id="meta_dateTo_a" data-sync="dateTo" type="text" placeholder="তারিখ (যেমন ৩১/১০/২০২৬)" class="dotted-input w-36 text-center" />
+            <input id="meta_dateTo_a" data-sync="dateTo" type="date" class="dotted-input w-36 text-center cursor-pointer" />
             <span>তারিখ পর্যন্ত</span>
           </div>
         </div>
@@ -391,9 +682,9 @@
         <!-- Date Range Subtitle -->
         <div class="text-center text-xs sm:text-sm mb-2 flex items-center justify-center gap-1.5">
           <span>বিদ্যালয়ের মাসিক বিবরণী</span>
-          <input id="meta_dateFrom_b" data-sync="dateFrom" type="text" placeholder="তারিখ (যেমন ০১/১০/২০২৬)" class="dotted-input w-44 text-center" />
+          <input id="meta_dateFrom_b" data-sync="dateFrom" type="date" class="dotted-input w-40 text-center cursor-pointer" />
           <span>তারিখ হতে</span>
-          <input id="meta_dateTo_b" data-sync="dateTo" type="text" placeholder="তারিখ (যেমন ৩১/১০/২০২৬)" class="dotted-input w-44 text-center" />
+          <input id="meta_dateTo_b" data-sync="dateTo" type="date" class="dotted-input w-40 text-center cursor-pointer" />
           <span>তারিখ পর্যন্ত</span>
         </div>
 
@@ -518,7 +809,7 @@
         <table class="official-table" id="tablePartG">
           <thead>
             <tr class="bg-slate-200/80 text-center font-bold">
-              <th rowspan="2" style="width: 9.5%;">শ্রেণী</th>
+              <th rowspan="2" style="width: 9.5%;" class="sticky-col-header">শ্রেণী</th>
               <th colspan="3" style="width: 12.5%;">মোট সংখ্যা</th>
               <th colspan="3" style="width: 12.5%;">সাধারণ</th>
               <th colspan="3" style="width: 12.5%;">তপশিলী জাতি</th>
@@ -590,11 +881,11 @@
         { id: 't_name', label: 'শিক্ষক / শিক্ষিকার নাম', type: 'text', bold: true, headerBg: true },
         { id: 'desig', label: '১) পদের নাম', type: 'text' },
         { id: 'qual', label: '২) শিক্ষাগত যোগ্যতা', type: 'text' },
-        { id: 'dob', label: '৩) জন্ম তারিখ', type: 'text' },
-        { id: 'doj', label: '৪) চাকুরীতে যোগদানের তারিখ', type: 'text' },
-        { id: 'dor', label: '৫) চাকুরী হইতে অবসরের তারিখ', type: 'text' },
+        { id: 'dob', label: '৩) জন্ম তারিখ', type: 'date' },
+        { id: 'doj', label: '৪) চাকুরীতে যোগদানের তারিখ', type: 'date' },
+        { id: 'dor', label: '৫) চাকুরী হইতে অবসরের তারিখ', type: 'date' },
         { id: 'pay_scale', label: '৬) বেতন ক্রম', type: 'text' },
-        { id: 'inc_date', label: '৭) বাৎসরিক বেতন বৃদ্ধির তারিখ', type: 'text' },
+        { id: 'inc_date', label: '৭) বাৎসরিক বেতন বৃদ্ধির তারিখ', type: 'date' },
         { id: 'leave_hdr', label: '৮) ছুটির বিবরণ', type: 'split_header', bold: true, headerBg: true },
         { id: 'lv_casual', label: 'ক) নৈমিত্তিক', type: 'split_num', indent: 1 },
         { id: 'lv_medical', label: 'খ) সবেতন', type: 'split_num', indent: 1 },
@@ -659,6 +950,7 @@
           // Label Cell
           const tdLabel = document.createElement('td');
           tdLabel.textContent = row.label;
+          tdLabel.classList.add('sticky-col');
           if (row.bold) tdLabel.classList.add('font-bold');
           if (row.indent === 1) tdLabel.style.paddingLeft = '14px';
           if (row.indent === 2) tdLabel.style.paddingLeft = '24px';
@@ -709,6 +1001,9 @@
               } else if (row.type === 'num') {
                 inp.type = 'number';
                 inp.className = 'official-input text-center';
+              } else if (row.type === 'date') {
+                inp.type = 'date';
+                inp.className = 'official-input text-center cursor-pointer text-[11px]';
               } else {
                 inp.type = 'text';
                 inp.className = row.id === 't_name' ? 'official-input text-center font-bold' : 'official-input text-left';
@@ -747,7 +1042,7 @@
         CLASSES.forEach((cls) => {
           const tr = document.createElement('tr');
           const tdCls = document.createElement('td');
-          tdCls.className = 'text-center font-semibold bg-slate-50';
+          tdCls.className = 'text-center font-semibold bg-slate-50 sticky-col';
           tdCls.textContent = cls.label;
           tr.appendChild(tdCls);
 
@@ -795,7 +1090,7 @@
         const trTot = document.createElement('tr');
         trTot.className = 'bg-slate-200/85 font-bold';
         const tdTotLbl = document.createElement('td');
-        tdTotLbl.className = 'text-center font-bold';
+        tdTotLbl.className = 'text-center font-bold sticky-col';
         tdTotLbl.textContent = 'মোট';
         trTot.appendChild(tdTotLbl);
 
@@ -1066,15 +1361,26 @@
       function setActiveTab(tabName) {
         const secA = document.getElementById('sectionPartA');
         const secBC = document.getElementById('sectionPartBC');
-        if (tabName === 'partA') {
-          secA.classList.remove('hidden');
-          secBC.classList.add('hidden');
-        } else if (tabName === 'partBC') {
+        const secMobile = document.getElementById('sectionMobileCards');
+
+        if (tabName === 'mobileView') {
           secA.classList.add('hidden');
-          secBC.classList.remove('hidden');
+          secBC.classList.add('hidden');
+          secMobile.classList.remove('hidden');
+          renderMobileTeacherPills();
+          loadTeacherIntoMobileCard(activeMobileTeacher);
         } else {
-          secA.classList.remove('hidden');
-          secBC.classList.remove('hidden');
+          secMobile.classList.add('hidden');
+          if (tabName === 'partA') {
+            secA.classList.remove('hidden');
+            secBC.classList.add('hidden');
+          } else if (tabName === 'partBC') {
+            secA.classList.add('hidden');
+            secBC.classList.remove('hidden');
+          } else {
+            secA.classList.remove('hidden');
+            secBC.classList.remove('hidden');
+          }
         }
 
         document.querySelectorAll('.tab-btn').forEach((btn) => {
@@ -1094,10 +1400,10 @@
         });
 
         const sampleMeta = {
-          meta_dateFrom_a: '০১/১০/২০২৬',
-          meta_dateTo_a: '৩১/১০/২০২৬',
-          meta_dateFrom_b: '০১/১০/২০২৬',
-          meta_dateTo_b: '৩১/১০/২০২৬',
+          meta_dateFrom_a: '2026-10-01',
+          meta_dateTo_a: '2026-10-31',
+          meta_dateFrom_b: '2026-10-01',
+          meta_dateTo_b: '2026-10-31',
           meta_workingDays: '২২',
           meta_schoolName: 'বহরমপুর আদর্শ প্রাথমিক বিদ্যালয়',
           meta_schoolNo: '৪৫',
@@ -1115,11 +1421,11 @@
           ta_t_name_t1: 'অরিন্দম চট্টোপাধ্যায়',
           ta_desig_t1: 'প্রধান শিক্ষক',
           ta_qual_t1: 'B.Sc, D.El.Ed',
-          ta_dob_t1: '১৫/০৫/১৯৭৮',
-          ta_doj_t1: '১০/০৭/২০০৩',
-          ta_dor_t1: '৩১/০৫/২০৩৮',
+          ta_dob_t1: '1978-05-15',
+          ta_doj_t1: '2003-07-10',
+          ta_dor_t1: '2038-05-31',
           ta_pay_scale_t1: 'Level-9 (ROPA 19)',
-          ta_inc_date_t1: '০১/০৭/২০২৬',
+          ta_inc_date_t1: '2026-07-01',
           ta_lv_casual_t1_m: '1',
           ta_lv_casual_t1_y: '6',
           ta_payable_days_t1: '31',
@@ -1135,11 +1441,11 @@
           ta_t_name_t2: 'সুস্মিতা সেনগুপ্ত',
           ta_desig_t2: 'সহকারী শিক্ষিকা',
           ta_qual_t2: 'M.A, D.El.Ed',
-          ta_dob_t2: '২২/১১/১৯৮৫',
-          ta_doj_t2: '০৪/০২/২০১০',
-          ta_dor_t2: '৩০/১১/২০৪৫',
+          ta_dob_t2: '1985-11-22',
+          ta_doj_t2: '2010-02-04',
+          ta_dor_t2: '2045-11-30',
           ta_pay_scale_t2: 'Level-6 (ROPA 19)',
-          ta_inc_date_t2: '০১/০৭/২০২৬',
+          ta_inc_date_t2: '2026-07-01',
           ta_lv_casual_t2_m: '2',
           ta_lv_casual_t2_y: '8',
           ta_payable_days_t2: '31',
@@ -1363,9 +1669,245 @@
         showToast('ফর্মটি সম্পূর্ণ পরিষ্কার করা হয়েছে');
       });
 
+
+      // Mobile View active state
+      let activeMobileTeacher = 1;
+      let activeMobileClass = 'pp';
+
+      // Laptop Zoom State
+      let currentZoom = 1.0;
+      function applyZoom(zoom) {
+        currentZoom = zoom;
+        const targets = [document.querySelector('#sectionPartA .min-w-\\[1060px\\]'), document.querySelector('#sectionPartBC .min-w-\\[1060px\\]')];
+        targets.forEach((target) => {
+          if (!target) return;
+          if (zoom === 'auto') {
+            const containerWidth = document.getElementById('sectionPartA')?.clientWidth || 1100;
+            const targetWidth = 1060;
+            const ratio = Math.min(1.0, Math.max(0.70, (containerWidth - 20) / targetWidth));
+            target.style.transform = `scale(${ratio})`;
+            target.style.transformOrigin = 'top left';
+            target.style.width = ratio < 1.0 ? `${100 / ratio}%` : '100%';
+          } else {
+            target.style.transform = zoom === 1.0 ? 'none' : `scale(${zoom})`;
+            target.style.transformOrigin = 'top left';
+            target.style.width = zoom < 1.0 ? `${100 / zoom}%` : '100%';
+          }
+        });
+
+        // Update button highlights
+        document.querySelectorAll('.zoom-btn').forEach((btn) => {
+          btn.className = 'zoom-btn px-2 py-0.5 rounded text-[11px] font-semibold bg-slate-800 hover:bg-slate-700 text-slate-200 transition';
+        });
+        if (zoom === 'auto') document.getElementById('btnZoomFit').className = 'zoom-btn px-2 py-0.5 rounded text-[11px] font-semibold bg-amber-500 text-slate-950 transition';
+        else if (zoom === 1.0) document.getElementById('btnZoom100').className = 'zoom-btn px-2 py-0.5 rounded text-[11px] font-semibold bg-amber-500 text-slate-950 transition';
+        else if (zoom === 0.9) document.getElementById('btnZoom90').className = 'zoom-btn px-2 py-0.5 rounded text-[11px] font-semibold bg-amber-500 text-slate-950 transition';
+        else if (zoom === 0.8) document.getElementById('btnZoom80').className = 'zoom-btn px-2 py-0.5 rounded text-[11px] font-semibold bg-amber-500 text-slate-950 transition';
+      }
+
+      document.getElementById('btnZoomFit')?.addEventListener('click', () => applyZoom('auto'));
+      document.getElementById('btnZoom100')?.addEventListener('click', () => applyZoom(1.0));
+      document.getElementById('btnZoom90')?.addEventListener('click', () => applyZoom(0.9));
+      document.getElementById('btnZoom80')?.addEventListener('click', () => applyZoom(0.8));
+
+      window.addEventListener('resize', () => {
+        if (currentZoom === 'auto') applyZoom('auto');
+      });
+
+      // Render Mobile Teacher Pills
+      function renderMobileTeacherPills() {
+        const container = document.getElementById('mobileTeacherPills');
+        if (!container) return;
+        container.innerHTML = '';
+        for (let t = 1; t <= 8; t++) {
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          const nameVal = (document.getElementById(`ta_t_name_t${t}`)?.value || '').trim();
+          btn.className = `mobile-tab-pill px-3 py-1.5 rounded-lg text-xs font-semibold border transition ${t === activeMobileTeacher ? 'active' : 'bg-slate-100 text-slate-700 border-slate-300'}`;
+          btn.textContent = nameVal ? `${t}. ${nameVal.slice(0, 10)}` : `শিক্ষক ${t}`;
+          btn.addEventListener('click', () => {
+            activeMobileTeacher = t;
+            renderMobileTeacherPills();
+            loadTeacherIntoMobileCard(t);
+          });
+          container.appendChild(btn);
+        }
+      }
+
+      function loadTeacherIntoMobileCard(t) {
+        document.getElementById('cardTeacherBadge').textContent = `শিক্ষক ${t}`;
+        const nameVal = document.getElementById(`ta_t_name_t${t}`)?.value || '';
+        document.getElementById('cardTeacherTitle').textContent = nameVal || `শিক্ষক ${t} এর তথ্য`;
+        document.getElementById('cardNetPayBadge').textContent = document.getElementById(`ta_net_pay_t${t}`)?.textContent ? `₹ ${document.getElementById(`ta_net_pay_t${t}`).textContent}` : '₹ ০.০০';
+        document.getElementById('cardGrossBadge').textContent = document.getElementById(`ta_gross_pay_t${t}`)?.textContent ? `মোট: ₹ ${document.getElementById(`ta_gross_pay_t${t}`).textContent}` : 'মোট: ₹ ০.০০';
+        document.getElementById('cardDedBadge').textContent = document.getElementById(`ta_total_ded_t${t}`)?.textContent ? `বাদ: ₹ ${document.getElementById(`ta_total_ded_t${t}`).textContent}` : 'বাদ: ₹ ০.০০';
+
+        // Bind all fields
+        const map = [
+          ['m_t_name', `ta_t_name_t${t}`],
+          ['m_desig', `ta_desig_t${t}`],
+          ['m_qual', `ta_qual_t${t}`],
+          ['m_dob', `ta_dob_t${t}`],
+          ['m_doj', `ta_doj_t${t}`],
+          ['m_dor', `ta_dor_t${t}`],
+          ['m_pay_scale', `ta_pay_scale_t${t}`],
+          ['m_inc_date', `ta_inc_date_t${t}`],
+          ['m_lv_casual_m', `ta_lv_casual_t${t}_m`],
+          ['m_lv_casual_y', `ta_lv_casual_t${t}_y`],
+          ['m_lv_medical_m', `ta_lv_medical_t${t}_m`],
+          ['m_lv_medical_y', `ta_lv_medical_t${t}_y`],
+          ['m_lv_half_m', `ta_lv_half_t${t}_m`],
+          ['m_lv_half_y', `ta_lv_half_t${t}_y`],
+          ['m_lv_without_m', `ta_lv_without_t${t}_m`],
+          ['m_lv_without_y', `ta_lv_without_t${t}_y`],
+          ['m_payable_days', `ta_payable_days_t${t}`],
+          ['m_pay_basic', `ta_pay_basic_t${t}`],
+          ['m_pay_da', `ta_pay_da_t${t}`],
+          ['m_pay_sp', `ta_pay_sp_t${t}`],
+          ['m_pay_hra', `ta_pay_hra_t${t}`],
+          ['m_pay_ma', `ta_pay_ma_t${t}`],
+          ['m_pay_other', `ta_pay_other_t${t}`],
+          ['m_ded_pf', `ta_ded_pf_t${t}`],
+          ['m_ded_ptax', `ta_ded_ptax_t${t}`],
+          ['m_ded_pfloan', `ta_ded_pfloan_t${t}`],
+          ['m_ded_other', `ta_ded_other_t${t}`],
+          ['m_mobile', `ta_mobile_t${t}`]
+        ];
+
+        map.forEach(([mId, mainId]) => {
+          const mEl = document.getElementById(mId);
+          const mainEl = document.getElementById(mainId);
+          if (mEl && mainEl) {
+            mEl.value = mainEl.value || '';
+            mEl.oninput = () => {
+              mainEl.value = mEl.value;
+              recalculateAll();
+              saveToStorage();
+              document.getElementById('cardNetPayBadge').textContent = document.getElementById(`ta_net_pay_t${t}`)?.textContent ? `₹ ${document.getElementById(`ta_net_pay_t${t}`).textContent}` : '₹ ০.০০';
+              document.getElementById('cardGrossBadge').textContent = document.getElementById(`ta_gross_pay_t${t}`)?.textContent ? `মোট: ₹ ${document.getElementById(`ta_gross_pay_t${t}`).textContent}` : 'মোট: ₹ ০.০০';
+              document.getElementById('cardDedBadge').textContent = document.getElementById(`ta_total_ded_t${t}`)?.textContent ? `বাদ: ₹ ${document.getElementById(`ta_total_ded_t${t}`).textContent}` : 'বাদ: ₹ ০.০০';
+              if (mId === 'm_t_name') {
+                document.getElementById('cardTeacherTitle').textContent = mEl.value || `শিক্ষক ${t} এর তথ্য`;
+                renderMobileTeacherPills();
+              }
+            };
+          }
+        });
+      }
+
+      // Render Mobile Class Pills
+      function renderMobileClassPills() {
+        const container = document.getElementById('mobileClassPills');
+        if (!container) return;
+        container.innerHTML = '';
+        CLASSES.forEach((cls) => {
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = `mobile-tab-pill px-3 py-1.5 rounded-lg text-xs font-semibold border transition ${cls.id === activeMobileClass ? 'active' : 'bg-slate-100 text-slate-700 border-slate-300'}`;
+          btn.textContent = cls.label;
+          btn.addEventListener('click', () => {
+            activeMobileClass = cls.id;
+            renderMobileClassPills();
+            loadClassIntoMobileCard(cls.id);
+          });
+          container.appendChild(btn);
+        });
+      }
+
+      function loadClassIntoMobileCard(clsId) {
+        const clsObj = CLASSES.find(c => c.id === clsId) || CLASSES[0];
+        document.getElementById('cardClassBadge').textContent = clsObj.label;
+        document.getElementById('cardClassTitle').textContent = `${clsObj.label} শ্রেণির ছাত্র-ছাত্রীর বিবরণ`;
+        const totCell = document.getElementById(`tg_${clsId}_tot_t`);
+        document.getElementById('cardClassTotalBadge').textContent = totCell && totCell.textContent ? `${totCell.textContent} জন` : '০ জন';
+
+        const grid = document.getElementById('mobileClassCategoryGrid');
+        grid.innerHTML = '';
+
+        CATEGORIES.forEach((cat) => {
+          const card = document.createElement('div');
+          card.className = 'bg-white p-2.5 rounded-lg border border-slate-200';
+          card.innerHTML = `
+            <div class="flex items-center justify-between mb-1.5">
+              <span class="font-bold text-slate-800 text-xs">${cat.label}</span>
+              <span id="m_tot_display_${clsId}_${cat.id}" class="text-[11px] font-semibold text-slate-500">মোট: 0</span>
+            </div>
+            <div class="grid grid-cols-2 gap-2">
+              <div>
+                <label class="text-[10px] text-slate-500 block mb-0.5">ছাত্র (বালক)</label>
+                <input id="m_inp_${clsId}_${cat.id}_b" type="number" min="0" placeholder="0" class="w-full p-1.5 border rounded text-right text-xs" />
+              </div>
+              <div>
+                <label class="text-[10px] text-slate-500 block mb-0.5">ছাত্রী (বালিকা)</label>
+                <input id="m_inp_${clsId}_${cat.id}_g" type="number" min="0" placeholder="0" class="w-full p-1.5 border rounded text-right text-xs" />
+              </div>
+            </div>
+          `;
+          grid.appendChild(card);
+
+          // Two-way sync with main table inputs
+          ['b', 'g'].forEach((gender) => {
+            const mInp = card.querySelector(`#m_inp_${clsId}_${cat.id}_${gender}`);
+            const mainInp = document.getElementById(`tg_${clsId}_${cat.id}_${gender}`);
+            if (mInp && mainInp) {
+              mInp.value = mainInp.value || '';
+              mInp.oninput = () => {
+                mainInp.value = mInp.value;
+                recalculateAll();
+                saveToStorage();
+                const updatedTot = document.getElementById(`tg_${clsId}_${cat.id}_t`)?.textContent || '0';
+                const disp = card.querySelector(`#m_tot_display_${clsId}_${cat.id}`);
+                if (disp) disp.textContent = `মোট: ${updatedTot}`;
+                const classTot = document.getElementById(`tg_${clsId}_tot_t`)?.textContent || '0';
+                document.getElementById('cardClassTotalBadge').textContent = `${classTot} জন`;
+              };
+            }
+          });
+
+          const currentTot = document.getElementById(`tg_${clsId}_${cat.id}_t`)?.textContent || '0';
+          const disp = card.querySelector(`#m_tot_display_${clsId}_${cat.id}`);
+          if (disp) disp.textContent = `মোট: ${currentTot}`;
+        });
+
+        // Attendance inputs
+        const avgMain = document.getElementById(`tg_${clsId}_avg_att`);
+        const halfMain = document.getElementById(`tg_${clsId}_half_abs`);
+        const mAvg = document.getElementById('m_cls_avg_att');
+        const mHalf = document.getElementById('m_cls_half_abs');
+
+        if (mAvg && avgMain) {
+          mAvg.value = avgMain.value || '';
+          mAvg.oninput = () => { avgMain.value = mAvg.value; recalculateAll(); saveToStorage(); };
+        }
+        if (mHalf && halfMain) {
+          mHalf.value = halfMain.value || '';
+          mHalf.oninput = () => { halfMain.value = mHalf.value; recalculateAll(); saveToStorage(); };
+        }
+      }
+
+      // Mobile Sub-navigation Switch (Teacher vs Student)
+      document.getElementById('btnMobileSubPartA')?.addEventListener('click', () => {
+        document.getElementById('mobileTeacherPanel').classList.remove('hidden');
+        document.getElementById('mobileStudentPanel').classList.add('hidden');
+        document.getElementById('btnMobileSubPartA').className = 'px-2.5 py-1 rounded-md font-bold bg-amber-500 text-slate-950 transition';
+        document.getElementById('btnMobileSubPartG').className = 'px-2.5 py-1 rounded-md font-medium text-slate-600 hover:text-slate-900 transition';
+      });
+
+      document.getElementById('btnMobileSubPartG')?.addEventListener('click', () => {
+        document.getElementById('mobileTeacherPanel').classList.add('hidden');
+        document.getElementById('mobileStudentPanel').classList.remove('hidden');
+        document.getElementById('btnMobileSubPartA').className = 'px-2.5 py-1 rounded-md font-medium text-slate-600 hover:text-slate-900 transition';
+        document.getElementById('btnMobileSubPartG').className = 'px-2.5 py-1 rounded-md font-bold bg-amber-500 text-slate-950 transition';
+        renderMobileClassPills();
+        loadClassIntoMobileCard(activeMobileClass);
+      });
+
+
       // Load saved state on startup
       loadFromStorage();
       recalculateAll();
+      renderMobileTeacherPills();
+      loadTeacherIntoMobileCard(1);
     })();
   </script>
 </body>
