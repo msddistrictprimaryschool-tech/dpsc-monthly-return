@@ -1,0 +1,369 @@
+/* ==========================================================================
+   Murshidabad DPSC Monthly Return Web App — Modern Sleek Stylesheet (styles.css)
+   ==========================================================================
+   1. CSS Custom Properties (Design Tokens)
+   2. Base Typography, Reset & Custom Scrollbars
+   3. Top App Header, Toolbar & KPI Strip
+   4. Modern Sleek Form Workspace (Cards, Grids, Steps, Pills & Inputs)
+   5. Teacher & Student Interactive Cards & Summary Badges
+   6. Modals & Toast Notifications
+   7. Official Government Form Table (Screen Preview)
+   8. Official A4 Landscape Print & PDF Styles (@media print)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. CSS Custom Properties (Design Tokens)
+   -------------------------------------------------------------------------- */
+:root {
+  --font-bn: 'Noto Sans Bengali', 'Vrinda', 'Nirmala UI', 'Kalpurush', sans-serif;
+  --font-bn-serif: 'Noto Serif Bengali', 'Noto Sans Bengali', 'Vrinda', 'Nirmala UI', serif;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* Modern Color Palette */
+  --bg-app: #f1f5f9;
+  --bg-surface: #ffffff;
+  --bg-subtle: #f8fafc;
+  --bg-header: #0f172a;
+  --bg-header-sub: #1e293b;
+
+  --text-primary: #0f172a;
+  --text-secondary: #334155;
+  --text-muted: #64748b;
+
+  --brand-primary: #4f46e5;
+  --brand-primary-hover: #4338ca;
+  --brand-primary-soft: #eef2ff;
+  --brand-accent: #f59e0b;
+  --brand-accent-hover: #fbbf24;
+
+  --success: #059669;
+  --success-soft: #ecfdf5;
+  --danger: #e11d48;
+  --danger-soft: #fff1f2;
+  --info: #0284c7;
+  --info-soft: #f0f9ff;
+
+  --border-light: #e2e8f0;
+  --border-default: #cbd5e1;
+  --border-focus: #6366f1;
+
+  /* Shadows & Radius */
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.25rem;
+  --shadow-card: 0 4px 20px -2px rgba(15, 23, 42, 0.06), 0 2px 6px -1px rgba(15, 23, 42, 0.04);
+  --shadow-card-hover: 0 10px 25px -4px rgba(15, 23, 42, 0.09), 0 4px 10px -2px rgba(15, 23, 42, 0.04);
+  --shadow-focus: 0 0 0 3.5px rgba(99, 102, 241, 0.18);
+}
+
+/* --------------------------------------------------------------------------
+   2. Base Typography, Reset & Custom Scrollbars
+   -------------------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-bn), var(--font-sans);
+  background: radial-gradient(circle at top left, #eef2ff 0%, #f1f5f9 45%, #f8fafc 100%);
+  color: var(--text-primary);
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+.font-bn-serif {
+  font-family: var(--font-bn-serif);
+}
+
+/* Remove number input spinners */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+/* Date input calendar picker icon styling */
+input[type="date"] {
+  cursor: pointer;
+}
+input[type="date"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  opacity: 0.75;
+  padding: 2px;
+  border-radius: 4px;
+  transition: opacity 0.15s ease, background-color 0.15s ease;
+}
+input[type="date"]::-webkit-calendar-picker-indicator:hover {
+  opacity: 1;
+  background-color: rgba(99, 102, 241, 0.1);
+}
+
+/* Custom sleek scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* --------------------------------------------------------------------------
+   3. Modern Sleek Form Workspace (Cards, Inputs, Step Pills & Badges)
+   -------------------------------------------------------------------------- */
+.sleek-card {
+  background: var(--bg-surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-light);
+  box-shadow: var(--shadow-card);
+  transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+}
+
+.sleek-card:hover {
+  box-shadow: var(--shadow-card-hover);
+}
+
+.sleek-hero-banner {
+  background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 55%, #0f172a 100%);
+  color: #ffffff;
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  box-shadow: 0 12px 30px -6px rgba(15, 23, 42, 0.25);
+}
+
+.sleek-input {
+  width: 100%;
+  padding: 0.55rem 0.8rem;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid var(--border-default);
+  background-color: #ffffff;
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: 0.825rem;
+  line-height: 1.3;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+  outline: none;
+}
+
+.sleek-input::placeholder {
+  color: #94a3b8;
+  font-weight: 400;
+}
+
+.sleek-input:hover:not(:focus) {
+  border-color: #94a3b8;
+  background-color: #fcfdff;
+}
+
+.sleek-input:focus {
+  border-color: var(--border-focus);
+  box-shadow: var(--shadow-focus);
+  background-color: #ffffff;
+}
+
+/* Step Filter Navigation Pills */
+.sleek-step-btn {
+  cursor: pointer;
+  transition: all 0.18s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sleek-step-btn:hover:not(.active) {
+  background-color: rgba(255, 255, 255, 0.12);
+  transform: translateY(-1px);
+}
+
+.sleek-step-btn.active {
+  background: linear-gradient(135deg, #4f46e5 0%, #2563eb 100%);
+  color: #ffffff !important;
+  border-color: rgba(129, 140, 248, 0.6) !important;
+  box-shadow: 0 4px 12px -2px rgba(79, 70, 229, 0.45);
+}
+
+/* Teacher & Class Selector Pills */
+.mobile-tab-pill {
+  cursor: pointer;
+  transition: all 0.16s ease;
+  user-select: none;
+}
+
+.mobile-tab-pill:hover:not(.active) {
+  background-color: #e2e8f0;
+  border-color: #94a3b8;
+  transform: translateY(-1px);
+}
+
+.mobile-tab-pill.active {
+  background: linear-gradient(135deg, #f59e0b 0%, #eab308 100%);
+  color: #0f172a;
+  font-weight: 700;
+  border-color: #d97706;
+  box-shadow: 0 3px 10px -2px rgba(245, 158, 11, 0.4);
+}
+
+/* Section Number Avatar Badges */
+.sleek-step-badge {
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 0.75rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.875rem;
+  flex-shrink: 0;
+}
+
+/* --------------------------------------------------------------------------
+   4. Official Government Form Table (Screen Preview)
+   -------------------------------------------------------------------------- */
+.official-table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.official-table th,
+.official-table td {
+  border: 1px solid #1e293b;
+  padding: 2px 4px;
+  font-size: 12px;
+  line-height: 1.25;
+  vertical-align: middle;
+}
+
+.official-input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  padding: 2px 3px;
+  font-family: inherit;
+  font-size: 12px;
+  color: #0f172a;
+  border-radius: 2px;
+  transition: background-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.official-input:focus {
+  background-color: #fef9c3;
+  box-shadow: inset 0 0 0 1px #eab308;
+}
+
+.official-input:hover:not(:focus) {
+  background-color: #f8fafc;
+}
+
+.dotted-input {
+  border: none;
+  border-bottom: 1.5px dotted #334155;
+  background: transparent;
+  outline: none;
+  padding: 0 4px;
+  font-family: inherit;
+  font-size: 13px;
+  color: #0f172a;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.dotted-input:focus {
+  background-color: #fef9c3;
+  border-bottom: 1.5px solid #0284c7;
+}
+
+.auto-cell {
+  background-color: #f1f5f9;
+  font-weight: 700;
+  color: #0f172a;
+  text-align: right;
+  padding: 2px 5px;
+  user-select: all;
+}
+
+.net-cell {
+  background-color: #e2e8f0;
+  font-weight: 700;
+  color: #0f172a;
+  text-align: right;
+  padding: 2px 5px;
+  border-bottom: 3px double #0f172a !important;
+}
+
+/* Sticky Row Header for smooth horizontal scroll on smaller laptops & tablets */
+.sticky-col {
+  position: sticky;
+  left: 0;
+  z-index: 10;
+  background-color: #ffffff;
+  box-shadow: 2px 0 5px -2px rgba(0, 0, 0, 0.15);
+}
+
+.sticky-col-header {
+  position: sticky;
+  left: 0;
+  z-index: 20;
+  background-color: #e2e8f0;
+  box-shadow: 2px 0 5px -2px rgba(0, 0, 0, 0.15);
+}
+
+.table-scale-wrapper {
+  transform-origin: top left;
+  transition: transform 0.2s ease;
+}
+
+/* --------------------------------------------------------------------------
+   5. Official A4 Landscape Print & PDF Styles (@media print)
+   -------------------------------------------------------------------------- */
+@media print {
+  @page {
+    size: A4 landscape;
+    margin: 5mm 6mm;
+  }
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .print-sheet {
+    display: block !important;
+    box-shadow: none !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+    max-width: none !important;
+  }
+  .page-break-after {
+    page-break-after: always;
+    break-after: page;
+  }
+  .official-table th,
+  .official-table td {
+    border: 1px solid #000000 !important;
+    font-size: 10px !important;
+    padding: 1.5px 3px !important;
+  }
+  .official-input {
+    font-size: 10px !important;
+    padding: 0 2px !important;
+  }
+  .dotted-input {
+    font-size: 11px !important;
+    border-bottom: 1px dotted #000000 !important;
+  }
+}

@@ -8,178 +8,379 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Bengali:wght@400;500;600;700&family=Noto+Serif+Bengali:wght@400;600;700&display=swap" rel="stylesheet" />
-  <style>
-    :root {
-      --font-bn: 'Noto Sans Bengali', 'Vrinda', 'Nirmala UI', 'Kalpurush', sans-serif;
-      --font-bn-serif: 'Noto Serif Bengali', 'Noto Sans Bengali', 'Vrinda', 'Nirmala UI', serif;
-    }
-    body {
-      font-family: var(--font-bn), 'Inter', sans-serif;
-      background-color: #f1f5f9;
-      color: #0f172a;
-    }
-    .font-bn-serif {
-      font-family: var(--font-bn-serif);
-    }
-    /* Official form table styling */
-    .official-table {
-      border-collapse: collapse;
-      width: 100%;
-    }
-    .official-table th,
-    .official-table td {
-      border: 1px solid #1e293b;
-      padding: 2px 4px;
-      font-size: 12px;
-      line-height: 1.25;
-      vertical-align: middle;
-    }
-    .official-input {
-      width: 100%;
-      background: transparent;
-      border: none;
-      outline: none;
-      padding: 2px 3px;
-      font-family: inherit;
-      font-size: 12px;
-      color: #0f172a;
-      border-radius: 2px;
-      transition: background-color 0.15s ease, box-shadow 0.15s ease;
-    }
-    .official-input:focus {
-      background-color: #fef9c3;
-      box-shadow: inset 0 0 0 1px #eab308;
-    }
-    .official-input:hover:not(:focus) {
-      background-color: #f8fafc;
-    }
-    .dotted-input {
-      border: none;
-      border-bottom: 1.5px dotted #334155;
-      background: transparent;
-      outline: none;
-      padding: 0 4px;
-      font-family: inherit;
-      font-size: 13px;
-      color: #0f172a;
-      transition: border-color 0.15s ease, background-color 0.15s ease;
-    }
-    .dotted-input:focus {
-      background-color: #fef9c3;
-      border-bottom: 1.5px solid #0284c7;
-    }
-    .auto-cell {
-      background-color: #f1f5f9;
-      font-weight: 700;
-      color: #0f172a;
-      text-align: right;
-      padding: 2px 5px;
-      user-select: all;
-    }
-    .net-cell {
-      background-color: #e2e8f0;
-      font-weight: 700;
-      color: #0f172a;
-      text-align: right;
-      padding: 2px 5px;
-      border-bottom: 3px double #0f172a !important;
-    }
-    /* Remove number input spinners for clean official look */
-    input[type="number"]::-webkit-inner-spin-button,
-    input[type="number"]::-webkit-outer-spin-button {
-      -webkit-appearance: none;
-      margin: 0;
-    }
-    input[type="number"] {
-      -moz-appearance: textfield;
-    }
+  <!-- External Modern Sleek Stylesheet (styles.css) -->
+  <link rel="stylesheet" href="styles.css" />
+  <!-- Embedded fallback for offline single-file usage -->
+  <style id="modern-styles-css">
+/* ==========================================================================
+   Murshidabad DPSC Monthly Return Web App — Modern Sleek Stylesheet (styles.css)
+   ==========================================================================
+   1. CSS Custom Properties (Design Tokens)
+   2. Base Typography, Reset & Custom Scrollbars
+   3. Top App Header, Toolbar & KPI Strip
+   4. Modern Sleek Form Workspace (Cards, Grids, Steps, Pills & Inputs)
+   5. Teacher & Student Interactive Cards & Summary Badges
+   6. Modals & Toast Notifications
+   7. Official Government Form Table (Screen Preview)
+   8. Official A4 Landscape Print & PDF Styles (@media print)
+   ========================================================================== */
 
-    /* Print / A4 Landscape styles */
-    @media print {
-      @page {
-        size: A4 landscape;
-        margin: 5mm 6mm;
-      }
-      body {
-        background: #ffffff !important;
-        color: #000000 !important;
-        margin: 0 !important;
-        padding: 0 !important;
-      }
-      .no-print {
-        display: none !important;
-      }
-      .print-sheet {
-        display: block !important;
-        box-shadow: none !important;
-        border: none !important;
-        padding: 0 !important;
-        margin: 0 !important;
-        width: 100% !important;
-        max-width: none !important;
-      }
-      .page-break-after {
-        page-break-after: always;
-        break-after: page;
-      }
-      .official-table th,
-      .official-table td {
-        border: 1px solid #000000 !important;
-        font-size: 10px !important;
-        padding: 1.5px 3px !important;
-      }
-      .official-input {
-        font-size: 10px !important;
-        padding: 0 2px !important;
-      }
-      .dotted-input {
-        font-size: 11px !important;
-        border-bottom: 1px dotted #000000 !important;
-      }
-    }
-  
-    /* Sticky Row Header for smooth horizontal scroll on smaller laptops & tablets */
-    .sticky-col {
-      position: sticky;
-      left: 0;
-      z-index: 10;
-      background-color: #ffffff;
-      box-shadow: 2px 0 5px -2px rgba(0, 0, 0, 0.15);
-    }
-    .sticky-col-header {
-      position: sticky;
-      left: 0;
-      z-index: 20;
-      background-color: #e2e8f0;
-      box-shadow: 2px 0 5px -2px rgba(0, 0, 0, 0.15);
-    }
-    /* Scaled table wrapper for laptops */
-    .table-scale-wrapper {
-      transform-origin: top left;
-      transition: transform 0.2s ease;
-    }
-    .mobile-tab-pill.active {
-      background-color: #f59e0b;
-      color: #0f172a;
-      font-weight: 700;
-      border-color: #d97706;
-    }
+/* --------------------------------------------------------------------------
+   1. CSS Custom Properties (Design Tokens)
+   -------------------------------------------------------------------------- */
+:root {
+  --font-bn: 'Noto Sans Bengali', 'Vrinda', 'Nirmala UI', 'Kalpurush', sans-serif;
+  --font-bn-serif: 'Noto Serif Bengali', 'Noto Sans Bengali', 'Vrinda', 'Nirmala UI', serif;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 
-  
-    /* Date input calendar picker icon styling */
-    input[type="date"] {
-      cursor: pointer;
-    }
-    input[type="date"]::-webkit-calendar-picker-indicator {
-      cursor: pointer;
-      opacity: 0.75;
-      padding: 0;
-      margin: 0;
-      transition: opacity 0.15s ease;
-    }
-    input[type="date"]::-webkit-calendar-picker-indicator:hover {
-      opacity: 1;
-    }
+  /* Modern Color Palette */
+  --bg-app: #f1f5f9;
+  --bg-surface: #ffffff;
+  --bg-subtle: #f8fafc;
+  --bg-header: #0f172a;
+  --bg-header-sub: #1e293b;
+
+  --text-primary: #0f172a;
+  --text-secondary: #334155;
+  --text-muted: #64748b;
+
+  --brand-primary: #4f46e5;
+  --brand-primary-hover: #4338ca;
+  --brand-primary-soft: #eef2ff;
+  --brand-accent: #f59e0b;
+  --brand-accent-hover: #fbbf24;
+
+  --success: #059669;
+  --success-soft: #ecfdf5;
+  --danger: #e11d48;
+  --danger-soft: #fff1f2;
+  --info: #0284c7;
+  --info-soft: #f0f9ff;
+
+  --border-light: #e2e8f0;
+  --border-default: #cbd5e1;
+  --border-focus: #6366f1;
+
+  /* Shadows & Radius */
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.25rem;
+  --shadow-card: 0 4px 20px -2px rgba(15, 23, 42, 0.06), 0 2px 6px -1px rgba(15, 23, 42, 0.04);
+  --shadow-card-hover: 0 10px 25px -4px rgba(15, 23, 42, 0.09), 0 4px 10px -2px rgba(15, 23, 42, 0.04);
+  --shadow-focus: 0 0 0 3.5px rgba(99, 102, 241, 0.18);
+}
+
+/* --------------------------------------------------------------------------
+   2. Base Typography, Reset & Custom Scrollbars
+   -------------------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-bn), var(--font-sans);
+  background: radial-gradient(circle at top left, #eef2ff 0%, #f1f5f9 45%, #f8fafc 100%);
+  color: var(--text-primary);
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+.font-bn-serif {
+  font-family: var(--font-bn-serif);
+}
+
+/* Remove number input spinners */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+/* Date input calendar picker icon styling */
+input[type="date"] {
+  cursor: pointer;
+}
+input[type="date"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  opacity: 0.75;
+  padding: 2px;
+  border-radius: 4px;
+  transition: opacity 0.15s ease, background-color 0.15s ease;
+}
+input[type="date"]::-webkit-calendar-picker-indicator:hover {
+  opacity: 1;
+  background-color: rgba(99, 102, 241, 0.1);
+}
+
+/* Custom sleek scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* --------------------------------------------------------------------------
+   3. Modern Sleek Form Workspace (Cards, Inputs, Step Pills & Badges)
+   -------------------------------------------------------------------------- */
+.sleek-card {
+  background: var(--bg-surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-light);
+  box-shadow: var(--shadow-card);
+  transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+}
+
+.sleek-card:hover {
+  box-shadow: var(--shadow-card-hover);
+}
+
+.sleek-hero-banner {
+  background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 55%, #0f172a 100%);
+  color: #ffffff;
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  box-shadow: 0 12px 30px -6px rgba(15, 23, 42, 0.25);
+}
+
+.sleek-input {
+  width: 100%;
+  padding: 0.55rem 0.8rem;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid var(--border-default);
+  background-color: #ffffff;
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: 0.825rem;
+  line-height: 1.3;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+  outline: none;
+}
+
+.sleek-input::placeholder {
+  color: #94a3b8;
+  font-weight: 400;
+}
+
+.sleek-input:hover:not(:focus) {
+  border-color: #94a3b8;
+  background-color: #fcfdff;
+}
+
+.sleek-input:focus {
+  border-color: var(--border-focus);
+  box-shadow: var(--shadow-focus);
+  background-color: #ffffff;
+}
+
+/* Step Filter Navigation Pills */
+.sleek-step-btn {
+  cursor: pointer;
+  transition: all 0.18s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sleek-step-btn:hover:not(.active) {
+  background-color: rgba(255, 255, 255, 0.12);
+  transform: translateY(-1px);
+}
+
+.sleek-step-btn.active {
+  background: linear-gradient(135deg, #4f46e5 0%, #2563eb 100%);
+  color: #ffffff !important;
+  border-color: rgba(129, 140, 248, 0.6) !important;
+  box-shadow: 0 4px 12px -2px rgba(79, 70, 229, 0.45);
+}
+
+/* Teacher & Class Selector Pills */
+.mobile-tab-pill {
+  cursor: pointer;
+  transition: all 0.16s ease;
+  user-select: none;
+}
+
+.mobile-tab-pill:hover:not(.active) {
+  background-color: #e2e8f0;
+  border-color: #94a3b8;
+  transform: translateY(-1px);
+}
+
+.mobile-tab-pill.active {
+  background: linear-gradient(135deg, #f59e0b 0%, #eab308 100%);
+  color: #0f172a;
+  font-weight: 700;
+  border-color: #d97706;
+  box-shadow: 0 3px 10px -2px rgba(245, 158, 11, 0.4);
+}
+
+/* Section Number Avatar Badges */
+.sleek-step-badge {
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 0.75rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.875rem;
+  flex-shrink: 0;
+}
+
+/* --------------------------------------------------------------------------
+   4. Official Government Form Table (Screen Preview)
+   -------------------------------------------------------------------------- */
+.official-table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.official-table th,
+.official-table td {
+  border: 1px solid #1e293b;
+  padding: 2px 4px;
+  font-size: 12px;
+  line-height: 1.25;
+  vertical-align: middle;
+}
+
+.official-input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  padding: 2px 3px;
+  font-family: inherit;
+  font-size: 12px;
+  color: #0f172a;
+  border-radius: 2px;
+  transition: background-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.official-input:focus {
+  background-color: #fef9c3;
+  box-shadow: inset 0 0 0 1px #eab308;
+}
+
+.official-input:hover:not(:focus) {
+  background-color: #f8fafc;
+}
+
+.dotted-input {
+  border: none;
+  border-bottom: 1.5px dotted #334155;
+  background: transparent;
+  outline: none;
+  padding: 0 4px;
+  font-family: inherit;
+  font-size: 13px;
+  color: #0f172a;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.dotted-input:focus {
+  background-color: #fef9c3;
+  border-bottom: 1.5px solid #0284c7;
+}
+
+.auto-cell {
+  background-color: #f1f5f9;
+  font-weight: 700;
+  color: #0f172a;
+  text-align: right;
+  padding: 2px 5px;
+  user-select: all;
+}
+
+.net-cell {
+  background-color: #e2e8f0;
+  font-weight: 700;
+  color: #0f172a;
+  text-align: right;
+  padding: 2px 5px;
+  border-bottom: 3px double #0f172a !important;
+}
+
+/* Sticky Row Header for smooth horizontal scroll on smaller laptops & tablets */
+.sticky-col {
+  position: sticky;
+  left: 0;
+  z-index: 10;
+  background-color: #ffffff;
+  box-shadow: 2px 0 5px -2px rgba(0, 0, 0, 0.15);
+}
+
+.sticky-col-header {
+  position: sticky;
+  left: 0;
+  z-index: 20;
+  background-color: #e2e8f0;
+  box-shadow: 2px 0 5px -2px rgba(0, 0, 0, 0.15);
+}
+
+.table-scale-wrapper {
+  transform-origin: top left;
+  transition: transform 0.2s ease;
+}
+
+/* --------------------------------------------------------------------------
+   5. Official A4 Landscape Print & PDF Styles (@media print)
+   -------------------------------------------------------------------------- */
+@media print {
+  @page {
+    size: A4 landscape;
+    margin: 5mm 6mm;
+  }
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .print-sheet {
+    display: block !important;
+    box-shadow: none !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+    max-width: none !important;
+  }
+  .page-break-after {
+    page-break-after: always;
+    break-after: page;
+  }
+  .official-table th,
+  .official-table td {
+    border: 1px solid #000000 !important;
+    font-size: 10px !important;
+    padding: 1.5px 3px !important;
+  }
+  .official-input {
+    font-size: 10px !important;
+    padding: 0 2px !important;
+  }
+  .dotted-input {
+    font-size: 11px !important;
+    border-bottom: 1px dotted #000000 !important;
+  }
+}
 
   </style>
 </head>
@@ -210,6 +411,13 @@
 
       <!-- Action Buttons -->
       <div class="flex flex-wrap items-center gap-1.5 sm:gap-2">
+        <button id="btnSaveMasterQuick" type="button" class="px-2.5 py-1.5 rounded-md bg-sky-600 hover:bg-sky-500 text-white text-xs font-bold shadow-sm transition flex items-center gap-1" title="স্কুল ও শিক্ষকদের স্থায়ী তথ্য (Master Data) ভবিষ্যতের জন্য সেভ করে রাখুন">
+          <span>★ মাস্টার ডেটা সেভ</span>
+        </button>
+        <button id="btnOpenMasterModal" type="button" class="px-2.5 py-1.5 rounded-md bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold shadow-sm transition flex items-center gap-1" title="সংরক্ষিত মাস্টার ডেটা লোড করুন অথবা নতুন মাসের ফর্ম শুরু করুন">
+          <span>মাস্টার ডেটা / নতুন মাস</span>
+          <span id="masterProfileCountBadge" class="px-1.5 py-0.2 rounded-full bg-indigo-900/80 text-indigo-200 text-[10px]">০</span>
+        </button>
         <button id="btnSampleData" type="button" class="px-2.5 py-1.5 rounded-md bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs font-medium transition">
           নমুনা তথ্য (Sample)
         </button>
@@ -236,17 +444,20 @@
     <div class="bg-slate-800/90 border-t border-slate-700/80">
       <div class="max-w-[1440px] mx-auto px-3 sm:px-5 py-2 flex flex-wrap items-center justify-between gap-2">
         <!-- View Tabs -->
-        <div class="flex items-center gap-1 bg-slate-900/90 p-1 rounded-lg border border-slate-700">
-          <button id="tabBtnPartA" type="button" data-tab="partA" class="tab-btn px-3 py-1.5 rounded-md text-xs font-semibold bg-amber-500 text-slate-950 transition">
+        <div class="flex flex-wrap items-center gap-1 bg-slate-900/90 p-1 rounded-lg border border-slate-700">
+          <button id="tabBtnSleekForm" type="button" data-tab="mobileView" class="tab-btn px-3 py-1.5 rounded-md text-xs font-bold bg-amber-500 text-slate-950 transition flex items-center gap-1.5 shadow-xs">
+            <span>✨ আধুনিক স্মার্ট ফর্ম (Sleek Form)</span>
+          </button>
+          <button id="tabBtnBoth" type="button" data-tab="both" class="tab-btn px-3 py-1.5 rounded-md text-xs font-semibold text-slate-300 hover:text-white transition">
+            সম্পূর্ণ উভয় পৃষ্ঠা (প্রিন্ট প্রিভিউ)
+          </button>
+          <button id="tabBtnPartA" type="button" data-tab="partA" class="tab-btn px-3 py-1.5 rounded-md text-xs font-semibold text-slate-300 hover:text-white transition">
             ১ম পৃষ্ঠা : ‘ক’ অংশ (শিক্ষক তথ্যাদি ও বেতন)
           </button>
           <button id="tabBtnPartBC" type="button" data-tab="partBC" class="tab-btn px-3 py-1.5 rounded-md text-xs font-semibold text-slate-300 hover:text-white transition">
             ২য় পৃষ্ঠা : ‘খ’ ও ‘গ’ অংশ (হিসাব ও ছাত্র-ছাত্রী)
           </button>
-          <button id="tabBtnBoth" type="button" data-tab="both" class="tab-btn px-3 py-1.5 rounded-md text-xs font-semibold text-slate-300 hover:text-white transition">
-            সম্পূর্ণ উভয় পৃষ্ঠা (প্রিন্ট প্রিভিউ)
-          </button>
-          <button id="tabBtnMobileView" type="button" data-tab="mobileView" class="tab-btn px-3 py-1.5 rounded-md text-xs font-semibold text-emerald-400 hover:text-emerald-300 transition flex items-center gap-1.5">
+          <button id="tabBtnMobileView" type="button" data-tab="mobileView" class="tab-btn hidden px-2.5 py-1.5 rounded-md text-xs font-semibold text-emerald-400 hover:text-emerald-300 transition items-center gap-1.5">
             <span class="inline-block w-2 h-2 rounded-full bg-emerald-400"></span>
             মোবাইল কার্ড ভিউ (Mobile View)
           </button>
@@ -337,225 +548,518 @@
     </div>
 
     <!-- ========================================================================= -->
-    <!-- MOBILE CARD VIEW: Dedicated touch-friendly interface for Phones/Tablets   -->
+    <!-- MODERN SLEEK FORM WORKSPACE (Default Interactive View for All Devices)    -->
     <!-- ========================================================================= -->
-    <section id="sectionMobileCards" class="no-print bg-white rounded-xl shadow-md border border-slate-300 p-3 sm:p-5 hidden space-y-5">
-      <!-- Mobile Sub-Navigation (Teacher Cards vs Student Cards) -->
-      <div class="flex items-center justify-between border-b border-slate-200 pb-3 gap-2">
-        <div>
-          <h2 class="text-base font-bold text-slate-900">মোবাইল সহজ ইনপুট মোড</h2>
-          <p class="text-xs text-slate-500">প্রতিজন শিক্ষকের তথ্য এবং শ্রেণিভিত্তিক খতিয়ান সহজে পূরণ করুন</p>
+    <section id="sectionMobileCards" class="no-print space-y-6">
+      <!-- Sleek Workspace Header & Step Navigation Bar -->
+      <div class="sleek-card sleek-hero-banner p-4 sm:p-5 text-white">
+        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+          <div class="space-y-1">
+            <div class="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-indigo-500/20 text-indigo-200 border border-indigo-400/30">
+              <span>✨ আধুনিক স্মার্ট ইনপুট ওয়ার্কস্পেস (Modern Sleek Form)</span>
+            </div>
+            <h2 class="text-base sm:text-lg font-bold text-white">
+              সহজ ও আধুনিক মাসিক বিবরণী ফর্ম — কোনো অনুভূমিক স্ক্রলিং ছাড়াই দ্রুত পূরণ করুন
+            </h2>
+            <p class="text-xs text-slate-300">
+              এখানে পূরণ করা প্রতিটি তথ্য স্বয়ংক্রিয়ভাবে সরকারি <strong>A4 Landscape প্রিন্ট ও PDF ফরম্যাটে (‘ক’, ‘খ’ ও ‘গ’ অংশ)</strong> হুবহু বসে যাবে।
+            </p>
+          </div>
+          <div class="flex flex-wrap items-center gap-2 shrink-0">
+            <button id="btnSleekPreviewPrint" type="button" class="px-3.5 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white border border-white/20 text-xs font-semibold transition">
+              📄 অফিসিয়াল A4 প্রিন্ট প্রিভিউ দেখুন
+            </button>
+            <button id="btnSleekDirectPrint" type="button" class="px-4 py-2 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 text-xs font-bold shadow-md transition">
+              🖨️ প্রিন্ট / PDF সেভ (A4)
+            </button>
+          </div>
         </div>
-        <div class="flex items-center gap-1 bg-slate-100 p-1 rounded-lg border border-slate-200 text-xs">
-          <button id="btnMobileSubPartA" type="button" class="px-2.5 py-1 rounded-md font-bold bg-amber-500 text-slate-950 transition">
-            শিক্ষক বেতন
-          </button>
-          <button id="btnMobileSubPartG" type="button" class="px-2.5 py-1 rounded-md font-medium text-slate-600 hover:text-slate-900 transition">
-            ছাত্র-ছাত্রী
-          </button>
+
+        <!-- Step Filter Pills -->
+        <div class="mt-4 pt-3.5 border-t border-slate-800/80 flex flex-wrap items-center justify-between gap-2">
+          <div class="flex flex-wrap items-center gap-1.5 text-xs">
+            <button id="btnStepAll" type="button" data-step="all" class="sleek-step-btn active px-3.5 py-1.5 rounded-xl font-bold border border-slate-700 bg-slate-800/90 text-slate-200 transition">
+              সব অংশ একসাথে (All-in-One)
+            </button>
+            <button id="btnStepSchool" type="button" data-step="school" class="sleek-step-btn px-3.5 py-1.5 rounded-xl font-semibold border border-slate-700 bg-slate-800/90 text-slate-200 hover:bg-slate-800 transition">
+              ১. বিদ্যালয় ও মাসের তথ্য
+            </button>
+            <button id="btnMobileSubPartA" type="button" data-step="teachers" class="sleek-step-btn px-3.5 py-1.5 rounded-xl font-semibold border border-slate-700 bg-slate-800/90 text-slate-200 hover:bg-slate-800 transition">
+              শিক্ষক বেতন
+            </button>
+            <button id="btnStepContingency" type="button" data-step="contingency" class="sleek-step-btn px-3.5 py-1.5 rounded-xl font-semibold border border-slate-700 bg-slate-800/90 text-slate-200 hover:bg-slate-800 transition">
+              ৩. ‘খ’ অংশ : নৈমিত্তিক ও পরিদর্শন
+            </button>
+            <button id="btnMobileSubPartG" type="button" data-step="students" class="sleek-step-btn px-3.5 py-1.5 rounded-xl font-semibold border border-slate-700 bg-slate-800/90 text-slate-200 hover:bg-slate-800 transition">
+              ছাত্র-ছাত্রী
+            </button>
+          </div>
+          <div class="text-[11px] text-slate-300 hidden sm:block">
+            টিপস: স্থায়ী তথ্য একবার লিখে <strong>“★ মাস্টার ডেটা সেভ”</strong> করে রাখলে পরের মাসে ১ ক্লিকেই ফর্ম তৈরি হবে।
+          </div>
         </div>
       </div>
 
-      <!-- Mobile Teacher Card Panel -->
-      <div id="mobileTeacherPanel" class="space-y-4">
-        <!-- Teacher Selector Horizontal Pills -->
+      <!-- ===================================================================== -->
+      <!-- STEP 1: SCHOOL & MONTH DETAILS CARD                                   -->
+      <!-- ===================================================================== -->
+      <div id="sleekSchoolPanel" class="sleek-card p-4 sm:p-6 space-y-5">
+        <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-200 pb-3.5">
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-xl bg-indigo-100 text-indigo-700 border border-indigo-200 flex items-center justify-center font-bold text-sm">
+              ১
+            </div>
+            <div>
+              <h3 class="text-sm sm:text-base font-bold text-slate-900">বিদ্যালয়ের পরিচয় ও মাসিক বিবরণীর সময়কাল</h3>
+              <p class="text-xs text-slate-500">মাসের শুরুর ও শেষের তারিখ ক্যালেন্ডার থেকে বেছে নিন এবং বিদ্যালয়ের স্থায়ী তথ্য পূরণ করুন</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-2">
+            <button id="btnSleekSaveMasterCard" type="button" class="px-3 py-1.5 rounded-lg bg-sky-50 hover:bg-sky-100 text-sky-800 border border-sky-200 text-xs font-bold transition">
+              ★ মাস্টার ডেটায় সংরক্ষণ করুন
+            </button>
+          </div>
+        </div>
+
+        <!-- Monthly Period Highlight Box -->
+        <div class="p-4 rounded-xl bg-amber-50/70 border border-amber-200/80 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div>
+            <label for="s_meta_dateFrom" class="block text-xs font-bold text-amber-950 mb-1">📅 বিবরণী শুরুর তারিখ (হতে)</label>
+            <input id="s_meta_dateFrom" type="date" class="sleek-input font-semibold" />
+          </div>
+          <div>
+            <label for="s_meta_dateTo" class="block text-xs font-bold text-amber-950 mb-1">📅 বিবরণী শেষের তারিখ (পর্যন্ত)</label>
+            <input id="s_meta_dateTo" type="date" class="sleek-input font-semibold" />
+          </div>
+          <div>
+            <label for="s_meta_workingDays" class="block text-xs font-bold text-amber-950 mb-1">🗓️ মাসের মোট কর্মদিবস</label>
+            <input id="s_meta_workingDays" type="text" placeholder="যেমন: ২২ বা ২৪" class="sleek-input font-semibold" />
+          </div>
+          <div>
+            <label for="s_meta_paraTeacherCount" class="block text-xs font-bold text-amber-950 mb-1">👩‍🏫 পার্শ্ব-শিক্ষকের মোট সংখ্যা</label>
+            <input id="s_meta_paraTeacherCount" type="text" placeholder="যেমন: ১ জন" class="sleek-input font-semibold" />
+          </div>
+        </div>
+
+        <!-- School Static Master Details Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div class="sm:col-span-2">
+            <label for="s_meta_schoolName" class="block text-xs font-semibold text-slate-700 mb-1">বিদ্যালয়ের নাম (School Name)</label>
+            <input id="s_meta_schoolName" type="text" placeholder="বিদ্যালয়ের সম্পূর্ণ নাম লিখুন" class="sleek-input font-semibold" />
+          </div>
+          <div>
+            <label for="s_meta_schoolNo" class="block text-xs font-semibold text-slate-700 mb-1">বিদ্যালয় নং (School No.)</label>
+            <input id="s_meta_schoolNo" type="text" placeholder="নং লিখুন" class="sleek-input" />
+          </div>
+          <div>
+            <label for="s_meta_schoolCode" class="block text-xs font-semibold text-slate-700 mb-1">স্কুল কোড নং (DISE / Code)</label>
+            <input id="s_meta_schoolCode" type="text" placeholder="১১ সংখ্যার স্কুল কোড" class="sleek-input font-mono" />
+          </div>
+          <div>
+            <label for="s_meta_circleName" class="block text-xs font-semibold text-slate-700 mb-1">চক্রের নাম (Circle Name)</label>
+            <input id="s_meta_circleName" type="text" placeholder="চক্রের নাম লিখুন" class="sleek-input" />
+          </div>
+          <div>
+            <label for="s_meta_village" class="block text-xs font-semibold text-slate-700 mb-1">গ্রাম / মহল্লা (Village)</label>
+            <input id="s_meta_village" type="text" placeholder="গ্রামের নাম" class="sleek-input" />
+          </div>
+          <div>
+            <label for="s_meta_postOffice" class="block text-xs font-semibold text-slate-700 mb-1">ডাকঘর (Post Office)</label>
+            <input id="s_meta_postOffice" type="text" placeholder="ডাকঘরের নাম" class="sleek-input" />
+          </div>
+          <div>
+            <label for="s_meta_gramPanchayat" class="block text-xs font-semibold text-slate-700 mb-1">গ্রাম পঞ্চায়েত (Gram Panchayat)</label>
+            <input id="s_meta_gramPanchayat" type="text" placeholder="গ্রাম পঞ্চায়েতের নাম" class="sleek-input" />
+          </div>
+          <div>
+            <label for="s_meta_municipalityWard" class="block text-xs font-semibold text-slate-700 mb-1">পৌরসভা ও ওয়ার্ড নং</label>
+            <input id="s_meta_municipalityWard" type="text" placeholder="পৌরসভা / ওয়ার্ড নং (প্রযোজ্য হলে)" class="sleek-input" />
+          </div>
+          <div>
+            <label for="s_meta_landArea" class="block text-xs font-semibold text-slate-700 mb-1">বিদ্যালয়ের জমির পরিমাণ</label>
+            <input id="s_meta_landArea" type="text" placeholder="যেমন: ১৫ শতক" class="sleek-input" />
+          </div>
+          <div>
+            <label for="s_meta_buildingType" class="block text-xs font-semibold text-slate-700 mb-1">বিদ্যালয়ের গৃহের অবস্থান</label>
+            <select id="s_meta_buildingType" class="sleek-input font-semibold cursor-pointer">
+              <option value="পাকা">পাকা</option>
+              <option value="কাঁচা">কাঁচা</option>
+              <option value="অর্দ্ধপাকা">অর্দ্ধপাকা</option>
+              <option value="পাকা / কাঁচা / অর্দ্ধপাকা">পাকা / কাঁচা / অর্দ্ধপাকা</option>
+            </select>
+          </div>
+          <div>
+            <label for="s_meta_usableRooms" class="block text-xs font-semibold text-slate-700 mb-1">ব্যবহারযোগ্য কক্ষ সংখ্যা</label>
+            <input id="s_meta_usableRooms" type="text" placeholder="যেমন: ৬ টি" class="sleek-input" />
+          </div>
+        </div>
+      </div>
+
+      <!-- ===================================================================== -->
+      <!-- STEP 2: PART A — TEACHERS & PAYROLL CARD                              -->
+      <!-- ===================================================================== -->
+      <div id="mobileTeacherPanel" class="sleek-card p-4 sm:p-6 space-y-5">
+        <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-200 pb-3.5">
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-xl bg-amber-100 text-amber-800 border border-amber-300 flex items-center justify-center font-bold text-sm">
+              ২
+            </div>
+            <div>
+              <h3 class="text-sm sm:text-base font-bold text-slate-900">‘ক’ অংশ : শিক্ষক/শিক্ষিকা সংক্রান্ত তথ্যাদি ও বেতন বিবরণী</h3>
+              <p class="text-xs text-slate-500">নিচের তালিকা থেকে যেকোনো শিক্ষক নির্বাচন করে তাঁর ব্যক্তিগত তথ্য, ছুটি এবং বেতন পূরণ করুন</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-2">
+            <button id="btnPrevTeacher" type="button" class="px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold border border-slate-300 transition">
+              ◀ পূর্ববর্তী শিক্ষক
+            </button>
+            <button id="btnNextTeacher" type="button" class="px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold border border-slate-300 transition">
+              পরবর্তী শিক্ষক ▶
+            </button>
+          </div>
+        </div>
+
+        <!-- Teacher Selector Pills -->
         <div class="overflow-x-auto pb-1">
-          <div class="flex items-center gap-1.5 min-w-max" id="mobileTeacherPills">
+          <div class="flex items-center gap-2 min-w-max" id="mobileTeacherPills">
             <!-- 8 Teacher Pills generated via JS -->
           </div>
         </div>
 
-        <!-- Active Teacher Info Card -->
-        <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-4">
-          <div class="flex items-center justify-between border-b border-slate-200 pb-2.5">
-            <div>
-              <span id="cardTeacherBadge" class="text-xs font-bold px-2 py-0.5 rounded bg-amber-100 text-amber-800 border border-amber-300">শিক্ষক ১</span>
-              <h3 id="cardTeacherTitle" class="text-sm font-bold text-slate-900 mt-1">শিক্ষকের নাম ও বেতন তথ্য</h3>
+        <!-- Active Teacher Editor Card -->
+        <div class="p-4 sm:p-5 rounded-2xl bg-slate-50/90 border border-slate-200/90 space-y-5">
+          <!-- Teacher Summary Banner -->
+          <div class="flex flex-wrap items-center justify-between gap-3 bg-white p-3.5 rounded-xl border border-slate-200 shadow-2xs">
+            <div class="flex items-center gap-3">
+              <span id="cardTeacherBadge" class="text-xs font-bold px-2.5 py-1 rounded-lg bg-amber-100 text-amber-800 border border-amber-300">শিক্ষক ১</span>
+              <div>
+                <h4 id="cardTeacherTitle" class="text-sm sm:text-base font-bold text-slate-900">শিক্ষকের নাম ও বেতন তথ্য</h4>
+                <p class="text-[11px] text-slate-500">মোট বেতন ও কর্তন থেকে স্বয়ংক্রিয়ভাবে নিট বেতন গণনা করা হয়</p>
+              </div>
             </div>
-            <div class="text-right">
-              <span class="text-[11px] text-slate-500 block">নিট বেতন</span>
-              <span id="cardNetPayBadge" class="text-sm font-bold text-emerald-600">₹ ০.০০</span>
+            <div class="flex items-center gap-4">
+              <div class="text-right">
+                <span class="text-[11px] text-slate-500 block">নিট প্রদেয় বেতন (Net Pay)</span>
+                <span id="cardNetPayBadge" class="text-base sm:text-lg font-bold text-emerald-600">₹ ০.০০</span>
+              </div>
             </div>
           </div>
 
-          <!-- Basic Details -->
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
-            <div>
-              <label class="block font-semibold text-slate-700 mb-1">শিক্ষক / শিক্ষিকার নাম</label>
-              <input id="m_t_name" type="text" placeholder="নাম লিখুন" class="w-full px-3 py-2 rounded-lg border border-slate-300 bg-white text-slate-900 text-xs focus:ring-2 focus:ring-amber-500 outline-none" />
-            </div>
-            <div>
-              <label class="block font-semibold text-slate-700 mb-1">১) পদের নাম</label>
-              <input id="m_desig" type="text" placeholder="যেমন: প্রধান শিক্ষক / সহকারী শিক্ষক" class="w-full px-3 py-2 rounded-lg border border-slate-300 bg-white text-slate-900 text-xs focus:ring-2 focus:ring-amber-500 outline-none" />
-            </div>
-            <div>
-              <label class="block font-semibold text-slate-700 mb-1">২) শিক্ষাগত যোগ্যতা</label>
-              <input id="m_qual" type="text" placeholder="যেমন: B.Sc, D.El.Ed" class="w-full px-3 py-2 rounded-lg border border-slate-300 bg-white text-slate-900 text-xs focus:ring-2 focus:ring-amber-500 outline-none" />
-            </div>
-            <div>
-              <label class="block font-semibold text-slate-700 mb-1">৩) জন্ম তারিখ</label>
-              <input id="m_dob" type="date" class="w-full px-3 py-2 rounded-lg border border-slate-300 bg-white text-slate-900 text-xs cursor-pointer focus:ring-2 focus:ring-amber-500 outline-none" />
-            </div>
-            <div>
-              <label class="block font-semibold text-slate-700 mb-1">৪) চাকুরীতে যোগদানের তারিখ</label>
-              <input id="m_doj" type="date" class="w-full px-3 py-2 rounded-lg border border-slate-300 bg-white text-slate-900 text-xs cursor-pointer focus:ring-2 focus:ring-amber-500 outline-none" />
-            </div>
-            <div>
-              <label class="block font-semibold text-slate-700 mb-1">৫) অবসরের তারিখ</label>
-              <input id="m_dor" type="date" class="w-full px-3 py-2 rounded-lg border border-slate-300 bg-white text-slate-900 text-xs cursor-pointer focus:ring-2 focus:ring-amber-500 outline-none" />
-            </div>
-            <div>
-              <label class="block font-semibold text-slate-700 mb-1">৬) বেতন ক্রম</label>
-              <input id="m_pay_scale" type="text" placeholder="যেমন: Level-9" class="w-full px-3 py-2 rounded-lg border border-slate-300 bg-white text-slate-900 text-xs focus:ring-2 focus:ring-amber-500 outline-none" />
-            </div>
-            <div>
-              <label class="block font-semibold text-slate-700 mb-1">৭) বাৎসরিক বেতন বৃদ্ধির তারিখ</label>
-              <input id="m_inc_date" type="date" class="w-full px-3 py-2 rounded-lg border border-slate-300 bg-white text-slate-900 text-xs cursor-pointer focus:ring-2 focus:ring-amber-500 outline-none" />
+          <!-- 1-7: Personal & Service Profile Grid -->
+          <div>
+            <h5 class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-2.5">ব্যক্তিগত ও চাকুরি সংক্রান্ত স্থায়ী তথ্য (Master Profile)</h5>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 text-xs">
+              <div class="sm:col-span-2">
+                <label for="m_t_name" class="block font-semibold text-slate-700 mb-1">শিক্ষক / শিক্ষিকার নাম</label>
+                <input id="m_t_name" type="text" placeholder="সম্পূর্ণ নাম লিখুন" class="sleek-input font-semibold" />
+              </div>
+              <div>
+                <label for="m_desig" class="block font-semibold text-slate-700 mb-1">১) পদের নাম (Designation)</label>
+                <input id="m_desig" type="text" placeholder="যেমন: প্রধান শিক্ষক / সহকারী শিক্ষক" class="sleek-input" />
+              </div>
+              <div>
+                <label for="m_qual" class="block font-semibold text-slate-700 mb-1">২) শিক্ষাগত যোগ্যতা</label>
+                <input id="m_qual" type="text" placeholder="যেমন: B.Sc, D.El.Ed" class="sleek-input" />
+              </div>
+              <div>
+                <label for="m_dob" class="block font-semibold text-slate-700 mb-1">৩) জন্ম তারিখ (DOB)</label>
+                <input id="m_dob" type="date" class="sleek-input cursor-pointer" />
+              </div>
+              <div>
+                <label for="m_doj" class="block font-semibold text-slate-700 mb-1">৪) চাকুরীতে যোগদানের তারিখ</label>
+                <input id="m_doj" type="date" class="sleek-input cursor-pointer" />
+              </div>
+              <div>
+                <label for="m_dor" class="block font-semibold text-slate-700 mb-1">৫) অবসরের তারিখ (DOR)</label>
+                <input id="m_dor" type="date" class="sleek-input cursor-pointer" />
+              </div>
+              <div>
+                <label for="m_inc_date" class="block font-semibold text-slate-700 mb-1">৭) বাৎসরিক বেতন বৃদ্ধির তারিখ</label>
+                <input id="m_inc_date" type="date" class="sleek-input cursor-pointer" />
+              </div>
+              <div class="sm:col-span-2">
+                <label for="m_pay_scale" class="block font-semibold text-slate-700 mb-1">৬) বেতন ক্রম (Pay Scale / ROPA Level)</label>
+                <input id="m_pay_scale" type="text" placeholder="যেমন: Level-9 (ROPA 19)" class="sleek-input" />
+              </div>
+              <div>
+                <label for="m_mobile" class="block font-semibold text-slate-700 mb-1">📱 মোবাইল নং</label>
+                <input id="m_mobile" type="text" placeholder="১০ সংখ্যার মোবাইল নম্বর" class="sleek-input font-mono" />
+              </div>
+              <div>
+                <label for="m_payable_days" class="block font-semibold text-slate-700 mb-1">৯) এই মাসে বেতন প্রাপ্য দিন</label>
+                <input id="m_payable_days" type="number" placeholder="যেমন: ৩১ বা ৩০" class="sleek-input text-center font-semibold" />
+              </div>
             </div>
           </div>
 
-          <!-- Leave Section (বর্তমান মাস ও বর্ষ) -->
-          <div class="border-t border-slate-200 pt-3">
-            <h4 class="font-bold text-slate-800 text-xs mb-2">৮) ছুটির বিবরণ (বর্তমান মাস / বর্তমান বর্ষে)</h4>
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
-              <div class="bg-white p-2 rounded-lg border border-slate-200">
-                <span class="font-medium text-slate-700 block mb-1">ক) নৈমিত্তিক</span>
-                <div class="flex gap-1">
-                  <input id="m_lv_casual_m" type="number" placeholder="মাস" class="w-1/2 p-1.5 border rounded text-center text-xs" />
-                  <input id="m_lv_casual_y" type="number" placeholder="বর্ষ" class="w-1/2 p-1.5 border rounded text-center text-xs" />
+          <!-- 8: Leave Details (Current Month vs Current Year) -->
+          <div class="border-t border-slate-200 pt-4">
+            <h5 class="text-xs font-bold text-slate-800 mb-2.5">৮) ছুটির বিবরণ (বাম ঘরে বর্তমান মাস • ডান ঘরে বর্তমান বর্ষে মোট)</h5>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-xs">
+              <div class="bg-white p-3 rounded-xl border border-slate-200 shadow-2xs">
+                <span class="font-bold text-slate-800 block mb-2">ক) নৈমিত্তিক ছুটি (CL)</span>
+                <div class="grid grid-cols-2 gap-2">
+                  <div>
+                    <label for="m_lv_casual_m" class="text-[10px] text-slate-500 block mb-0.5">বর্তমান মাস</label>
+                    <input id="m_lv_casual_m" type="number" placeholder="0" class="sleek-input text-center" />
+                  </div>
+                  <div>
+                    <label for="m_lv_casual_y" class="text-[10px] text-slate-500 block mb-0.5">বর্তমান বর্ষে</label>
+                    <input id="m_lv_casual_y" type="number" placeholder="0" class="sleek-input text-center" />
+                  </div>
                 </div>
               </div>
-              <div class="bg-white p-2 rounded-lg border border-slate-200">
-                <span class="font-medium text-slate-700 block mb-1">খ) সবেতন</span>
-                <div class="flex gap-1">
-                  <input id="m_lv_medical_m" type="number" placeholder="মাস" class="w-1/2 p-1.5 border rounded text-center text-xs" />
-                  <input id="m_lv_medical_y" type="number" placeholder="বর্ষ" class="w-1/2 p-1.5 border rounded text-center text-xs" />
+              <div class="bg-white p-3 rounded-xl border border-slate-200 shadow-2xs">
+                <span class="font-bold text-slate-800 block mb-2">খ) সবেতন ছুটি (Medical/Earned)</span>
+                <div class="grid grid-cols-2 gap-2">
+                  <div>
+                    <label for="m_lv_medical_m" class="text-[10px] text-slate-500 block mb-0.5">বর্তমান মাস</label>
+                    <input id="m_lv_medical_m" type="number" placeholder="0" class="sleek-input text-center" />
+                  </div>
+                  <div>
+                    <label for="m_lv_medical_y" class="text-[10px] text-slate-500 block mb-0.5">বর্তমান বর্ষে</label>
+                    <input id="m_lv_medical_y" type="number" placeholder="0" class="sleek-input text-center" />
+                  </div>
                 </div>
               </div>
-              <div class="bg-white p-2 rounded-lg border border-slate-200">
-                <span class="font-medium text-slate-700 block mb-1">গ) অর্ধবেতন</span>
-                <div class="flex gap-1">
-                  <input id="m_lv_half_m" type="number" placeholder="মাস" class="w-1/2 p-1.5 border rounded text-center text-xs" />
-                  <input id="m_lv_half_y" type="number" placeholder="বর্ষ" class="w-1/2 p-1.5 border rounded text-center text-xs" />
+              <div class="bg-white p-3 rounded-xl border border-slate-200 shadow-2xs">
+                <span class="font-bold text-slate-800 block mb-2">গ) অর্ধবেতন ছুটি (Half Pay)</span>
+                <div class="grid grid-cols-2 gap-2">
+                  <div>
+                    <label for="m_lv_half_m" class="text-[10px] text-slate-500 block mb-0.5">বর্তমান মাস</label>
+                    <input id="m_lv_half_m" type="number" placeholder="0" class="sleek-input text-center" />
+                  </div>
+                  <div>
+                    <label for="m_lv_half_y" class="text-[10px] text-slate-500 block mb-0.5">বর্তমান বর্ষে</label>
+                    <input id="m_lv_half_y" type="number" placeholder="0" class="sleek-input text-center" />
+                  </div>
                 </div>
               </div>
-              <div class="bg-white p-2 rounded-lg border border-slate-200">
-                <span class="font-medium text-slate-700 block mb-1">ঘ) বিনাবেতন</span>
-                <div class="flex gap-1">
-                  <input id="m_lv_without_m" type="number" placeholder="মাস" class="w-1/2 p-1.5 border rounded text-center text-xs" />
-                  <input id="m_lv_without_y" type="number" placeholder="বর্ষ" class="w-1/2 p-1.5 border rounded text-center text-xs" />
+              <div class="bg-white p-3 rounded-xl border border-slate-200 shadow-2xs">
+                <span class="font-bold text-slate-800 block mb-2">ঘ) বিনাবেতন ছুটি (LWP)</span>
+                <div class="grid grid-cols-2 gap-2">
+                  <div>
+                    <label for="m_lv_without_m" class="text-[10px] text-slate-500 block mb-0.5">বর্তমান মাস</label>
+                    <input id="m_lv_without_m" type="number" placeholder="0" class="sleek-input text-center" />
+                  </div>
+                  <div>
+                    <label for="m_lv_without_y" class="text-[10px] text-slate-500 block mb-0.5">বর্তমান বর্ষে</label>
+                    <input id="m_lv_without_y" type="number" placeholder="0" class="sleek-input text-center" />
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="mt-2.5">
-              <label class="block font-semibold text-slate-700 text-xs mb-1">৯) এই মাসে কদিন বেতন পাওয়ার যোগ্য</label>
-              <input id="m_payable_days" type="number" placeholder="দিন সংখ্যা (যেমন ৩১)" class="w-36 px-3 py-1.5 rounded-lg border border-slate-300 bg-white text-slate-900 text-xs text-center outline-none" />
             </div>
           </div>
 
-          <!-- Salary and Deductions Section -->
-          <div class="border-t border-slate-200 pt-3 grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+          <!-- 10 & 11: Salary Earnings and Deductions -->
+          <div class="border-t border-slate-200 pt-4 grid grid-cols-1 lg:grid-cols-2 gap-4 text-xs">
             <!-- Earnings -->
-            <div class="bg-white p-3 rounded-lg border border-slate-200 space-y-2">
-              <div class="flex items-center justify-between border-b pb-1.5">
-                <span class="font-bold text-slate-900">১০) বেতন প্রাপ্তি (ভাতা)</span>
-                <span id="cardGrossBadge" class="font-bold text-amber-700">মোট: ₹ ০.০০</span>
+            <div class="bg-white p-4 rounded-xl border border-emerald-200/90 space-y-3 shadow-2xs">
+              <div class="flex items-center justify-between border-b border-slate-100 pb-2">
+                <span class="font-bold text-slate-900 text-sm">১০) বেতন সংক্রান্ত বিবরণ (প্রাপ্য ভাতা)</span>
+                <span id="cardGrossBadge" class="px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 font-bold">মোট: ₹ ০.০০</span>
               </div>
-              <div class="grid grid-cols-2 gap-2">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
-                  <label class="text-[11px] text-slate-600 block">মূল বেতন (PB+GP)</label>
-                  <input id="m_pay_basic" type="number" step="0.01" placeholder="0.00" class="w-full p-1.5 border rounded text-right text-xs" />
+                  <label for="m_pay_basic" class="text-xs font-medium text-slate-600 block mb-1">ক) মূল বেতন (PB+GP / Basic)</label>
+                  <input id="m_pay_basic" type="number" step="0.01" placeholder="0.00" class="sleek-input text-right font-semibold" />
                 </div>
                 <div>
-                  <label class="text-[11px] text-slate-600 block">মহার্ঘভাতা (DA)</label>
-                  <input id="m_pay_da" type="number" step="0.01" placeholder="0.00" class="w-full p-1.5 border rounded text-right text-xs" />
+                  <label for="m_pay_da" class="text-xs font-medium text-slate-600 block mb-1">খ) মহার্ঘভাতা (DA)</label>
+                  <input id="m_pay_da" type="number" step="0.01" placeholder="0.00" class="sleek-input text-right font-semibold" />
                 </div>
                 <div>
-                  <label class="text-[11px] text-slate-600 block">স্পেশাল পে/ভাতা</label>
-                  <input id="m_pay_sp" type="number" step="0.01" placeholder="0.00" class="w-full p-1.5 border rounded text-right text-xs" />
+                  <label for="m_pay_sp" class="text-xs font-medium text-slate-600 block mb-1">গ) স্পেশাল পে / ভাতা</label>
+                  <input id="m_pay_sp" type="number" step="0.01" placeholder="0.00" class="sleek-input text-right" />
                 </div>
                 <div>
-                  <label class="text-[11px] text-slate-600 block">বাড়ি ভাড়া ভাতা (HRA)</label>
-                  <input id="m_pay_hra" type="number" step="0.01" placeholder="0.00" class="w-full p-1.5 border rounded text-right text-xs" />
+                  <label for="m_pay_hra" class="text-xs font-medium text-slate-600 block mb-1">ঘ) বাড়ী ভাড়া ভাতা (HRA)</label>
+                  <input id="m_pay_hra" type="number" step="0.01" placeholder="0.00" class="sleek-input text-right font-semibold" />
                 </div>
                 <div>
-                  <label class="text-[11px] text-slate-600 block">চিকিৎসা ভাতা (MA)</label>
-                  <input id="m_pay_ma" type="number" step="0.01" placeholder="0.00" class="w-full p-1.5 border rounded text-right text-xs" />
+                  <label for="m_pay_ma" class="text-xs font-medium text-slate-600 block mb-1">ঙ) চিকিৎসা ভাতা (MA)</label>
+                  <input id="m_pay_ma" type="number" step="0.01" placeholder="0.00" class="sleek-input text-right" />
                 </div>
                 <div>
-                  <label class="text-[11px] text-slate-600 block">নৈমিত্তিক</label>
-                  <input id="m_pay_other" type="number" step="0.01" placeholder="0.00" class="w-full p-1.5 border rounded text-right text-xs" />
+                  <label for="m_pay_other" class="text-xs font-medium text-slate-600 block mb-1">চ) নৈমিত্তিক / অন্যান্য</label>
+                  <input id="m_pay_other" type="number" step="0.01" placeholder="0.00" class="sleek-input text-right" />
                 </div>
               </div>
             </div>
 
             <!-- Deductions -->
-            <div class="bg-white p-3 rounded-lg border border-slate-200 space-y-2">
-              <div class="flex items-center justify-between border-b pb-1.5">
-                <span class="font-bold text-slate-900">১১) বেতন থেকে বাদ (কর্তন)</span>
-                <span id="cardDedBadge" class="font-bold text-rose-700">বাদ: ₹ ০.০০</span>
+            <div class="bg-white p-4 rounded-xl border border-rose-200/90 space-y-3 shadow-2xs flex flex-col justify-between">
+              <div class="space-y-3">
+                <div class="flex items-center justify-between border-b border-slate-100 pb-2">
+                  <span class="font-bold text-slate-900 text-sm">১১) প্রাপ্য বেতন থেকে বাদ (কর্তন)</span>
+                  <span id="cardDedBadge" class="px-2.5 py-0.5 rounded-full bg-rose-50 text-rose-800 border border-rose-200 font-bold">বাদ: ₹ ০.০০</span>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <div>
+                    <label for="m_ded_pf" class="text-xs font-medium text-slate-600 block mb-1">ক) ভবিষ্যনিধি (GPF / PF)</label>
+                    <input id="m_ded_pf" type="number" step="0.01" placeholder="0.00" class="sleek-input text-right font-semibold" />
+                  </div>
+                  <div>
+                    <label for="m_ded_ptax" class="text-xs font-medium text-slate-600 block mb-1">খ) বৃত্তিকর (P.Tax)</label>
+                    <input id="m_ded_ptax" type="number" step="0.01" placeholder="0.00" class="sleek-input text-right font-semibold" />
+                  </div>
+                  <div>
+                    <label for="m_ded_pfloan" class="text-xs font-medium text-slate-600 block mb-1">গ) ভবিষ্যনিধি ঋণ শোধ (PF Loan)</label>
+                    <input id="m_ded_pfloan" type="number" step="0.01" placeholder="0.00" class="sleek-input text-right" />
+                  </div>
+                  <div>
+                    <label for="m_ded_other" class="text-xs font-medium text-slate-600 block mb-1">ঘ) অন্যান্য বাদ</label>
+                    <input id="m_ded_other" type="number" step="0.01" placeholder="0.00" class="sleek-input text-right" />
+                  </div>
+                </div>
               </div>
-              <div class="grid grid-cols-2 gap-2">
-                <div>
-                  <label class="text-[11px] text-slate-600 block">ভবিষ্যনিধি (PF)</label>
-                  <input id="m_ded_pf" type="number" step="0.01" placeholder="0.00" class="w-full p-1.5 border rounded text-right text-xs" />
-                </div>
-                <div>
-                  <label class="text-[11px] text-slate-600 block">বৃত্তিকর (P.Tax)</label>
-                  <input id="m_ded_ptax" type="number" step="0.01" placeholder="0.00" class="w-full p-1.5 border rounded text-right text-xs" />
-                </div>
-                <div>
-                  <label class="text-[11px] text-slate-600 block">PF ঋণ শোধ</label>
-                  <input id="m_ded_pfloan" type="number" step="0.01" placeholder="0.00" class="w-full p-1.5 border rounded text-right text-xs" />
-                </div>
-                <div>
-                  <label class="text-[11px] text-slate-600 block">অন্যান্য বাদ</label>
-                  <input id="m_ded_other" type="number" step="0.01" placeholder="0.00" class="w-full p-1.5 border rounded text-right text-xs" />
-                </div>
-                <div class="col-span-2">
-                  <label class="text-[11px] text-slate-600 block">মোবাইল নং</label>
-                  <input id="m_mobile" type="text" placeholder="১০ সংখ্যার মোবাইল নম্বর" class="w-full p-1.5 border rounded text-xs" />
-                </div>
+              <div class="p-3 rounded-xl bg-slate-900 text-white flex items-center justify-between mt-3">
+                <span class="text-xs font-medium text-slate-300">এই শিক্ষকের নিট প্রদেয় বেতন (মোট বেতন − মোট বাদ):</span>
+                <span id="cardNetPayFooterBadge" class="text-sm font-bold text-amber-400">₹ ০.০০</span>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Mobile Student Card Panel -->
-      <div id="mobileStudentPanel" class="space-y-4 hidden">
+      <!-- ===================================================================== -->
+      <!-- STEP 3: PART B — CONTINGENCY ACCOUNT & INSPECTION CARD                -->
+      <!-- ===================================================================== -->
+      <div id="sleekContingencyPanel" class="sleek-card p-4 sm:p-6 space-y-5">
+        <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-200 pb-3.5">
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-xl bg-emerald-100 text-emerald-800 border border-emerald-300 flex items-center justify-center font-bold text-sm">
+              ৩
+            </div>
+            <div>
+              <h3 class="text-sm sm:text-base font-bold text-slate-900">‘খ’ অংশ : নৈমিত্তিক ব্যয়ের হিসাব ও বিদ্যালয় পরিদর্শন</h3>
+              <p class="text-xs text-slate-500">মাসের প্রারম্ভিক জের, প্রাপ্তি, খরচ এবং পরিদর্শনের বিবরণ</p>
+            </div>
+          </div>
+          <div class="px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-xs font-bold text-emerald-800">
+            মোট প্রাপ্তি (অটো): <span id="s_kha_total_rec_badge">₹ ০.০০</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-5">
+          <!-- Contingency Financial Inputs (2 cols on lg) -->
+          <div class="lg:col-span-2 p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-4">
+            <h4 class="text-xs font-bold uppercase tracking-wider text-slate-600">নৈমিত্তিক তহবিলের মাসিক হিসাব (Contingency Account)</h4>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3.5 text-xs">
+              <div class="bg-white p-3 rounded-xl border border-slate-200">
+                <label for="s_kha_open_bank" class="block font-semibold text-slate-700 mb-1">শুরুতে মজুত (ব্যাঙ্ক)</label>
+                <input id="s_kha_open_bank" type="number" step="0.01" placeholder="0.00" class="sleek-input text-right font-semibold" />
+              </div>
+              <div class="bg-white p-3 rounded-xl border border-slate-200">
+                <label for="s_kha_open_cash" class="block font-semibold text-slate-700 mb-1">শুরুতে মজুত (হাতে)</label>
+                <input id="s_kha_open_cash" type="number" step="0.01" placeholder="0.00" class="sleek-input text-right font-semibold" />
+              </div>
+              <div class="bg-white p-3 rounded-xl border border-slate-200">
+                <label for="s_kha_rec_prev" class="block font-semibold text-slate-700 mb-1">গতমাসে প্রাপ্তি</label>
+                <input id="s_kha_rec_prev" type="number" step="0.01" placeholder="0.00" class="sleek-input text-right font-semibold" />
+              </div>
+              <div class="bg-white p-3 rounded-xl border border-rose-200">
+                <label for="s_kha_exp" class="block font-semibold text-rose-800 mb-1">মাসিক ব্যয় / খরচ</label>
+                <input id="s_kha_exp" type="number" step="0.01" placeholder="0.00" class="sleek-input text-right font-semibold" />
+              </div>
+              <div class="bg-white p-3 rounded-xl border border-emerald-200">
+                <label for="s_kha_close_bank" class="block font-semibold text-emerald-800 mb-1">মাসান্তে মজুত (ব্যাঙ্ক)</label>
+                <input id="s_kha_close_bank" type="number" step="0.01" placeholder="0.00" class="sleek-input text-right font-semibold" />
+              </div>
+              <div class="bg-white p-3 rounded-xl border border-emerald-200">
+                <label for="s_kha_close_cash" class="block font-semibold text-emerald-800 mb-1">মাসান্তে মজুত (হাতে)</label>
+                <input id="s_kha_close_cash" type="number" step="0.01" placeholder="0.00" class="sleek-input text-right font-semibold" />
+              </div>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+              <div>
+                <label for="s_kha_note1" class="block text-xs font-semibold text-slate-600 mb-1">১) মন্তব্য / নোট (ঐচ্ছিক)</label>
+                <input id="s_kha_note1" type="text" placeholder="মন্তব্য ১" class="sleek-input" />
+              </div>
+              <div>
+                <label for="s_kha_note2" class="block text-xs font-semibold text-slate-600 mb-1">২) মন্তব্য / নোট (ঐচ্ছিক)</label>
+                <input id="s_kha_note2" type="text" placeholder="মন্তব্য ২" class="sleek-input" />
+              </div>
+            </div>
+          </div>
+
+          <!-- School Inspection Box -->
+          <div class="p-4 rounded-xl bg-indigo-50/60 border border-indigo-200/80 space-y-3.5 flex flex-col justify-between">
+            <div class="space-y-3">
+              <h4 class="text-xs font-bold uppercase tracking-wider text-indigo-950">🔍 বিদ্যালয় পরিদর্শন সংক্রান্ত তথ্য</h4>
+              <div>
+                <label for="s_insp_visited" class="block text-xs font-semibold text-slate-700 mb-1">বর্তমান মাসে পরিদর্শিত হয়েছে কিনা?</label>
+                <input id="s_insp_visited" type="text" placeholder="হ্যাঁ / না" class="sleek-input font-semibold" />
+              </div>
+              <div>
+                <label for="s_insp_byWhom" class="block text-xs font-semibold text-slate-700 mb-1">হয়ে থাকলে কার দ্বারা পরিদর্শিত?</label>
+                <input id="s_insp_byWhom" type="text" placeholder="যেমন: অবর বিদ্যালয় পরিদর্শক (SI/S)" class="sleek-input" />
+              </div>
+              <div>
+                <label for="s_insp_countYear" class="block text-xs font-semibold text-slate-700 mb-1">বর্তমান বর্ষে পরিদর্শনের মোট সংখ্যা</label>
+                <input id="s_insp_countYear" type="text" placeholder="যেমন: ২ বার" class="sleek-input" />
+              </div>
+            </div>
+            <div class="text-[11px] text-indigo-800 bg-white/80 p-2.5 rounded-lg border border-indigo-200/60">
+              এই তথ্যগুলো দ্বিতীয় পৃষ্ঠায় ‘খ’ ও ‘গ’ অংশের মাঝখানে সরকারি ফরম্যাটে প্রিন্ট হবে।
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===================================================================== -->
+      <!-- STEP 4: PART G — STUDENT ENROLLMENT & ATTENDANCE CARD                 -->
+      <!-- ===================================================================== -->
+      <div id="mobileStudentPanel" class="sleek-card p-4 sm:p-6 space-y-5">
+        <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-200 pb-3.5">
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-xl bg-sky-100 text-sky-800 border border-sky-300 flex items-center justify-center font-bold text-sm">
+              ৪
+            </div>
+            <div>
+              <h3 class="text-sm sm:text-base font-bold text-slate-900">‘গ’ অংশ : শ্রেণিভিত্তিক ছাত্র-ছাত্রী ও উপস্থিতির বিবরণ</h3>
+              <p class="text-xs text-slate-500">শ্রেণি নির্বাচন করে বালক-বালিকার সংখ্যা এবং মাসের গড় উপস্থিতি পূরণ করুন</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-2 text-xs">
+            <span class="px-3 py-1 rounded-full bg-sky-50 border border-sky-200 font-bold text-sky-800">
+              সর্বমোট শিক্ষার্থী: <span id="sleekGrandStudentBadge">০ জন</span>
+            </span>
+          </div>
+        </div>
+
         <!-- Class Selector Horizontal Pills -->
         <div class="overflow-x-auto pb-1">
-          <div class="flex items-center gap-1.5 min-w-max" id="mobileClassPills">
+          <div class="flex items-center gap-2 min-w-max" id="mobileClassPills">
             <!-- Generated via JS -->
           </div>
         </div>
 
-        <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-4">
-          <div class="flex items-center justify-between border-b border-slate-200 pb-2">
+        <div class="p-4 sm:p-5 rounded-2xl bg-slate-50 border border-slate-200 space-y-4">
+          <div class="flex items-center justify-between border-b border-slate-200 pb-2.5">
             <div>
-              <span id="cardClassBadge" class="text-xs font-bold px-2 py-0.5 rounded bg-sky-100 text-sky-800 border border-sky-300">প্রাক্-প্রাথমিক</span>
-              <h3 id="cardClassTitle" class="text-sm font-bold text-slate-900 mt-1">শ্রেণিভিত্তিক ছাত্র-ছাত্রীর সংখ্যা</h3>
+              <span id="cardClassBadge" class="text-xs font-bold px-2.5 py-0.5 rounded-lg bg-sky-100 text-sky-800 border border-sky-300">প্রাক্-প্রাথমিক</span>
+              <h4 id="cardClassTitle" class="text-sm sm:text-base font-bold text-slate-900 mt-1">শ্রেণিভিত্তিক ছাত্র-ছাত্রীর সংখ্যা</h4>
             </div>
             <div class="text-right">
-              <span class="text-[11px] text-slate-500 block">মোট শিক্ষার্থী</span>
-              <span id="cardClassTotalBadge" class="text-sm font-bold text-sky-700">০ জন</span>
+              <span class="text-[11px] text-slate-500 block">এই শ্রেণির মোট শিক্ষার্থী</span>
+              <span id="cardClassTotalBadge" class="text-base font-bold text-sky-700">০ জন</span>
             </div>
           </div>
 
           <!-- Category inputs for active class -->
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs" id="mobileClassCategoryGrid">
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 text-xs" id="mobileClassCategoryGrid">
             <!-- Dynamic Category Boy/Girl inputs -->
           </div>
 
-          <div class="grid grid-cols-2 gap-3 pt-2 border-t border-slate-200 text-xs">
-            <div>
-              <label class="font-semibold text-slate-700 block mb-1">মাসের গড় উপস্থিতি</label>
-              <input id="m_cls_avg_att" type="number" step="0.01" placeholder="গড় উপস্থিতি" class="w-full p-2 border rounded-lg text-right text-xs bg-white" />
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-3 border-t border-slate-200 text-xs">
+            <div class="bg-white p-3 rounded-xl border border-slate-200">
+              <label for="m_cls_avg_att" class="font-bold text-slate-800 block mb-1">📊 মাসের গড় উপস্থিতি (Average Attendance)</label>
+              <input id="m_cls_avg_att" type="number" step="0.01" placeholder="এই শ্রেণির মাসের গড় উপস্থিতি" class="sleek-input text-right font-semibold" />
             </div>
-            <div>
-              <label class="font-semibold text-slate-700 block mb-1">অর্ধেক বা তদুর্ধ দিন অনুপস্থিত</label>
-              <input id="m_cls_half_abs" type="number" placeholder="অনুপস্থিত ছাত্র-ছাত্রী" class="w-full p-2 border rounded-lg text-right text-xs bg-white" />
+            <div class="bg-white p-3 rounded-xl border border-slate-200">
+              <label for="m_cls_half_abs" class="font-bold text-slate-800 block mb-1">⚠️ মাসিক কার্যদিবসের অর্ধেক বা তদুর্ধ দিন অনুপস্থিত</label>
+              <input id="m_cls_half_abs" type="number" placeholder="অনুপস্থিত ছাত্র-ছাত্রীর সংখ্যা" class="sleek-input text-right font-semibold" />
             </div>
           </div>
         </div>
@@ -565,7 +1069,7 @@
     <!-- ========================================================================= -->
     <!-- PAGE 1: ‘ক’ অংশ : শিক্ষক/শিক্ষিকা সংক্রান্ত তথ্যাদি                       -->
     <!-- ========================================================================= -->
-    <section id="sectionPartA" class="print-sheet page-break-after bg-white rounded-xl shadow-md border border-slate-300 p-3 sm:p-5 overflow-x-auto">
+    <section id="sectionPartA" class="print-sheet page-break-after bg-white rounded-xl shadow-md border border-slate-300 p-3 sm:p-5 overflow-x-auto hidden">
       <div class="min-w-[1060px]">
         <!-- Top Header Row: Main Title + Date Range -->
         <div class="flex items-end justify-between gap-4 border-b border-slate-200 pb-2 mb-2">
@@ -856,18 +1360,118 @@
 
   <!-- Confirmation Modal for Resetting Form -->
   <div id="resetModal" class="no-print fixed inset-0 z-50 bg-slate-950/60 backdrop-blur-xs hidden items-center justify-center p-4">
-    <div class="bg-white rounded-xl max-w-md w-full p-5 shadow-2xl border border-slate-200">
-      <h3 class="text-base font-bold text-slate-900 mb-1">সব তথ্য মুছে ফেলতে চান?</h3>
-      <p class="text-xs text-slate-600 mb-4">
-        এটি ফর্মের সমস্ত বর্তমান ইনপুট পরিষ্কার করে দেবে। আপনি চাইলে আগে <strong>ব্যাকআপ সেভ (.json)</strong> বাটনে ক্লিক করে ফাইল সংরক্ষণ করে রাখতে পারেন।
-      </p>
-      <div class="flex items-center justify-end gap-2">
+    <div class="bg-white rounded-xl max-w-lg w-full p-5 shadow-2xl border border-slate-200 space-y-4">
+      <div>
+        <h3 class="text-base font-bold text-slate-900 mb-1">ফর্ম রিসেট করার অপশন বেছে নিন</h3>
+        <p class="text-xs text-slate-600">
+          আপনি কি স্কুল ও শিক্ষকদের স্থায়ী তথ্য (Master Data) অক্ষত রেখে শুধুমাত্র চলতি মাসের পরিবর্তনশীল তথ্য মুছতে চান, নাকি সম্পূর্ণ ফর্ম খালি করতে চান?
+        </p>
+      </div>
+      <div class="p-3 rounded-lg bg-indigo-50 border border-indigo-200 text-xs text-indigo-950 space-y-2">
+        <div class="font-bold">১) শুধুমাত্র মাসিক পরিবর্তনশীল তথ্য রিসেট (প্রস্তাবিত):</div>
+        <p class="text-[11px] text-indigo-800">
+          স্কুলের নাম, কোড, শিক্ষকদের নাম, জন্মতারিখ, যোগদানের তারিখ, মূল বেতন ও ভাতার তথ্য অক্ষত থাকবে। শুধুমাত্র মাসের তারিখ, চলতি মাসের ছুটি, মাসিক খরচ ও গড় উপস্থিতি খালি হবে।
+        </p>
+        <button id="btnResetMonthlyOnly" type="button" class="w-full py-2 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs transition">
+          মাস্টার ডেটা রেখে শুধুমাত্র মাসিক তথ্য মুছুন
+        </button>
+      </div>
+      <div class="flex items-center justify-between pt-2 border-t border-slate-200 gap-2">
         <button id="btnCancelReset" type="button" class="px-3.5 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold transition">
           বাতিল করুন
         </button>
         <button id="btnConfirmReset" type="button" class="px-3.5 py-1.5 rounded-lg bg-rose-600 hover:bg-rose-700 text-white text-xs font-semibold transition">
           হ্যাঁ, সব মুছে ফেলুন
         </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Master Data Manager & New Month Generator Modal -->
+  <div id="masterDataModal" class="no-print fixed inset-0 z-50 bg-slate-950/60 backdrop-blur-xs hidden items-center justify-center p-4 overflow-y-auto">
+    <div class="bg-white rounded-xl max-w-2xl w-full p-5 shadow-2xl border border-slate-200 space-y-4 my-8">
+      <div class="flex items-start justify-between border-b border-slate-200 pb-3 gap-2">
+        <div>
+          <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-indigo-100 text-indigo-800 border border-indigo-300">
+            স্থায়ী তথ্য ব্যবস্থাপনা (Master Data)
+          </span>
+          <h3 class="text-base sm:text-lg font-bold text-slate-900 mt-1">
+            স্কুল ও শিক্ষকদের মাস্টার ডেটা এবং নতুন মাসের ফর্ম
+          </h3>
+          <p class="text-xs text-slate-600">
+            স্কুলের নাম, কোড, শিক্ষকদের ব্যক্তিগত তথ্য, মূল বেতন (Basic/DA/HRA/PF) এবং শ্রেণিভিত্তিক ছাত্র-ছাত্রীর সংখ্যা একবার সেভ করে রাখলে প্রতি মাসে আর টাইপ করতে হবে না।
+          </p>
+        </div>
+        <button id="btnCloseMasterModal" type="button" class="px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold">
+          ✕ বন্ধ করুন
+        </button>
+      </div>
+
+      <!-- Save Current Form as Master Data -->
+      <div class="p-3.5 rounded-xl bg-sky-50 border border-sky-200 space-y-3">
+        <div class="flex flex-wrap items-center justify-between gap-2">
+          <div>
+            <h4 class="text-xs sm:text-sm font-bold text-sky-950">★ বর্তমান ফর্ম থেকে মাস্টার ডেটা সেভ করুন</h4>
+            <p class="text-[11px] text-sky-800">ফর্মে বর্তমানে লেখা স্কুল ও শিক্ষকদের স্থায়ী তথ্য ভবিষ্যতের জন্য সংরক্ষণ করুন</p>
+          </div>
+          <button id="btnSaveMasterFromModal" type="button" class="px-3.5 py-2 rounded-lg bg-sky-600 hover:bg-sky-700 text-white text-xs font-bold shadow-xs transition">
+            বর্তমান মাস্টার ডেটা সেভ করুন
+          </button>
+        </div>
+        <div class="flex flex-wrap items-center gap-4 text-xs text-slate-700 pt-1 border-t border-sky-200/70">
+          <label class="inline-flex items-center gap-1.5 cursor-pointer select-none">
+            <input id="chkMasterIncludeSalary" type="checkbox" checked class="rounded text-sky-600" />
+            <span>শিক্ষকদের মাসিক মূল বেতন, ভাতা ও PF কর্তন মাস্টার ডেটায় অন্তর্ভুক্ত রাখুন</span>
+          </label>
+          <label class="inline-flex items-center gap-1.5 cursor-pointer select-none">
+            <input id="chkMasterIncludeStudents" type="checkbox" checked class="rounded text-sky-600" />
+            <span>শ্রেণিভিত্তিক ছাত্র-ছাত্রীর সংখ্যা (‘গ’ অংশ) মাস্টার ডেটায় অন্তর্ভুক্ত রাখুন</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Start New Month Workflow -->
+      <div class="p-3.5 rounded-xl bg-amber-50 border border-amber-200 space-y-2.5">
+        <div class="flex flex-wrap items-center justify-between gap-2">
+          <div>
+            <h4 class="text-xs sm:text-sm font-bold text-amber-950">📅 নতুন মাসের ফর্ম প্রস্তুত করুন (Start New Month)</h4>
+            <p class="text-[11px] text-amber-900">
+              মাস্টার ডেটা অপরিবর্তিত রেখে শুধুমাত্র চলতি মাসের ছুটি, খরচ এবং উপস্থিতির ঘরগুলো নতুন মাসের জন্য প্রস্তুত করুন
+            </p>
+          </div>
+          <button id="btnStartNewMonth" type="button" class="px-3.5 py-2 rounded-lg bg-amber-500 hover:bg-amber-400 text-slate-950 text-xs font-bold shadow-xs transition">
+            নতুন মাসের ফর্ম শুরু করুন
+          </button>
+        </div>
+        <div class="flex flex-wrap items-center gap-4 text-xs text-slate-700 pt-1 border-t border-amber-200/70">
+          <label class="inline-flex items-center gap-1.5 cursor-pointer select-none">
+            <input id="chkCarryForwardBalance" type="checkbox" checked class="rounded text-amber-600" />
+            <span>গত মাসের ‘মাসান্তে মজুত’ (ব্যাঙ্ক ও হাতে) স্বয়ংক্রিয়ভাবে নতুন মাসের ‘শুরুতে মজুত’-এ আনুন</span>
+          </label>
+          <label class="inline-flex items-center gap-1.5 cursor-pointer select-none">
+            <input id="chkAddMonthLeaveToYear" type="checkbox" class="rounded text-amber-600" />
+            <span>চলতি মাসের ছুটি ‘বর্তমান বর্ষে’র ছুটির সাথে যোগ করে ‘বর্তমান মাস’ খালি করুন</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Saved Master Profiles List -->
+      <div class="space-y-2">
+        <div class="flex items-center justify-between">
+          <h4 class="text-xs sm:text-sm font-bold text-slate-900">সংরক্ষিত স্কুল মাস্টার প্রোফাইলসমূহ (Saved School Profiles)</h4>
+          <div class="flex items-center gap-2">
+            <button id="btnExportMasterJson" type="button" class="px-2.5 py-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-300 text-[11px] font-semibold transition">
+              মাস্টার ফাইল ডাউনলোড (.json)
+            </button>
+            <label for="fileImportMasterJson" class="cursor-pointer px-2.5 py-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-300 text-[11px] font-semibold transition">
+              মাস্টার ফাইল ইমপোর্ট
+              <input id="fileImportMasterJson" type="file" accept=".json" class="hidden" />
+            </label>
+          </div>
+        </div>
+        <div id="masterProfilesList" class="max-h-52 overflow-y-auto space-y-2 pr-1">
+          <!-- Dynamically populated list of saved school profiles -->
+        </div>
       </div>
     </div>
   </div>
@@ -1290,6 +1894,7 @@
         const inputs = {};
         document.querySelectorAll('input[id], select[id]').forEach((el) => {
           if (el.type === 'file') return;
+          if (el.id.startsWith('m_') || el.id.startsWith('s_')) return;
           if (el.type === 'checkbox') {
             inputs[el.id] = el.checked;
           } else {
@@ -1316,6 +1921,7 @@
           }
         });
         recalculateAll();
+        if (typeof syncSleekWorkspaceFromMain === 'function') syncSleekWorkspaceFromMain();
       }
 
       // Save to localStorage safely
@@ -1384,12 +1990,16 @@
         }
 
         document.querySelectorAll('.tab-btn').forEach((btn) => {
+          if (btn.id === 'tabBtnMobileView') return;
           if (btn.dataset.tab === tabName) {
-            btn.className = 'tab-btn px-3 py-1.5 rounded-md text-xs font-semibold bg-amber-500 text-slate-950 transition';
+            btn.className = 'tab-btn px-3 py-1.5 rounded-md text-xs font-bold bg-amber-500 text-slate-950 transition flex items-center gap-1.5 shadow-xs';
           } else {
-            btn.className = 'tab-btn px-3 py-1.5 rounded-md text-xs font-semibold text-slate-300 hover:text-white transition';
+            btn.className = 'tab-btn px-3 py-1.5 rounded-md text-xs font-semibold text-slate-300 hover:text-white transition flex items-center gap-1.5';
           }
         });
+        if (typeof syncSleekWorkspaceFromMain === 'function') {
+          syncSleekWorkspaceFromMain();
+        }
       }
 
       // Populate realistic sample data for demonstration
@@ -1477,6 +2087,7 @@
 
         document.getElementById('chkAutoStudentTotal').checked = true;
         applyFormState({ inputs: sampleMeta });
+        if (typeof syncSleekWorkspaceFromMain === 'function') syncSleekWorkspaceFromMain();
         saveToStorage();
         showToast('নমুনা তথ্য লোড করা হয়েছে');
       }
@@ -1664,6 +2275,7 @@
         });
         recalculateAll();
         saveToStorage();
+        if (typeof syncSleekWorkspaceFromMain === 'function') syncSleekWorkspaceFromMain();
         resetModal.classList.add('hidden');
         resetModal.classList.remove('flex');
         showToast('ফর্মটি সম্পূর্ণ পরিষ্কার করা হয়েছে');
@@ -1741,6 +2353,7 @@
         document.getElementById('cardNetPayBadge').textContent = document.getElementById(`ta_net_pay_t${t}`)?.textContent ? `₹ ${document.getElementById(`ta_net_pay_t${t}`).textContent}` : '₹ ০.০০';
         document.getElementById('cardGrossBadge').textContent = document.getElementById(`ta_gross_pay_t${t}`)?.textContent ? `মোট: ₹ ${document.getElementById(`ta_gross_pay_t${t}`).textContent}` : 'মোট: ₹ ০.০০';
         document.getElementById('cardDedBadge').textContent = document.getElementById(`ta_total_ded_t${t}`)?.textContent ? `বাদ: ₹ ${document.getElementById(`ta_total_ded_t${t}`).textContent}` : 'বাদ: ₹ ০.০০';
+        if (typeof updateSleekBadges === 'function') updateSleekBadges();
 
         // Bind all fields
         const map = [
@@ -1786,6 +2399,7 @@
               document.getElementById('cardNetPayBadge').textContent = document.getElementById(`ta_net_pay_t${t}`)?.textContent ? `₹ ${document.getElementById(`ta_net_pay_t${t}`).textContent}` : '₹ ০.০০';
               document.getElementById('cardGrossBadge').textContent = document.getElementById(`ta_gross_pay_t${t}`)?.textContent ? `মোট: ₹ ${document.getElementById(`ta_gross_pay_t${t}`).textContent}` : 'মোট: ₹ ০.০০';
               document.getElementById('cardDedBadge').textContent = document.getElementById(`ta_total_ded_t${t}`)?.textContent ? `বাদ: ₹ ${document.getElementById(`ta_total_ded_t${t}`).textContent}` : 'বাদ: ₹ ০.০০';
+        if (typeof updateSleekBadges === 'function') updateSleekBadges();
               if (mId === 'm_t_name') {
                 document.getElementById('cardTeacherTitle').textContent = mEl.value || `শিক্ষক ${t} এর তথ্য`;
                 renderMobileTeacherPills();
@@ -1885,29 +2499,496 @@
         }
       }
 
-      // Mobile Sub-navigation Switch (Teacher vs Student)
-      document.getElementById('btnMobileSubPartA')?.addEventListener('click', () => {
-        document.getElementById('mobileTeacherPanel').classList.remove('hidden');
-        document.getElementById('mobileStudentPanel').classList.add('hidden');
-        document.getElementById('btnMobileSubPartA').className = 'px-2.5 py-1 rounded-md font-bold bg-amber-500 text-slate-950 transition';
-        document.getElementById('btnMobileSubPartG').className = 'px-2.5 py-1 rounded-md font-medium text-slate-600 hover:text-slate-900 transition';
-      });
+      // Sleek Workspace Step Filtering & Two-Way Sync
+      const SLEEK_PAIR_MAP = [
+        ['s_meta_dateFrom', 'meta_dateFrom_a'],
+        ['s_meta_dateTo', 'meta_dateTo_a'],
+        ['s_meta_workingDays', 'meta_workingDays'],
+        ['s_meta_paraTeacherCount', 'meta_paraTeacherCount'],
+        ['s_meta_schoolName', 'meta_schoolName'],
+        ['s_meta_schoolNo', 'meta_schoolNo'],
+        ['s_meta_schoolCode', 'meta_schoolCode'],
+        ['s_meta_circleName', 'meta_circleName'],
+        ['s_meta_village', 'meta_village'],
+        ['s_meta_postOffice', 'meta_postOffice'],
+        ['s_meta_gramPanchayat', 'meta_gramPanchayat'],
+        ['s_meta_municipalityWard', 'meta_municipalityWard'],
+        ['s_meta_landArea', 'meta_landArea'],
+        ['s_meta_buildingType', 'meta_buildingType'],
+        ['s_meta_usableRooms', 'meta_usableRooms'],
+        ['s_kha_open_bank', 'kha_open_bank'],
+        ['s_kha_open_cash', 'kha_open_cash'],
+        ['s_kha_rec_prev', 'kha_rec_prev'],
+        ['s_kha_exp', 'kha_exp'],
+        ['s_kha_close_bank', 'kha_close_bank'],
+        ['s_kha_close_cash', 'kha_close_cash'],
+        ['s_kha_note1', 'kha_note1'],
+        ['s_kha_note2', 'kha_note2'],
+        ['s_insp_visited', 'insp_visited'],
+        ['s_insp_byWhom', 'insp_byWhom'],
+        ['s_insp_countYear', 'insp_countYear']
+      ];
 
-      document.getElementById('btnMobileSubPartG')?.addEventListener('click', () => {
-        document.getElementById('mobileTeacherPanel').classList.add('hidden');
-        document.getElementById('mobileStudentPanel').classList.remove('hidden');
-        document.getElementById('btnMobileSubPartA').className = 'px-2.5 py-1 rounded-md font-medium text-slate-600 hover:text-slate-900 transition';
-        document.getElementById('btnMobileSubPartG').className = 'px-2.5 py-1 rounded-md font-bold bg-amber-500 text-slate-950 transition';
+      function bindSleekStaticPairs() {
+        SLEEK_PAIR_MAP.forEach(([sId, mainId]) => {
+          const sEl = document.getElementById(sId);
+          const mEl = document.getElementById(mainId);
+          if (!sEl || !mEl) return;
+          const syncToMain = () => {
+            mEl.value = sEl.value;
+            if (mainId === 'meta_dateFrom_a') {
+              const bEl = document.getElementById('meta_dateFrom_b');
+              if (bEl) bEl.value = sEl.value;
+            } else if (mainId === 'meta_dateTo_a') {
+              const bEl = document.getElementById('meta_dateTo_b');
+              if (bEl) bEl.value = sEl.value;
+            }
+            recalculateAll();
+            updateSleekBadges();
+            saveToStorage();
+          };
+          sEl.addEventListener('input', syncToMain);
+          sEl.addEventListener('change', syncToMain);
+        });
+      }
+
+      function updateSleekBadges() {
+        const khaTot = document.getElementById('kha_total_rec')?.textContent || '';
+        const khaBadge = document.getElementById('s_kha_total_rec_badge');
+        if (khaBadge) khaBadge.textContent = khaTot ? `₹ ${khaTot}` : '₹ ০.০০';
+
+        const grandStu = document.getElementById('kpiTotalStudents')?.textContent || '০';
+        const stuBadge = document.getElementById('sleekGrandStudentBadge');
+        if (stuBadge) stuBadge.textContent = `${grandStu} জন`;
+
+        const netFooter = document.getElementById('cardNetPayFooterBadge');
+        const netMain = document.getElementById('cardNetPayBadge');
+        if (netFooter && netMain) netFooter.textContent = netMain.textContent;
+      }
+
+      function syncSleekWorkspaceFromMain() {
+        SLEEK_PAIR_MAP.forEach(([sId, mainId]) => {
+          const sEl = document.getElementById(sId);
+          const mEl = document.getElementById(mainId);
+          if (sEl && mEl) sEl.value = mEl.value || '';
+        });
+        renderMobileTeacherPills();
+        loadTeacherIntoMobileCard(activeMobileTeacher);
         renderMobileClassPills();
         loadClassIntoMobileCard(activeMobileClass);
+        updateSleekBadges();
+      }
+
+      function setSleekStep(step) {
+        const panels = {
+          school: document.getElementById('sleekSchoolPanel'),
+          teachers: document.getElementById('mobileTeacherPanel'),
+          contingency: document.getElementById('sleekContingencyPanel'),
+          students: document.getElementById('mobileStudentPanel')
+        };
+        Object.entries(panels).forEach(([k, el]) => {
+          if (!el) return;
+          if (step === 'all' || step === k) {
+            el.classList.remove('hidden');
+          } else {
+            el.classList.add('hidden');
+          }
+        });
+        document.querySelectorAll('.sleek-step-btn').forEach((btn) => {
+          if (btn.dataset.step === step) {
+            btn.classList.add('active');
+          } else {
+            btn.classList.remove('active');
+          }
+        });
+      }
+
+      document.querySelectorAll('.sleek-step-btn').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          setSleekStep(btn.dataset.step || 'all');
+          syncSleekWorkspaceFromMain();
+        });
+      });
+
+      document.getElementById('btnPrevTeacher')?.addEventListener('click', () => {
+        activeMobileTeacher = activeMobileTeacher > 1 ? activeMobileTeacher - 1 : 8;
+        renderMobileTeacherPills();
+        loadTeacherIntoMobileCard(activeMobileTeacher);
+        updateSleekBadges();
+      });
+
+      document.getElementById('btnNextTeacher')?.addEventListener('click', () => {
+        activeMobileTeacher = activeMobileTeacher < 8 ? activeMobileTeacher + 1 : 1;
+        renderMobileTeacherPills();
+        loadTeacherIntoMobileCard(activeMobileTeacher);
+        updateSleekBadges();
+      });
+
+      document.getElementById('btnSleekSaveMasterCard')?.addEventListener('click', () => {
+        if (typeof saveCurrentAsMasterProfile === 'function') saveCurrentAsMasterProfile();
+      });
+
+      document.getElementById('btnSleekPreviewPrint')?.addEventListener('click', () => {
+        setActiveTab('both');
+      });
+
+      document.getElementById('btnSleekDirectPrint')?.addEventListener('click', () => {
+        setActiveTab('both');
+        setTimeout(() => {
+          window.print();
+        }, 150);
+      });
+
+
+
+      // =====================================================================
+      // MASTER DATA (STATIC SCHOOL & TEACHER PROFILE) MANAGEMENT
+      // =====================================================================
+      const MASTER_STORAGE_KEY = 'murshidabad_dpsc_master_profiles_v1';
+
+      const SCHOOL_MASTER_IDS = [
+        'meta_schoolName', 'meta_schoolNo', 'meta_village', 'meta_postOffice',
+        'meta_gramPanchayat', 'meta_schoolCode', 'meta_circleName',
+        'meta_municipalityWard', 'meta_landArea', 'meta_buildingType',
+        'meta_usableRooms', 'meta_paraTeacherCount', 'chkAutoStudentTotal'
+      ];
+
+      const TEACHER_STATIC_ROW_IDS = [
+        't_name', 'desig', 'qual', 'dob', 'doj', 'dor', 'pay_scale', 'inc_date', 'mobile'
+      ];
+
+      const TEACHER_SALARY_ROW_IDS = [
+        'pay_basic', 'pay_da', 'pay_sp', 'pay_hra', 'pay_ma', 'pay_other',
+        'ded_pf', 'ded_ptax', 'ded_pfloan', 'ded_other'
+      ];
+
+      function getSavedMasterProfiles() {
+        try {
+          const raw = localStorage.getItem(MASTER_STORAGE_KEY);
+          if (!raw) return [];
+          const parsed = JSON.parse(raw);
+          return Array.isArray(parsed) ? parsed : [];
+        } catch (err) {
+          return [];
+        }
+      }
+
+      function saveMasterProfilesArray(profiles) {
+        try {
+          localStorage.setItem(MASTER_STORAGE_KEY, JSON.stringify(profiles));
+        } catch (err) {
+          // Ignore storage error
+        }
+        updateMasterBadgeCount();
+      }
+
+      function updateMasterBadgeCount() {
+        const profiles = getSavedMasterProfiles();
+        const badge = document.getElementById('masterProfileCountBadge');
+        if (badge) {
+          badge.textContent = profiles.length.toLocaleString('bn-IN');
+        }
+      }
+
+      function extractMasterDataFromForm() {
+        const includeSalary = document.getElementById('chkMasterIncludeSalary')?.checked ?? true;
+        const includeStudents = document.getElementById('chkMasterIncludeStudents')?.checked ?? true;
+        const masterInputs = {};
+
+        // 1. School static fields
+        SCHOOL_MASTER_IDS.forEach((id) => {
+          const el = document.getElementById(id);
+          if (!el) return;
+          masterInputs[id] = el.type === 'checkbox' ? el.checked : el.value;
+        });
+
+        // 2. Teacher static fields + cumulative annual leave + optional standard salary
+        for (let t = 1; t <= 8; t++) {
+          TEACHER_STATIC_ROW_IDS.forEach((rid) => {
+            const id = `ta_${rid}_t${t}`;
+            const el = document.getElementById(id);
+            if (el) masterInputs[id] = el.value;
+          });
+          // Also save cumulative annual leave ('বর্তমান বর্ষে')
+          ['lv_casual', 'lv_medical', 'lv_half', 'lv_without'].forEach((lid) => {
+            const id = `ta_${lid}_t${t}_y`;
+            const el = document.getElementById(id);
+            if (el) masterInputs[id] = el.value;
+          });
+          if (includeSalary) {
+            TEACHER_SALARY_ROW_IDS.forEach((sid) => {
+              const id = `ta_${sid}_t${t}`;
+              const el = document.getElementById(id);
+              if (el) masterInputs[id] = el.value;
+            });
+          }
+        }
+
+        // 3. Optional Student Enrollment baseline (boys & girls counts, excluding monthly attendance)
+        if (includeStudents) {
+          CLASSES.forEach((cls) => {
+            CATEGORIES.forEach((cat) => {
+              ['b', 'g'].forEach((gender) => {
+                const id = `tg_${cls.id}_${cat.id}_${gender}`;
+                const el = document.getElementById(id);
+                if (el) masterInputs[id] = el.value;
+              });
+            });
+          });
+        }
+
+        const schoolName = (document.getElementById('meta_schoolName')?.value || '').trim() || 'নামবিহীন বিদ্যালয়';
+        const schoolCode = (document.getElementById('meta_schoolCode')?.value || '').trim();
+        const circleName = (document.getElementById('meta_circleName')?.value || '').trim();
+
+        let teacherCount = 0;
+        for (let t = 1; t <= 8; t++) {
+          if ((document.getElementById(`ta_t_name_t${t}`)?.value || '').trim()) {
+            teacherCount++;
+          }
+        }
+
+        return {
+          profileId: schoolCode || schoolName,
+          schoolName,
+          schoolCode,
+          circleName,
+          teacherCount,
+          savedAt: new Date().toLocaleString('bn-IN'),
+          inputs: masterInputs
+        };
+      }
+
+      function saveCurrentAsMasterProfile() {
+        const profile = extractMasterDataFromForm();
+        const profiles = getSavedMasterProfiles();
+        const existingIdx = profiles.findIndex((p) => p.profileId === profile.profileId);
+        if (existingIdx >= 0) {
+          profiles[existingIdx] = profile;
+        } else {
+          profiles.unshift(profile);
+        }
+        saveMasterProfilesArray(profiles);
+        renderMasterProfilesList();
+        showToast(`মাস্টার ডেটা সংরক্ষিত হয়েছে: ${profile.schoolName}`);
+      }
+
+      function loadMasterProfileIntoForm(profile) {
+        if (!profile || !profile.inputs) return;
+        Object.entries(profile.inputs).forEach(([id, val]) => {
+          const el = document.getElementById(id);
+          if (!el || el.type === 'file') return;
+          if (el.type === 'checkbox') {
+            el.checked = Boolean(val);
+          } else {
+            el.value = val ?? '';
+          }
+        });
+        recalculateAll();
+        saveToStorage();
+        if (typeof syncSleekWorkspaceFromMain === 'function') syncSleekWorkspaceFromMain();
+        showToast(`মাস্টার ডেটা লোড করা হয়েছে: ${profile.schoolName}`);
+      }
+
+      function startNewMonthWithMasterData() {
+        const carryBalance = document.getElementById('chkCarryForwardBalance')?.checked ?? true;
+        const addLeaveToYear = document.getElementById('chkAddMonthLeaveToYear')?.checked ?? false;
+
+        // 1. Optionally carry forward closing balance ('মাসান্তে মজুত') to opening balance ('শুরুতে মজুত')
+        const closeBank = document.getElementById('kha_close_bank')?.value || '';
+        const closeCash = document.getElementById('kha_close_cash')?.value || '';
+
+        // 2. Optionally add current month leave ('বর্তমান মাস') to cumulative year leave ('বর্তমান বর্ষে')
+        for (let t = 1; t <= 8; t++) {
+          ['lv_casual', 'lv_medical', 'lv_half', 'lv_without'].forEach((lid) => {
+            const mEl = document.getElementById(`ta_${lid}_t${t}_m`);
+            const yEl = document.getElementById(`ta_${lid}_t${t}_y`);
+            if (addLeaveToYear && mEl && yEl) {
+              const mVal = parseNum(mEl.value);
+              const yVal = parseNum(yEl.value);
+              if (mVal !== null) {
+                yEl.value = String((yVal || 0) + mVal);
+              }
+            }
+            if (mEl) mEl.value = '';
+          });
+          // Clear monthly payable days & casual allowance if desired, or keep standard salary
+          const payDaysEl = document.getElementById(`ta_payable_days_t${t}`);
+          if (payDaysEl) payDaysEl.value = '';
+        }
+
+        // 3. Clear monthly dates & working days
+        ['meta_dateFrom_a', 'meta_dateTo_a', 'meta_dateFrom_b', 'meta_dateTo_b', 'meta_workingDays'].forEach((id) => {
+          const el = document.getElementById(id);
+          if (el) el.value = '';
+        });
+
+        // 4. Reset Part B ('খ' অংশ) monthly receipts/expenditure
+        if (carryBalance && (closeBank || closeCash)) {
+          document.getElementById('kha_open_bank').value = closeBank;
+          document.getElementById('kha_open_cash').value = closeCash;
+        }
+        ['kha_rec_prev', 'kha_exp', 'kha_close_bank', 'kha_close_cash', 'kha_note1', 'kha_note2'].forEach((id) => {
+          const el = document.getElementById(id);
+          if (el) el.value = '';
+        });
+
+        // 5. Clear monthly inspection fields (keep annual inspection count intact)
+        ['insp_visited', 'insp_byWhom'].forEach((id) => {
+          const el = document.getElementById(id);
+          if (el) el.value = '';
+        });
+
+        // 6. Clear monthly attendance & absentee columns in Part G (keep student enrollment counts intact)
+        CLASSES.forEach((cls) => {
+          ['avg_att', 'half_abs'].forEach((colKey) => {
+            const el = document.getElementById(`tg_${cls.id}_${colKey}`);
+            if (el) el.value = '';
+          });
+        });
+
+        recalculateAll();
+        saveToStorage();
+        if (typeof syncSleekWorkspaceFromMain === 'function') syncSleekWorkspaceFromMain();
+        showToast('মাস্টার ডেটা রেখে নতুন মাসের ফর্ম প্রস্তুত করা হয়েছে');
+      }
+
+      function renderMasterProfilesList() {
+        const container = document.getElementById('masterProfilesList');
+        if (!container) return;
+        const profiles = getSavedMasterProfiles();
+        updateMasterBadgeCount();
+
+        if (profiles.length === 0) {
+          container.innerHTML = `
+            <div class="p-4 rounded-lg bg-slate-50 border border-dashed border-slate-300 text-center text-xs text-slate-500">
+              এখনও কোনো মাস্টার ডেটা সেভ করা হয়নি। ফর্মে স্কুল ও শিক্ষকদের নাম লিখে ওপরের <strong>“বর্তমান মাস্টার ডেটা সেভ করুন”</strong> বাটনে ক্লিক করুন।
+            </div>
+          `;
+          return;
+        }
+
+        container.innerHTML = '';
+        profiles.forEach((prof, idx) => {
+          const card = document.createElement('div');
+          card.className = 'p-3 rounded-lg bg-slate-50 border border-slate-200 flex flex-wrap items-center justify-between gap-2';
+          card.innerHTML = `
+            <div>
+              <div class="font-bold text-xs text-slate-900">${prof.schoolName}</div>
+              <div class="text-[11px] text-slate-500">
+                ${prof.schoolCode ? `স্কুল কোড: ${prof.schoolCode} • ` : ''}
+                ${prof.circleName ? `চক্র: ${prof.circleName} • ` : ''}
+                শিক্ষক: ${(prof.teacherCount || 0).toLocaleString('bn-IN')} জন • সংরক্ষিত: ${prof.savedAt || ''}
+              </div>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <button type="button" data-action="load" class="px-2.5 py-1 rounded bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold transition">
+                লোড করুন
+              </button>
+              <button type="button" data-action="delete" class="px-2 py-1 rounded bg-rose-100 hover:bg-rose-200 text-rose-700 text-xs font-semibold transition">
+                মুছুন
+              </button>
+            </div>
+          `;
+
+          card.querySelector('[data-action="load"]').addEventListener('click', () => {
+            loadMasterProfileIntoForm(prof);
+            document.getElementById('masterDataModal').classList.add('hidden');
+            document.getElementById('masterDataModal').classList.remove('flex');
+          });
+
+          card.querySelector('[data-action="delete"]').addEventListener('click', () => {
+            const current = getSavedMasterProfiles();
+            current.splice(idx, 1);
+            saveMasterProfilesArray(current);
+            renderMasterProfilesList();
+            showToast('মাস্টার প্রোফাইল মুছে ফেলা হয়েছে');
+          });
+
+          container.appendChild(card);
+        });
+      }
+
+      // Wire Master Data Modal & Toolbar buttons
+      const masterDataModal = document.getElementById('masterDataModal');
+      document.getElementById('btnSaveMasterQuick')?.addEventListener('click', saveCurrentAsMasterProfile);
+      document.getElementById('btnSaveMasterFromModal')?.addEventListener('click', saveCurrentAsMasterProfile);
+
+      document.getElementById('btnOpenMasterModal')?.addEventListener('click', () => {
+        renderMasterProfilesList();
+        masterDataModal.classList.remove('hidden');
+        masterDataModal.classList.add('flex');
+      });
+
+      document.getElementById('btnCloseMasterModal')?.addEventListener('click', () => {
+        masterDataModal.classList.add('hidden');
+        masterDataModal.classList.remove('flex');
+      });
+
+      document.getElementById('btnStartNewMonth')?.addEventListener('click', () => {
+        startNewMonthWithMasterData();
+        masterDataModal.classList.add('hidden');
+        masterDataModal.classList.remove('flex');
+      });
+
+      document.getElementById('btnResetMonthlyOnly')?.addEventListener('click', () => {
+        startNewMonthWithMasterData();
+        document.getElementById('resetModal').classList.add('hidden');
+        document.getElementById('resetModal').classList.remove('flex');
+      });
+
+      // Export Master Profiles JSON
+      document.getElementById('btnExportMasterJson')?.addEventListener('click', () => {
+        const profiles = getSavedMasterProfiles();
+        if (profiles.length === 0) {
+          saveCurrentAsMasterProfile();
+        }
+        const updatedProfiles = getSavedMasterProfiles();
+        const blob = new Blob([JSON.stringify({ type: 'dpsc_master_profiles', profiles: updatedProfiles }, null, 2)], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'murshidabad_dpsc_master_data.json';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+        showToast('মাস্টার ডেটা ফাইল (.json) ডাউনলোড হয়েছে');
+      });
+
+      // Import Master Profiles JSON
+      document.getElementById('fileImportMasterJson')?.addEventListener('change', (e) => {
+        const file = e.target.files && e.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = (ev) => {
+          try {
+            const parsed = JSON.parse(String(ev.target.result));
+            if (parsed && Array.isArray(parsed.profiles)) {
+              saveMasterProfilesArray(parsed.profiles);
+              renderMasterProfilesList();
+              if (parsed.profiles[0]) loadMasterProfileIntoForm(parsed.profiles[0]);
+            } else if (parsed && parsed.inputs) {
+              applyFormState(parsed);
+              saveCurrentAsMasterProfile();
+            }
+            showToast('মাস্টার ডেটা ফাইল সফলভাবে ইমপোর্ট হয়েছে');
+          } catch (err) {
+            showToast('ফাইলটি সঠিক JSON ফরম্যাটে নেই');
+          }
+        };
+        reader.readAsText(file);
+        e.target.value = '';
       });
 
 
       // Load saved state on startup
+      bindSleekStaticPairs();
       loadFromStorage();
       recalculateAll();
-      renderMobileTeacherPills();
-      loadTeacherIntoMobileCard(1);
+      syncSleekWorkspaceFromMain();
+      updateMasterBadgeCount();
+      renderMasterProfilesList();
     })();
   </script>
 </body>
